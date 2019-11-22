@@ -50,7 +50,7 @@
 		F030572C237EF5130075D910 = {
 			isa = PBXGroup;
 			children = (
-				F0305737237EF5130075D910 /* RelativeNeighborhoodGraph */,
+				F0305737237EF5130075D910 /* src */,
 				F0305736237EF5130075D910 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -63,7 +63,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		F0305737237EF5130075D910 /* RelativeNeighborhoodGraph */ = {
+		F0305737237EF5130075D910 /* src */ = {
 			isa = PBXGroup;
 			children = (
 				F0305738237EF5130075D910 /* main.cpp */,
@@ -74,7 +74,7 @@
 				F030574B2387E4DB0075D910 /* GraphData.cpp */,
 				F030574C2387E4DB0075D910 /* GraphData.hpp */,
 			);
-			path = RelativeNeighborhoodGraph;
+			path = src;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
