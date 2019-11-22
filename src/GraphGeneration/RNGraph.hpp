@@ -26,6 +26,7 @@ public:
     //Methods
 public:
   
+    
 private:
     bool isThereANodeCloserThan(MatrixOfDistanceBetweenNodes & matrixOfDistance, float distance, unsigned int node);
     
