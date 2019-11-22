@@ -138,7 +138,7 @@ void MatrixOfFloat::copyArrayToMatrixArray(float** arrayToCopy){
             matrixArray[row][column] = arrayToCopy[row][column];
         }
     }
-}
+} 
 
 void MatrixOfFloat::setMatrixArrayToZero(){
     for(unsigned int row = 0; row < numberOfRows; row++){

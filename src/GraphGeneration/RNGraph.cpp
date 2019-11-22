@@ -12,7 +12,7 @@
 Constructors & Destructor
 */
 RNGraph::RNGraph(MatrixOfDistanceBetweenNodes & matrixOfDistance):MatrixOfBoolean(matrixOfDistance.getNumberOfRows(), matrixOfDistance.getNumberOfRows()){
-    
+   
     #pragma omp parallel for
     for (unsigned int row = 0; row < getNumberOfRows(); row++) {
         for (unsigned int column = 0; column < getNumberOfColumns(); column++) {

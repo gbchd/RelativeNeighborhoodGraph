@@ -37,7 +37,7 @@ int main(int argc, const char * argv[]) {
     printf("%d %d \n", matrix4.getNumberOfRows(), matrix4.getNumberOfColumns());
     
     GraphData matrix5(matrix4);
-    
+     
     matrix5.print();
     
     MatrixOfDistanceBetweenNodes matrix6(matrix5);

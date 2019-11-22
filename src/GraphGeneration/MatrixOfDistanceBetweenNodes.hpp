@@ -13,7 +13,7 @@
 #include "MatrixOfFloat.hpp"
 #include "GraphData.hpp"
 #include "math.h"
-
+ 
 class MatrixOfDistanceBetweenNodes : public MatrixOfFloat {
     //Atributes
 private:

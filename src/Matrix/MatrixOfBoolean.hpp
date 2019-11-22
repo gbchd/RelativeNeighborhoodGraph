@@ -38,7 +38,7 @@ public:
     bool getElement(unsigned int row, unsigned int column);
     void setElement(unsigned int row, unsigned int column, bool elem);
     void print();
-    
+   
 private:
     void allocateMatrixArray();
     void desallocateMatrixArray();

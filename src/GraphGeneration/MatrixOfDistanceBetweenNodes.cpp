@@ -11,7 +11,7 @@
 /*
 Constructors & Destructor
 */
-
+ 
 MatrixOfDistanceBetweenNodes::MatrixOfDistanceBetweenNodes(GraphData & graphData):MatrixOfFloat(graphData.getNumberOfRows(), graphData.getNumberOfRows()){
     //#pragma omp parallel for
     for (unsigned int row = 0; row < getNumberOfRows(); row++) {

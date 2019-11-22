@@ -51,7 +51,7 @@ private:
     void setMatrixArrayToZero();
 };
 
-
+ 
 
 
 #endif /* MatrixOfFloat_hpp */
