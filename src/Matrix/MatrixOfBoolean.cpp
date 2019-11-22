@@ -1,38 +1,38 @@
 //
-//  MatrixOfFloat.cpp
+//  MatrixOfBoolean.cpp
 //  RelativeNeighborhoodGraph
 //
-//  Created by GuillaumeBouchard on 15/11/2019.
+//  Created by GuillaumeBouchard on 22/11/2019.
 //  Copyright © 2019 GuillaumeBouchard. All rights reserved.
 //
 
-#include "MatrixOfFloat.hpp"
+#include "MatrixOfBoolean.hpp"
 
 
 /*
  Constructors & Destructor
  */
-MatrixOfFloat::MatrixOfFloat(){
+MatrixOfBoolean::MatrixOfBoolean(){
     numberOfRows = 0;
     numberOfColumns = 0;
     matrixArray = NULL;
 }
 
-MatrixOfFloat::MatrixOfFloat(MatrixOfFloat & matrix){
+MatrixOfBoolean::MatrixOfBoolean(MatrixOfBoolean & matrix){
     numberOfRows = matrix.numberOfRows;
     numberOfColumns = matrix.numberOfColumns;
     allocateMatrixArray();
     copyArrayToMatrixArray(matrix.matrixArray);
 }
 
-MatrixOfFloat::MatrixOfFloat(unsigned int rows, unsigned int columns){
+MatrixOfBoolean::MatrixOfBoolean(unsigned int rows, unsigned int columns){
     numberOfRows = rows;
     numberOfColumns = columns;
     allocateMatrixArray();
-    setMatrixArrayToZero();
+    setMatrixArrayToFalse();
 }
 
-MatrixOfFloat::~MatrixOfFloat(){
+MatrixOfBoolean::~MatrixOfBoolean(){
     desallocateMatrixArray();
     numberOfRows = 0;
     numberOfColumns = 0;
@@ -41,7 +41,7 @@ MatrixOfFloat::~MatrixOfFloat(){
 /*
  Public Methods
  */
-MatrixOfFloat MatrixOfFloat::operator=(MatrixOfFloat & matrix){
+MatrixOfBoolean MatrixOfBoolean::operator=(MatrixOfBoolean & matrix){
     if(!isEmpty()){
         desallocateMatrixArray();
     }
@@ -53,57 +53,60 @@ MatrixOfFloat MatrixOfFloat::operator=(MatrixOfFloat & matrix){
     return *this;
 }
 
-unsigned int MatrixOfFloat::getNumberOfRows(){
+unsigned int MatrixOfBoolean::getNumberOfRows(){
     return numberOfRows;
 }
 
-unsigned int MatrixOfFloat::getNumberOfColumns(){
+unsigned int MatrixOfBoolean::getNumberOfColumns(){
     return numberOfColumns;
 }
 
-bool MatrixOfFloat::isSquare(){
+bool MatrixOfBoolean::isSquare(){
     return (numberOfRows==numberOfColumns);
 }
 
-bool MatrixOfFloat::isEmpty(){
+bool MatrixOfBoolean::isEmpty(){
     return numberOfRows==0 || numberOfColumns==0;
 }
 
-float MatrixOfFloat::getElement(unsigned int row, unsigned int column){
+bool MatrixOfBoolean::getElement(unsigned int row, unsigned int column){
     return matrixArray[row][column];
 }
 
-void MatrixOfFloat::setElement(unsigned int row, unsigned int column, float elem){
+void MatrixOfBoolean::setElement(unsigned int row, unsigned int column, bool elem){
     matrixArray[row][column] = elem;
 }
 
-void MatrixOfFloat::print(){
+void MatrixOfBoolean::print(){
     for(unsigned int row = 0; row < numberOfRows; row++){
         for (unsigned int column = 0; column < numberOfColumns; column++) {
-            printf("%f ", getElement(row, column));
+            if(getElement(row, column)){
+                printf("1 ");
+            }
+            else{
+                printf("0 ");
+            }
         }
         printf("\n");
     }
     printf("\n");
 }
 
-/*
-Protected Methods
-*/
+
 
 /*
 Private Methods
 */
-void MatrixOfFloat::allocateMatrixArray(){
+void MatrixOfBoolean::allocateMatrixArray(){
     if(numberOfRows != 0){
-        matrixArray = new float*[numberOfRows];
+        matrixArray = new bool*[numberOfRows];
         for(unsigned int column = 0; column < numberOfRows; column++){
-            matrixArray[column] = new float[numberOfColumns];
+            matrixArray[column] = new bool[numberOfColumns];
         }
     }
 }
 
-void MatrixOfFloat::desallocateMatrixArray(){
+void MatrixOfBoolean::desallocateMatrixArray(){
     for(unsigned int column = 0; column < numberOfRows; column++){
         delete[] matrixArray[column];
     }
@@ -112,7 +115,7 @@ void MatrixOfFloat::desallocateMatrixArray(){
     matrixArray = NULL;
 }
 
-void MatrixOfFloat::copyArrayToMatrixArray(float** arrayToCopy){
+void MatrixOfBoolean::copyArrayToMatrixArray(bool** arrayToCopy){
     for(unsigned int row = 0; row < numberOfRows; row++){
         for (unsigned int column = 0; column < numberOfColumns; column++) {
             matrixArray[row][column] = arrayToCopy[row][column];
@@ -120,10 +123,10 @@ void MatrixOfFloat::copyArrayToMatrixArray(float** arrayToCopy){
     }
 }
 
-void MatrixOfFloat::setMatrixArrayToZero(){
+void MatrixOfBoolean::setMatrixArrayToFalse(){
     for(unsigned int row = 0; row < numberOfRows; row++){
         for (unsigned int column = 0; column < numberOfColumns; column++) {
-            matrixArray[row][column] = 0;
+            matrixArray[row][column] = false;
         }
     }
 }

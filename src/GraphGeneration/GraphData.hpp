@@ -21,6 +21,7 @@ private:
     //Constructors & Destructor
 public:
     GraphData(FileData & fileData);
+   
     
     //Methods
 public:
@@ -35,7 +36,6 @@ private:
     void normalizeColumn(unsigned int column);
     float getNormalizedValueOfX(float x, float xmax, float xmin);
 
-    
 };
 
 

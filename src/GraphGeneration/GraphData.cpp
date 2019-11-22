@@ -11,6 +11,7 @@
 /*
 Constructors & Destructor
 */
+
 GraphData::GraphData(FileData & fileData):MatrixOfFloat(fileData.getNumberOfRows(),fileData.getNumberOfColumnsNonClass()){
     //We have a matrix of the correct size, we just need to get the data and normalize them
 
@@ -18,13 +19,12 @@ GraphData::GraphData(FileData & fileData):MatrixOfFloat(fileData.getNumberOfRows
     copyDataFromFileData(fileData);
     
     //Then we normalize them
+    //#pragma omp parallel for
     for(unsigned int column = 0; column < getNumberOfColumns(); column++){
         normalizeColumn(column);
     }
     
 }
-
-
 
 
 /*
@@ -36,9 +36,8 @@ Private methods
 */
 
 void GraphData::copyDataFromFileData(FileData &fileData){
-    unsigned int columnGraphData = 0;
     unsigned int columnFileData = 0;
-    for (columnGraphData; columnGraphData < getNumberOfColumns(); columnGraphData++) {
+    for (unsigned int columnGraphData = 0; columnGraphData < getNumberOfColumns(); columnGraphData++) {
         if(!fileData.isColumnUsedToGenerateTheGraph(columnFileData)){columnFileData++;} //We copy only the column used to create the graph
         for (unsigned int row = 0; row < getNumberOfRows(); row++) {
             setElement(row, columnGraphData, std::stof(fileData.getString(row, columnFileData)));

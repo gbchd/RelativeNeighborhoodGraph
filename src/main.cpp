@@ -10,6 +10,8 @@
 #include "MatrixOfFloat.hpp"
 #include "FileData.hpp"
 #include "GraphData.hpp"
+#include "MatrixOfDistanceBetweenNodes.hpp"
+#include "RNGraph.hpp"
 
 int main(int argc, const char * argv[]) {
     MatrixOfFloat matrix1;
@@ -37,6 +39,14 @@ int main(int argc, const char * argv[]) {
     GraphData matrix5(matrix4);
     
     matrix5.print();
+    
+    MatrixOfDistanceBetweenNodes matrix6(matrix5);
+    
+    matrix6.print();
+    
+    RNGraph graph(matrix6);
+    
+    graph.print();
     
     
     

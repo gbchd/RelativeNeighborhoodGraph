@@ -10,6 +10,7 @@
 #define MatrixOfFloat_hpp
 
 #include <stdio.h>
+#include <vector>
 
 class MatrixOfFloat {
     //Atributes
@@ -37,6 +38,11 @@ public:
     float getElement(unsigned int row, unsigned int column);
     void setElement(unsigned int row, unsigned int column, float elem);
     void print();
+    
+    std::vector<float> getRow(unsigned int row);
+    std::vector<float> getRowBeforeLimit(unsigned int row, unsigned int limit);
+    std::vector<float> getColumn(unsigned int column);
+    std::vector<float> getColumnAfterLimit(unsigned int column, unsigned int limit);
     
 private:
     void allocateMatrixArray();
