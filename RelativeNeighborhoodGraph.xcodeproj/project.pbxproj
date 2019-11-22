@@ -76,7 +76,7 @@
 			isa = PBXGroup;
 			children = (
 				F030575A238873080075D910 /* Matrix */,
-				F03057592388729D0075D910 /* Statistical */,
+				F03057592388729D0075D910 /* Statistics */,
 				F0305758238872810075D910 /* GraphGeneration */,
 				F0305738237EF5130075D910 /* main.cpp */,
 			);
@@ -98,11 +98,11 @@
 			path = GraphGeneration;
 			sourceTree = "<group>";
 		};
-		F03057592388729D0075D910 /* Statistical */ = {
+		F03057592388729D0075D910 /* Statistics */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			path = Statistical;
+			path = Statistics;
 			sourceTree = "<group>";
 		};
 		F030575A238873080075D910 /* Matrix */ = {

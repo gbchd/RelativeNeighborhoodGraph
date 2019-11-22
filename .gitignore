@@ -1,0 +1,11 @@
+# Ignore Mac system files
+.DS_store
+
+# Ignore xcodeProj folder
+.xcodeproj
+
+# Ignore all text files
+*.data
+
+# Ignore SASS config files
+.sass-cache
