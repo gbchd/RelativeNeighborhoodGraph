@@ -77,7 +77,7 @@ void MatrixOfFloat::setElement(unsigned int row, unsigned int column, float elem
     matrixArray[row][column] = elem;
 }
 
-void MatrixOfFloat::printMatrix(){
+void MatrixOfFloat::print(){
     for(unsigned int row = 0; row < numberOfRows; row++){
         for (unsigned int column = 0; column < numberOfColumns; column++) {
             printf("%f ", getElement(row, column));

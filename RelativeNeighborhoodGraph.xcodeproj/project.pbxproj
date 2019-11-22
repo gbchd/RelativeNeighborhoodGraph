@@ -10,6 +10,7 @@
 		F0305739237EF5130075D910 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F0305738237EF5130075D910 /* main.cpp */; };
 		F0305747237EFC6E0075D910 /* FileData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F0305746237EFC6E0075D910 /* FileData.cpp */; };
 		F030574A237EFC770075D910 /* MatrixOfFloat.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F0305748237EFC760075D910 /* MatrixOfFloat.cpp */; };
+		F030574D2387E4DB0075D910 /* GraphData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F030574B2387E4DB0075D910 /* GraphData.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -31,6 +32,8 @@
 		F0305746237EFC6E0075D910 /* FileData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FileData.cpp; sourceTree = "<group>"; };
 		F0305748237EFC760075D910 /* MatrixOfFloat.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MatrixOfFloat.cpp; sourceTree = "<group>"; };
 		F0305749237EFC760075D910 /* MatrixOfFloat.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MatrixOfFloat.hpp; sourceTree = "<group>"; };
+		F030574B2387E4DB0075D910 /* GraphData.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = GraphData.cpp; sourceTree = "<group>"; };
+		F030574C2387E4DB0075D910 /* GraphData.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = GraphData.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +71,8 @@
 				F0305745237EFC6E0075D910 /* FileData.hpp */,
 				F0305748237EFC760075D910 /* MatrixOfFloat.cpp */,
 				F0305749237EFC760075D910 /* MatrixOfFloat.hpp */,
+				F030574B2387E4DB0075D910 /* GraphData.cpp */,
+				F030574C2387E4DB0075D910 /* GraphData.hpp */,
 			);
 			path = RelativeNeighborhoodGraph;
 			sourceTree = "<group>";
@@ -131,6 +136,7 @@
 			files = (
 				F0305739237EF5130075D910 /* main.cpp in Sources */,
 				F0305747237EFC6E0075D910 /* FileData.cpp in Sources */,
+				F030574D2387E4DB0075D910 /* GraphData.cpp in Sources */,
 				F030574A237EFC770075D910 /* MatrixOfFloat.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

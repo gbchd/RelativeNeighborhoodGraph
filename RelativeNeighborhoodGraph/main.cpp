@@ -9,6 +9,7 @@
 #include <iostream>
 #include "MatrixOfFloat.hpp"
 #include "FileData.hpp"
+#include "GraphData.hpp"
 
 int main(int argc, const char * argv[]) {
     MatrixOfFloat matrix1;
@@ -21,9 +22,9 @@ int main(int argc, const char * argv[]) {
     
     MatrixOfFloat matrix3(matrix2);
     
-    matrix1.printMatrix();
-    matrix2.printMatrix();
-    matrix3.printMatrix();
+    matrix1.print();
+    matrix2.print();
+    matrix3.print();
     
     std::string filename = "/Users/guillaume/Workspace/C++/RelativeNeighborhoodGraph/iris.data";
     std::string filenameTemp = "/Users/guillaume/Workspace/C++/RelativeNeighborhoodGraph/temp.data";
@@ -32,6 +33,11 @@ int main(int argc, const char * argv[]) {
     
     matrix4.print();
     printf("%d %d \n", matrix4.getNumberOfRows(), matrix4.getNumberOfColumns());
+    
+    GraphData matrix5(matrix4);
+    
+    matrix5.print();
+    
     
     
     return 0;

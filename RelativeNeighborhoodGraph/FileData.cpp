@@ -61,6 +61,39 @@ unsigned int FileData::getNumberOfColumns(){
     return numberOfColumns;
 }
 
+
+unsigned int FileData::getNumberOfColumnsNonClass(){
+    unsigned int numberOfColumnsNonClass = 0;
+    for(unsigned int column = 0; column < numberOfColumns; column++){
+        if(isColumnUsedToGenerateTheGraph(column)){
+            numberOfColumnsNonClass++;
+        }
+    }
+    return numberOfColumnsNonClass;
+}
+
+bool FileData::isColumnAClassAttribute(unsigned int column){
+    if (isColumnAClass[column] == 1 || isColumnAClass[column] == 2) {
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
+bool FileData::isColumnUsedToGenerateTheGraph(unsigned int column){
+    if (isColumnAClass[column] == 0 || isColumnAClass[column] == 2) {
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
+std::string FileData::getString(unsigned int row, unsigned int column){
+    return matrixOfString[row][column];
+}
+
 void FileData::print(){
     printIsColumnAClassAttribute();
     printMatrix();

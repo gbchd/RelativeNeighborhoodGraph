@@ -36,7 +36,7 @@ public:
     bool isEmpty();
     float getElement(unsigned int row, unsigned int column);
     void setElement(unsigned int row, unsigned int column, float elem);
-    void printMatrix();
+    void print();
     
 private:
     void allocateMatrixArray();
