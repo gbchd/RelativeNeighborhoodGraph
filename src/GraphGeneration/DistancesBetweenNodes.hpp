@@ -6,21 +6,21 @@
 //  Copyright © 2019 GuillaumeBouchard. All rights reserved.
 //
 
-#ifndef MatrixOfDistanceBetweenNodes_hpp
-#define MatrixOfDistanceBetweenNodes_hpp
+#ifndef DistancesBetweenNodes_hpp
+#define DistancesBetweenNodes_hpp
 
 #include <stdio.h>
 #include "MatrixOfFloat.hpp"
 #include "GraphData.hpp"
 #include "math.h"
  
-class MatrixOfDistanceBetweenNodes : public MatrixOfFloat {
+class DistancesBetweenNodes : public MatrixOfFloat {
     //Atributes
 private:
 
     //Constructors & Destructor
 public:
-    MatrixOfDistanceBetweenNodes(GraphData & graphData);
+    DistancesBetweenNodes(GraphData & graphData);
     
     //Methods
 public:
@@ -32,4 +32,4 @@ private:
 };
 
 
-#endif /* MatrixOfDistanceBetweenNodes_hpp */
+#endif /* DistancesBetweenNodes_hpp */

@@ -40,7 +40,7 @@ int main(int argc, const char * argv[]) {
      
     matrix5.print();
     
-    MatrixOfDistanceBetweenNodes matrix6(matrix5);
+    DistancesBetweenNodes matrix6(matrix5);
     
     matrix6.print();
     

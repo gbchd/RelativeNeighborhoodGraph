@@ -21,16 +21,16 @@ private:
 
     //Constructors & Destructor
 public:
-    RNGraph(MatrixOfDistanceBetweenNodes & matrixOfDistance);
+    RNGraph(DistancesBetweenNodes & matrixOfDistance);
     
     //Methods
 public:
   
     
 private:
-    bool isThereANodeCloserThan(MatrixOfDistanceBetweenNodes & matrixOfDistance, float distance, unsigned int node);
+    bool isThereANodeCloserThan(DistancesBetweenNodes & matrixOfDistance, float distance, unsigned int node);
     
-    bool isThereAnEdgeBetweenTwoNodes(MatrixOfDistanceBetweenNodes & matrixOfDistance, unsigned int node_A, unsigned int node_B);
+    bool isThereAnEdgeBetweenTwoNodes(DistancesBetweenNodes & matrixOfDistance, unsigned int node_A, unsigned int node_B);
     bool isDistanceTheMinInList(std::vector<float> list, unsigned int valueToTest);
     
 };

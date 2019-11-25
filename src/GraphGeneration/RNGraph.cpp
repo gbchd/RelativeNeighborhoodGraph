@@ -11,7 +11,7 @@
 /*
 Constructors & Destructor
 */
-RNGraph::RNGraph(MatrixOfDistanceBetweenNodes & matrixOfDistance):MatrixOfBoolean(matrixOfDistance.getNumberOfRows(), matrixOfDistance.getNumberOfRows()){
+RNGraph::RNGraph(DistancesBetweenNodes & matrixOfDistance):MatrixOfBoolean(matrixOfDistance.getNumberOfRows(), matrixOfDistance.getNumberOfRows()){
    
     #pragma omp parallel for
     for (unsigned int row = 0; row < getNumberOfRows(); row++) {
@@ -34,7 +34,7 @@ Public methods
 Private methods
 */
 
-bool RNGraph::isThereAnEdgeBetweenTwoNodes(MatrixOfDistanceBetweenNodes & matrixOfDistance, unsigned int node_A, unsigned int node_B){
+bool RNGraph::isThereAnEdgeBetweenTwoNodes(DistancesBetweenNodes & matrixOfDistance, unsigned int node_A, unsigned int node_B){
     float distanceBetweenAandB = matrixOfDistance.getDistance(node_A, node_B);
     if(isThereANodeCloserThan(matrixOfDistance, distanceBetweenAandB, node_A) && isThereANodeCloserThan(matrixOfDistance, distanceBetweenAandB, node_B)){
         return true;
@@ -42,7 +42,7 @@ bool RNGraph::isThereAnEdgeBetweenTwoNodes(MatrixOfDistanceBetweenNodes & matrix
     return false;
 }
 
-bool RNGraph::isThereANodeCloserThan(MatrixOfDistanceBetweenNodes & matrixOfDistance, float distance, unsigned int node){
+bool RNGraph::isThereANodeCloserThan(DistancesBetweenNodes & matrixOfDistance, float distance, unsigned int node){
     if(isDistanceTheMinInList(matrixOfDistance.getRowBeforeLimit(node, node), distance)){
         return true;
     }
