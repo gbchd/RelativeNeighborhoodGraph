@@ -23,6 +23,7 @@ void TravelAlgorithmResult::generateResultsWithNeighborAlgorithmV1(RNGraph & rng
     }
     resizeMatrix(rngraph.getNumberOfRows(), rngraph.getNumberOfColumns());
     
+    //Not finished
 }
 
 void TravelAlgorithmResult::generateResultsWithNeighborAlgorithmV2(RNGraph & rngraph, DistancesBetweenNodes & distancesBetweenNodes){
@@ -31,6 +32,7 @@ void TravelAlgorithmResult::generateResultsWithNeighborAlgorithmV2(RNGraph & rng
     }
     resizeMatrix(rngraph.getNumberOfRows(), rngraph.getNumberOfColumns());
     
+    //Not finished
 }
 
 

@@ -19,9 +19,11 @@ class TravelAlgorithmResult : public MatrixOfFloat {
     //Atributes
 private:
     
+    unsigned int numbersOfSuccesses;
     
     //Constructors & Destructor
 public:
+    
     
     //Methods
 public:
