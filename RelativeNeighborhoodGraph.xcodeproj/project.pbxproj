@@ -14,6 +14,7 @@
 		F0305750238856730075D910 /* MatrixOfDistanceBetweenNodes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F030574E238856730075D910 /* MatrixOfDistanceBetweenNodes.cpp */; };
 		F0305757238865390075D910 /* RNGraph.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F0305755238865390075D910 /* RNGraph.cpp */; };
 		F030575D238873290075D910 /* MatrixOfBoolean.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F030575B238873290075D910 /* MatrixOfBoolean.cpp */; };
+		F0DFC4B6238BDD1C00775B94 /* TravelAlgorithmResult.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F0DFC4B4238BDD1C00775B94 /* TravelAlgorithmResult.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -43,6 +44,8 @@
 		F0305756238865390075D910 /* RNGraph.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = RNGraph.hpp; sourceTree = "<group>"; };
 		F030575B238873290075D910 /* MatrixOfBoolean.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MatrixOfBoolean.cpp; sourceTree = "<group>"; };
 		F030575C238873290075D910 /* MatrixOfBoolean.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MatrixOfBoolean.hpp; sourceTree = "<group>"; };
+		F0DFC4B4238BDD1C00775B94 /* TravelAlgorithmResult.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TravelAlgorithmResult.cpp; sourceTree = "<group>"; };
+		F0DFC4B5238BDD1C00775B94 /* TravelAlgorithmResult.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TravelAlgorithmResult.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +78,7 @@
 		F0305737237EF5130075D910 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				F0DFC4B3238BDABA00775B94 /* Export */,
 				F030575A238873080075D910 /* Matrix */,
 				F03057592388729D0075D910 /* Statistics */,
 				F0305758238872810075D910 /* GraphGeneration */,
@@ -101,6 +105,8 @@
 		F03057592388729D0075D910 /* Statistics */ = {
 			isa = PBXGroup;
 			children = (
+				F0DFC4B4238BDD1C00775B94 /* TravelAlgorithmResult.cpp */,
+				F0DFC4B5238BDD1C00775B94 /* TravelAlgorithmResult.hpp */,
 			);
 			path = Statistics;
 			sourceTree = "<group>";
@@ -114,6 +120,13 @@
 				F030575C238873290075D910 /* MatrixOfBoolean.hpp */,
 			);
 			path = Matrix;
+			sourceTree = "<group>";
+		};
+		F0DFC4B3238BDABA00775B94 /* Export */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Export;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -179,6 +192,7 @@
 				F0305750238856730075D910 /* MatrixOfDistanceBetweenNodes.cpp in Sources */,
 				F030574D2387E4DB0075D910 /* GraphData.cpp in Sources */,
 				F0305757238865390075D910 /* RNGraph.cpp in Sources */,
+				F0DFC4B6238BDD1C00775B94 /* TravelAlgorithmResult.cpp in Sources */,
 				F030574A237EFC770075D910 /* MatrixOfFloat.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

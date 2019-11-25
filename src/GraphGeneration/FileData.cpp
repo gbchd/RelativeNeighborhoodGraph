@@ -49,10 +49,9 @@ FileData::FileData(std::string filenameOfGraph, std::string filenameForIsColumnA
 
 
 /*
-Methods
+Methods Public
 */
 
-//Public
 unsigned int FileData::getNumberOfRows(){
     return numberOfRows;
 }
@@ -117,7 +116,9 @@ void FileData::printIsColumnAClassAttribute(){
     std::cout << isColumnAClass[numberOfColumns-1] << std::endl;
 }
 
-//Private
+/*
+Methods Private
+*/
 void FileData::addRowOfMatrixFromLine(std::string line){
     std::vector<std::string> lineVector = cutStringOnSeparationCharacter(line);
     matrixOfString.push_back(lineVector);

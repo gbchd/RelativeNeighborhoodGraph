@@ -44,6 +44,8 @@ public:
     std::vector<float> getColumn(unsigned int column);
     std::vector<float> getColumnAfterLimit(unsigned int column, unsigned int limit);
     
+    void resizeMatrix(unsigned int row, unsigned int column);
+    
 private:
     void allocateMatrixArray();
     void desallocateMatrixArray();

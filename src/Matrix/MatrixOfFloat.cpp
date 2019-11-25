@@ -111,6 +111,15 @@ std::vector<float> MatrixOfFloat::getColumnAfterLimit(unsigned int column, unsig
     return columnToReturn;
 }
 
+void MatrixOfFloat::resizeMatrix(unsigned int rows, unsigned int columns){
+    desallocateMatrixArray();
+    numberOfRows = rows;
+    numberOfColumns = columns;
+    allocateMatrixArray();
+}
+
+
+
 /*
 Private Methods
 */
