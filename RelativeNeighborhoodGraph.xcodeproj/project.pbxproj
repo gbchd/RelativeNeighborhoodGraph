@@ -11,7 +11,7 @@
 		F0305747237EFC6E0075D910 /* FileData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F0305746237EFC6E0075D910 /* FileData.cpp */; };
 		F030574A237EFC770075D910 /* MatrixOfFloat.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F0305748237EFC760075D910 /* MatrixOfFloat.cpp */; };
 		F030574D2387E4DB0075D910 /* GraphData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F030574B2387E4DB0075D910 /* GraphData.cpp */; };
-		F0305750238856730075D910 /* MatrixOfDistanceBetweenNodes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F030574E238856730075D910 /* MatrixOfDistanceBetweenNodes.cpp */; };
+		F0305750238856730075D910 /* DistancesBetweenNodes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F030574E238856730075D910 /* DistancesBetweenNodes.cpp */; };
 		F0305757238865390075D910 /* RNGraph.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F0305755238865390075D910 /* RNGraph.cpp */; };
 		F030575D238873290075D910 /* MatrixOfBoolean.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F030575B238873290075D910 /* MatrixOfBoolean.cpp */; };
 		F0DFC4B6238BDD1C00775B94 /* TravelAlgorithmResult.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F0DFC4B4238BDD1C00775B94 /* TravelAlgorithmResult.cpp */; };
@@ -38,8 +38,8 @@
 		F0305749237EFC760075D910 /* MatrixOfFloat.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MatrixOfFloat.hpp; sourceTree = "<group>"; };
 		F030574B2387E4DB0075D910 /* GraphData.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = GraphData.cpp; sourceTree = "<group>"; };
 		F030574C2387E4DB0075D910 /* GraphData.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = GraphData.hpp; sourceTree = "<group>"; };
-		F030574E238856730075D910 /* MatrixOfDistanceBetweenNodes.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MatrixOfDistanceBetweenNodes.cpp; sourceTree = "<group>"; };
-		F030574F238856730075D910 /* MatrixOfDistanceBetweenNodes.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MatrixOfDistanceBetweenNodes.hpp; sourceTree = "<group>"; };
+		F030574E238856730075D910 /* DistancesBetweenNodes.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = DistancesBetweenNodes.cpp; sourceTree = "<group>"; };
+		F030574F238856730075D910 /* DistancesBetweenNodes.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = DistancesBetweenNodes.hpp; sourceTree = "<group>"; };
 		F0305755238865390075D910 /* RNGraph.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = RNGraph.cpp; sourceTree = "<group>"; };
 		F0305756238865390075D910 /* RNGraph.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = RNGraph.hpp; sourceTree = "<group>"; };
 		F030575B238873290075D910 /* MatrixOfBoolean.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MatrixOfBoolean.cpp; sourceTree = "<group>"; };
@@ -94,8 +94,8 @@
 				F0305745237EFC6E0075D910 /* FileData.hpp */,
 				F030574B2387E4DB0075D910 /* GraphData.cpp */,
 				F030574C2387E4DB0075D910 /* GraphData.hpp */,
-				F030574E238856730075D910 /* MatrixOfDistanceBetweenNodes.cpp */,
-				F030574F238856730075D910 /* MatrixOfDistanceBetweenNodes.hpp */,
+				F030574E238856730075D910 /* DistancesBetweenNodes.cpp */,
+				F030574F238856730075D910 /* DistancesBetweenNodes.hpp */,
 				F0305755238865390075D910 /* RNGraph.cpp */,
 				F0305756238865390075D910 /* RNGraph.hpp */,
 			);
@@ -189,7 +189,7 @@
 				F030575D238873290075D910 /* MatrixOfBoolean.cpp in Sources */,
 				F0305739237EF5130075D910 /* main.cpp in Sources */,
 				F0305747237EFC6E0075D910 /* FileData.cpp in Sources */,
-				F0305750238856730075D910 /* MatrixOfDistanceBetweenNodes.cpp in Sources */,
+				F0305750238856730075D910 /* DistancesBetweenNodes.cpp in Sources */,
 				F030574D2387E4DB0075D910 /* GraphData.cpp in Sources */,
 				F0305757238865390075D910 /* RNGraph.cpp in Sources */,
 				F0DFC4B6238BDD1C00775B94 /* TravelAlgorithmResult.cpp in Sources */,

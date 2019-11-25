@@ -1,12 +1,12 @@
 //
-//  MatrixOfDistanceBetweenNodes.cpp
+//  DistancesBetweenNodes.cpp
 //  RelativeNeighborhoodGraph
 //
 //  Created by GuillaumeBouchard on 22/11/2019.
 //  Copyright © 2019 GuillaumeBouchard. All rights reserved.
 //
 
-#include "MatrixOfDistanceBetweenNodes.hpp"
+#include "DistancesBetweenNodes.hpp"
 
 /*
 Constructors & Destructor
