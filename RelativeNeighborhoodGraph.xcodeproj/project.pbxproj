@@ -15,6 +15,7 @@
 		F0305757238865390075D910 /* RNGraph.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F0305755238865390075D910 /* RNGraph.cpp */; };
 		F030575D238873290075D910 /* MatrixOfBoolean.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F030575B238873290075D910 /* MatrixOfBoolean.cpp */; };
 		F0DFC4B6238BDD1C00775B94 /* TravelAlgorithmResult.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F0DFC4B4238BDD1C00775B94 /* TravelAlgorithmResult.cpp */; };
+		F0DFC4B9238BEA2300775B94 /* DataExporter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F0DFC4B7238BEA2300775B94 /* DataExporter.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -46,6 +47,8 @@
 		F030575C238873290075D910 /* MatrixOfBoolean.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MatrixOfBoolean.hpp; sourceTree = "<group>"; };
 		F0DFC4B4238BDD1C00775B94 /* TravelAlgorithmResult.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TravelAlgorithmResult.cpp; sourceTree = "<group>"; };
 		F0DFC4B5238BDD1C00775B94 /* TravelAlgorithmResult.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TravelAlgorithmResult.hpp; sourceTree = "<group>"; };
+		F0DFC4B7238BEA2300775B94 /* DataExporter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = DataExporter.cpp; sourceTree = "<group>"; };
+		F0DFC4B8238BEA2300775B94 /* DataExporter.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = DataExporter.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +128,8 @@
 		F0DFC4B3238BDABA00775B94 /* Export */ = {
 			isa = PBXGroup;
 			children = (
+				F0DFC4B7238BEA2300775B94 /* DataExporter.cpp */,
+				F0DFC4B8238BEA2300775B94 /* DataExporter.hpp */,
 			);
 			path = Export;
 			sourceTree = "<group>";
@@ -187,6 +192,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F030575D238873290075D910 /* MatrixOfBoolean.cpp in Sources */,
+				F0DFC4B9238BEA2300775B94 /* DataExporter.cpp in Sources */,
 				F0305739237EF5130075D910 /* main.cpp in Sources */,
 				F0305747237EFC6E0075D910 /* FileData.cpp in Sources */,
 				F0305750238856730075D910 /* DistancesBetweenNodes.cpp in Sources */,

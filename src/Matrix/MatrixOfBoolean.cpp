@@ -69,6 +69,7 @@ bool MatrixOfBoolean::isEmpty(){
     return numberOfRows==0 || numberOfColumns==0;
 }
 
+
 bool MatrixOfBoolean::getElement(unsigned int row, unsigned int column){
     return matrixArray[row][column];
 }

@@ -52,6 +52,11 @@ FileData::FileData(std::string filenameOfGraph, std::string filenameForIsColumnA
 Methods Public
 */
 
+char FileData::getSeparationCharacter(){
+    return separationCharacter;
+}
+
+
 unsigned int FileData::getNumberOfRows(){
     return numberOfRows;
 }

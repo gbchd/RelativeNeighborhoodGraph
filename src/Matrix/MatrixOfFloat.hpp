@@ -11,6 +11,7 @@
 
 #include <stdio.h>
 #include <vector>
+#include "MatrixOfBoolean.hpp"
 
 class MatrixOfFloat {
     //Atributes

@@ -10,8 +10,9 @@
 #include "MatrixOfFloat.hpp"
 #include "FileData.hpp"
 #include "GraphData.hpp"
-#include "MatrixOfDistanceBetweenNodes.hpp"
+#include "DistancesBetweenNodes.hpp"
 #include "RNGraph.hpp"
+#include "DataExporter.hpp"
 
 int main(int argc, const char * argv[]) {
     MatrixOfFloat matrix1;
@@ -48,7 +49,10 @@ int main(int argc, const char * argv[]) {
     
     graph.print();
     
-    
+    /*
+    std::string path = "/Users/guillaume/Workspace/C++/RelativeNeighborhoodGraph/nodes.txt";
+    DataExporter::ExportNodes(matrix4, path);
+    */
     
     return 0;
 }

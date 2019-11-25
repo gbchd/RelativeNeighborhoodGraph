@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include "MatrixOfFloat.hpp"
 #include "RNGraph.hpp"
+#include "DistancesBetweenNodes.hpp"
 
 
 class TravelAlgorithmResult : public MatrixOfFloat {
@@ -24,10 +25,12 @@ public:
     
     //Methods
 public:
-    
+    void generateResultsWithNeighborAlgorithmV1(RNGraph & rngraph, DistancesBetweenNodes & distancesBetweenNodes);
+    void generateResultsWithNeighborAlgorithmV2(RNGraph & rngraph, DistancesBetweenNodes & distancesBetweenNodes);
     
 private:
-    
+    bool isTheSameSize(MatrixOfFloat & matrixA, MatrixOfBoolean & matrixB);
+    bool isTheSameSize(MatrixOfBoolean & matrixA, MatrixOfFloat & matrixB);
     
 };
 

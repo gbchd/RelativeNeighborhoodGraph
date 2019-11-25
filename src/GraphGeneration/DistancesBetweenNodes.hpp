@@ -1,5 +1,5 @@
 //
-//  DistanceBetweenNodes.hpp
+//  DistancesBetweenNodes.hpp
 //  RelativeNeighborhoodGraph
 //
 //  Created by GuillaumeBouchard on 22/11/2019.

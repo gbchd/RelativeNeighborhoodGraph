@@ -8,4 +8,51 @@
 
 #include "TravelAlgorithmResult.hpp"
 
+/*
+Constructors & Destructor
+*/
 
+
+/*
+Public Methods
+*/
+
+void TravelAlgorithmResult::generateResultsWithNeighborAlgorithmV1(RNGraph & rngraph, DistancesBetweenNodes & distancesBetweenNodes){
+    if(!isTheSameSize(rngraph, distancesBetweenNodes)){
+        throw "NotTheSameSizeError";
+    }
+    resizeMatrix(rngraph.getNumberOfRows(), rngraph.getNumberOfColumns());
+    
+}
+
+void TravelAlgorithmResult::generateResultsWithNeighborAlgorithmV2(RNGraph & rngraph, DistancesBetweenNodes & distancesBetweenNodes){
+    if(!isTheSameSize(rngraph, distancesBetweenNodes)){
+        throw "NotTheSameSizeError";
+    }
+    resizeMatrix(rngraph.getNumberOfRows(), rngraph.getNumberOfColumns());
+    
+}
+
+
+
+/*
+Private Methods
+*/
+
+bool TravelAlgorithmResult::isTheSameSize(MatrixOfFloat &matrixA, MatrixOfBoolean &matrixB){
+    if(matrixA.getNumberOfRows() == matrixB.getNumberOfRows() && matrixA.getNumberOfColumns() == matrixB.getNumberOfColumns()){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
+bool TravelAlgorithmResult::isTheSameSize(MatrixOfBoolean &matrixA, MatrixOfFloat &matrixB){
+    if(matrixA.getNumberOfRows() == matrixB.getNumberOfRows() && matrixA.getNumberOfColumns() == matrixB.getNumberOfColumns()){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
