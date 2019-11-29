@@ -57,6 +57,9 @@ int main(int argc, const char * argv[]) {
     DataExporter::ExportEdges(graph, matrix6, edgesPath);
 
     
+    TravelAlgorithmResult stats(matrix6.getNumberOfColumns());
+    
+    stats.generateResultsWithNeighborAlgorithmV2(graph, matrix6);
     
     
     

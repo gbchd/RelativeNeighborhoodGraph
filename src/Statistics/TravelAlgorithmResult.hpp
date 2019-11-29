@@ -31,10 +31,16 @@ public:
     
     //Methods
 public:
-    unsigned int getNumberOfNodes();
+    unsigned int getNumberOfNodes(){return numberOfNodes;}
+    unsigned int getElementFromFoundAgainWhenInserted(unsigned int index) { return foundAgainWhenInserted[index]; }
+    unsigned int getElementFromFoundRightNodeWhenInsertedOn(unsigned int index) { return foundRightNodeWhenInsertedOn[index]; }
+    unsigned int getElementFromUsedNodeToTravel(unsigned int index) { return usedNodeToTravel[index]; }
+
     
     void generateResultsWithNeighborAlgorithmV1(RNGraph & rngraph, DistancesBetweenNodes & distancesBetweenNodes);
     void generateResultsWithNeighborAlgorithmV2(RNGraph & rngraph, DistancesBetweenNodes & distancesBetweenNodes);
+    
+    void reset();
     
 private:
     bool isTheSameSize(MatrixOfFloat & matrixA, MatrixOfBoolean & matrixB);
@@ -44,6 +50,10 @@ private:
     void neighborAlgorithmV2(unsigned int nodeToReach, unsigned int nodeStart, RNGraph & rngraph, DistancesBetweenNodes & distancesBetweenNodes);
     
     std::list<unsigned int> findAllNeighborsOfNode(RNGraph & rngraph, unsigned int node);
+    std::list<unsigned int> findAllNeighborsOfNeighborsOfNode(RNGraph & rngraph, unsigned int node);
+    
+    
+    
 };
 
 
