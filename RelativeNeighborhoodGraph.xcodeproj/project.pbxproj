@@ -81,6 +81,7 @@
 		F0305737237EF5130075D910 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				F0D2A220238FB40500808F76 /* tests */,
 				F0DFC4B3238BDABA00775B94 /* Export */,
 				F030575A238873080075D910 /* Matrix */,
 				F03057592388729D0075D910 /* Statistics */,
@@ -123,6 +124,45 @@
 				F030575C238873290075D910 /* MatrixOfBoolean.hpp */,
 			);
 			path = Matrix;
+			sourceTree = "<group>";
+		};
+		F0D2A220238FB40500808F76 /* tests */ = {
+			isa = PBXGroup;
+			children = (
+				F0D2A224238FB5CF00808F76 /* GraphGeneration */,
+				F0D2A223238FB5C500808F76 /* Statistics */,
+				F0D2A222238FB5BB00808F76 /* Export */,
+				F0D2A221238FB5AC00808F76 /* Matrix */,
+			);
+			path = tests;
+			sourceTree = "<group>";
+		};
+		F0D2A221238FB5AC00808F76 /* Matrix */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Matrix;
+			sourceTree = "<group>";
+		};
+		F0D2A222238FB5BB00808F76 /* Export */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Export;
+			sourceTree = "<group>";
+		};
+		F0D2A223238FB5C500808F76 /* Statistics */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Statistics;
+			sourceTree = "<group>";
+		};
+		F0D2A224238FB5CF00808F76 /* GraphGeneration */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = GraphGeneration;
 			sourceTree = "<group>";
 		};
 		F0DFC4B3238BDABA00775B94 /* Export */ = {

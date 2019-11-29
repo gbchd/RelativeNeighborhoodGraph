@@ -87,6 +87,11 @@ void MatrixOfFloat::print(){
     printf("\n");
 }
 
+void MatrixOfFloat::printDimension(){
+    printf("%d %d \n",numberOfRows, numberOfColumns);
+}
+
+
 std::vector<float> MatrixOfFloat::getRow(unsigned int row){
     std::vector<float> rowToReturn;
     for(unsigned int column = 0; column < getNumberOfColumns(); column++){
@@ -95,17 +100,18 @@ std::vector<float> MatrixOfFloat::getRow(unsigned int row){
     return rowToReturn;
 }
 
-std::vector<float> MatrixOfFloat::getRowBeforeLimit(unsigned int row, unsigned int limit){
+std::vector<float> MatrixOfFloat::getRowAfterLimit(unsigned int row, unsigned int limit){
     std::vector<float> rowToReturn;
-    for(unsigned int column = 0; column < limit; column++){
+    for(unsigned int column = limit; column < getNumberOfColumns(); column++){
         rowToReturn.push_back(getElement(row, column));
     }
     return rowToReturn;
 }
 
-std::vector<float> MatrixOfFloat::getColumnAfterLimit(unsigned int column, unsigned int limit){
+std::vector<float> MatrixOfFloat::getColumnBeforeLimit(unsigned int column, unsigned int limit){
+
     std::vector<float> columnToReturn;
-    for(unsigned int row = limit; row < getNumberOfColumns(); row++){
+    for(unsigned int row = 0; row < limit; row++){
         columnToReturn.push_back(getElement(row, column));
     }
     return columnToReturn;

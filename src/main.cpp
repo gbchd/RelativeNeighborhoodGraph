@@ -34,25 +34,32 @@ int main(int argc, const char * argv[]) {
     
     FileData matrix4(filename, filenameTemp);
     
-    matrix4.print();
+    //matrix4.print();
     printf("%d %d \n", matrix4.getNumberOfRows(), matrix4.getNumberOfColumns());
     
     GraphData matrix5(matrix4);
      
-    matrix5.print();
+    //matrix5.print();
     
     DistancesBetweenNodes matrix6(matrix5);
     
-    matrix6.print();
+    //matrix6.print();
+    //matrix6.printDimension();
     
     RNGraph graph(matrix6);
     
-    graph.print();
+    //graph.print();
     
-    /*
-    std::string path = "/Users/guillaume/Workspace/C++/RelativeNeighborhoodGraph/nodes.txt";
-    DataExporter::ExportNodes(matrix4, path);
-    */
+    
+    std::string nodesPath = "/Users/guillaume/Workspace/C++/RelativeNeighborhoodGraph/nodes.txt";
+    std::string edgesPath = "/Users/guillaume/Workspace/C++/RelativeNeighborhoodGraph/edges.txt";
+    DataExporter::ExportNodes(matrix4, nodesPath);
+    DataExporter::ExportEdges(graph, matrix6, edgesPath);
+
+    
+    
+    
+    
     
     return 0;
 }

@@ -39,11 +39,12 @@ public:
     float getElement(unsigned int row, unsigned int column);
     void setElement(unsigned int row, unsigned int column, float elem);
     void print();
+    void printDimension();
     
     std::vector<float> getRow(unsigned int row);
-    std::vector<float> getRowBeforeLimit(unsigned int row, unsigned int limit);
+    std::vector<float> getRowAfterLimit(unsigned int row, unsigned int limit);
     std::vector<float> getColumn(unsigned int column);
-    std::vector<float> getColumnAfterLimit(unsigned int column, unsigned int limit);
+    std::vector<float> getColumnBeforeLimit(unsigned int column, unsigned int limit);
     
     void resizeMatrix(unsigned int row, unsigned int column);
     

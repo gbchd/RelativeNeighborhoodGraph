@@ -10,23 +10,29 @@
 #define TravelAlgorithmResult_hpp
 
 #include <stdio.h>
+#include <list>
 #include "MatrixOfFloat.hpp"
 #include "RNGraph.hpp"
 #include "DistancesBetweenNodes.hpp"
 
 
-class TravelAlgorithmResult : public MatrixOfFloat {
+class TravelAlgorithmResult {
     //Atributes
 private:
+    std::vector<unsigned int> foundAgainWhenInserted;
+    std::vector<unsigned int> foundRightNodeWhenInsertedOn;
+    std::vector<unsigned int> usedNodeToTravel;
     
-    unsigned int numbersOfSuccesses;
+    unsigned int numberOfNodes;
     
     //Constructors & Destructor
 public:
-    
+    TravelAlgorithmResult(unsigned int size);
     
     //Methods
 public:
+    unsigned int getNumberOfNodes();
+    
     void generateResultsWithNeighborAlgorithmV1(RNGraph & rngraph, DistancesBetweenNodes & distancesBetweenNodes);
     void generateResultsWithNeighborAlgorithmV2(RNGraph & rngraph, DistancesBetweenNodes & distancesBetweenNodes);
     
@@ -34,6 +40,10 @@ private:
     bool isTheSameSize(MatrixOfFloat & matrixA, MatrixOfBoolean & matrixB);
     bool isTheSameSize(MatrixOfBoolean & matrixA, MatrixOfFloat & matrixB);
     
+    void neighborAlgorithmV1(unsigned int nodeToReach, unsigned int nodeStart, RNGraph & rngraph, DistancesBetweenNodes & distancesBetweenNodes);
+    void neighborAlgorithmV2(unsigned int nodeToReach, unsigned int nodeStart, RNGraph & rngraph, DistancesBetweenNodes & distancesBetweenNodes);
+    
+    std::list<unsigned int> findAllNeighborsOfNode(RNGraph & rngraph, unsigned int node);
 };
 
 

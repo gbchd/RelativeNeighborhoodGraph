@@ -25,13 +25,10 @@ public:
     
     //Methods
 public:
-  
     
 private:
-    bool isThereANodeCloserThan(DistancesBetweenNodes & distancesBetweenNodes, float distance, unsigned int node);
-    
     bool isThereAnEdgeBetweenTwoNodes(DistancesBetweenNodes & distancesBetweenNodes, unsigned int node_A, unsigned int node_B);
-    bool isDistanceTheMinInList(std::vector<float> list, unsigned int valueToTest);
+    
     
 };
 
