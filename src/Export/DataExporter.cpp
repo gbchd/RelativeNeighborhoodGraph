@@ -12,18 +12,18 @@ void DataExporter::ExportNodes(FileData & dataMatrix, std::string nomFichier)
         fichier << "\"Node\"";
         for (unsigned int columnIndex = 0; columnIndex < numberOfColumns; columnIndex++) {
             if (dataMatrix.isColumnAClassAttribute(columnIndex)) {
-                fichier << dataMatrix.getSeparationCharacter() << " \"ClassName\"";
+                fichier << dataMatrix.getSeparationCharacter() << "\"ClassName\"";
             }
         }
         fichier << std::endl;
 
 
-        for (unsigned int lineIndex = 0; lineIndex < numberOfRows; lineIndex++) {
+        for (unsigned int rowIndex = 0; rowIndex < numberOfRows; rowIndex++) {
 
-            fichier << lineIndex;
+            fichier << rowIndex;
             for (unsigned int columnIndex = 0; columnIndex < numberOfColumns; columnIndex++) {
                 if (dataMatrix.isColumnAClassAttribute(columnIndex)) {
-                    fichier << dataMatrix.getSeparationCharacter() << dataMatrix.getString(lineIndex, columnIndex);
+                    fichier << dataMatrix.getSeparationCharacter() << dataMatrix.getString(rowIndex, columnIndex);
                 }
             }
 
@@ -47,11 +47,11 @@ void DataExporter::ExportEdges(RNGraph & edgesMatrix, DistancesBetweenNodes & di
     if (fichier.is_open()) {
         fichier << "\"Source\", \"Target\", \"Length\"" << std::endl;
 
-        for (unsigned int uiIndiceLigne = 0; uiIndiceLigne < numberOfRows; uiIndiceLigne++) {
-            for (unsigned int uiIndiceColonne = 0; uiIndiceColonne < numberOfRows; uiIndiceColonne++) {
-                if (edgesMatrix.getElement(uiIndiceLigne, uiIndiceColonne) == 1) {
-                    float a = distMatrix.getElement(uiIndiceLigne, uiIndiceColonne);
-                    fichier << uiIndiceLigne << "," << uiIndiceColonne << "," << a << std::endl;
+        for (unsigned int rowIndex = 0; rowIndex < numberOfRows; rowIndex++) {
+            for (unsigned int columnIndex = 0; columnIndex < numberOfRows; columnIndex++) {
+                if (edgesMatrix.getElement(rowIndex, columnIndex) == 1) {
+                    float a = distMatrix.getElement(rowIndex, columnIndex);
+                    fichier << rowIndex << ", " << columnIndex << ", " << a << std::endl;
                 }
             }
         }
@@ -63,7 +63,22 @@ void DataExporter::ExportEdges(RNGraph & edgesMatrix, DistancesBetweenNodes & di
     }
 }
 
-void DataExporter::ExportResults(TravelAlgorithmResult & resultMatrix, std::string nomFichier)
+void DataExporter::ExportResults(TravelAlgorithmResult resultSet, std::string nomFichier)
 {
+    unsigned int numberOfNodes = resultSet.getNumberOfNodes();
 
+    std::ofstream fichier;
+    fichier.open(nomFichier, std::ios::out | std::ios::trunc);
+    if (fichier.is_open()) {
+        fichier << "\"Node\", \"Found again when inserted\", \"Found right node when inserted on\", \"Used node to travel\"" << std::endl;
+
+        for (unsigned int rowIndex = 0; rowIndex < numberOfNodes; rowIndex++) {
+            fichier << rowIndex << ", " << resultSet.getElementFromFoundAgainWhenInserted(rowIndex) << ", " << resultSet.getElementFromFoundRightNodeWhenInsertedOn(rowIndex) << ", " << resultSet.getElementFromUsedNodeToTravel(rowIndex)    << std::endl;
+        }
+
+        fichier.close();
+    }
+    else {
+        printf("Error : Unable to open/create new CSV file\n");
+    }
 }
