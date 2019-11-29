@@ -90,6 +90,7 @@ void TravelAlgorithmResult::neighborAlgorithmV1(unsigned int nodeToReach, unsign
     while(lastNode != currentNode && currentNode != nodeToReach){
         
         lastNode = currentNode;
+        
         std::list<unsigned int> neighbors = findAllNeighborsOfNode(rngraph, lastNode);
         
         for (unsigned int neighbor : neighbors) {
@@ -98,11 +99,17 @@ void TravelAlgorithmResult::neighborAlgorithmV1(unsigned int nodeToReach, unsign
             }
         }
         
+        usedNodeToTravel[currentNode] +=1;
+        
     }
     
     if(currentNode == nodeToReach){
         foundAgainWhenInserted[nodeToReach] += 1;
+        foundRightNodeWhenInsertedOn[nodeStart] +=1;
     }
+    
+    
+    
     
 }
 
