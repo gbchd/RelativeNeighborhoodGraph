@@ -14,53 +14,78 @@
 #include "RNGraph.hpp"
 #include "DataExporter.hpp"
 
-int main(int argc, const char * argv[]) {
-    MatrixOfFloat matrix1;
-    MatrixOfFloat matrix2(2,2);
-    
-    matrix2.setElement(0, 0, 1);
-    matrix2.setElement(0, 1, 2);
-    matrix2.setElement(1, 0, 3);
-    matrix2.setElement(1, 1, 4);
-    
-    MatrixOfFloat matrix3(matrix2);
-    
-    matrix1.print();
-    matrix2.print();
-    matrix3.print();
-    
-    std::string filename = "/Users/guillaume/Workspace/C++/RelativeNeighborhoodGraph/iris.data";
-    std::string filenameTemp = "/Users/guillaume/Workspace/C++/RelativeNeighborhoodGraph/temp.data";
-    
-    FileData matrix4(filename, filenameTemp);
-    
-    //matrix4.print();
-    printf("%d %d \n", matrix4.getNumberOfRows(), matrix4.getNumberOfColumns());
-    
-    GraphData matrix5(matrix4);
-     
-    //matrix5.print();
-    
-    DistancesBetweenNodes matrix6(matrix5);
-    
-    //matrix6.print();
-    //matrix6.printDimension();
-    
-    RNGraph graph(matrix6);
-    
-    //graph.print();
-    
-    
-    std::string nodesPath = "/Users/guillaume/Workspace/C++/RelativeNeighborhoodGraph/nodes.txt";
-    std::string edgesPath = "/Users/guillaume/Workspace/C++/RelativeNeighborhoodGraph/edges.txt";
-    DataExporter::ExportNodes(matrix4, nodesPath);
-    DataExporter::ExportEdges(graph, matrix6, edgesPath);
 
+
+/*
+ arg -g "path" : graphFile, must be here if not return 1 and ask user to use the program with -g
+ arg -c "path" : classesFile, if missing consider that there is no classes attribute in the graphFile.
+ arg -d "path" : destinationFolder, if missing print the result of the travel algorithm.
+ arg -v version_number : version of the travel algorithm, only version 1 and 2 available for now.
+ @return 1 erreur, 0 generation réussie
+ */
+int main(int argc, const char * argv[]) {
     
-    TravelAlgorithmResult stats(matrix6.getNumberOfColumns());
+    std::string graphFile = "";
+    std::string classesFile = "";
+    std::string exportDirectory = "";
+    unsigned int versionOfTravelAlgorithm = 2;
     
-    stats.generateResultsWithNeighborAlgorithmV2(graph, matrix6);
     
+    for (unsigned int arg = 1; arg < argc; arg = arg+2) {
+        switch (argv[arg][1]) {
+            case 'g':
+                graphFile = argv[arg+1];
+                break;
+            case 'c':
+                classesFile = argv[arg+1];
+                break;
+            case 'd':
+                exportDirectory = argv[arg+1];
+                break;
+            case 'v':
+                versionOfTravelAlgorithm = atoi(argv[arg+1]);
+                break;
+            default:
+                std::cout << "Invalid arguments : " << argv[arg] << std::endl;
+                break;
+        }
+    }
+    
+    if (graphFile == "") {
+        std::cout << "Invalid arguments, missing the graph file." << std::endl <<  "Use -g \"path\"." << std::endl;
+        return 1;
+    }
+    
+    FileData fileData(graphFile, classesFile);
+    GraphData graphData(fileData);
+    DistancesBetweenNodes distances(graphData);
+    RNGraph graph(distances);
+    
+    TravelAlgorithmResult stats(distances.getNumberOfColumns());
+    if (versionOfTravelAlgorithm == 1) {
+        stats.generateResultsWithNeighborAlgorithmV1(graph, distances);
+    }
+    else if (versionOfTravelAlgorithm == 2){
+        stats.generateResultsWithNeighborAlgorithmV2(graph, distances);
+    }
+    else{
+        std::cout << "Invalid version of the travel algorithm" << std::endl <<  "Use -v 1 or -v 2" << std::endl;
+        return 1;
+    }
+    
+    
+    if(exportDirectory == ""){
+        stats.print();
+    }
+    else{
+        std::string nodesPath = exportDirectory+"nodes.txt";
+        std::string edgesPath = exportDirectory+"edges.txt";
+        std::string resultsPath = exportDirectory+"results.txt";
+        
+        DataExporter::ExportNodes(fileData, nodesPath);
+        DataExporter::ExportEdges(graph, distances, edgesPath);
+        DataExporter::ExportResults(stats, resultsPath);
+    }
     
     
     

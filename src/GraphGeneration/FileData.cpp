@@ -42,9 +42,15 @@ FileData::FileData(std::string filenameOfGraph, std::string filenameForIsColumnA
     numberOfRows = (unsigned int) matrixOfString.size();
     numberOfColumns = (unsigned int) matrixOfString[0].size();
     
-    std::ifstream fileTemp(filenameForIsColumnAClass);
-    std::getline(fileTemp, line);
-    setIsColumAClassWithString(line);
+    if(filenameForIsColumnAClass == ""){
+        setIsColumAClassToZero();
+    }
+    else{
+        std::ifstream fileTemp(filenameForIsColumnAClass);
+        std::getline(fileTemp, line);
+        setIsColumAClassWithString(line);
+    }
+    
 }
 
 
