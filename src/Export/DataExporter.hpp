@@ -12,9 +12,8 @@
 class DataExporter {
     //Méthodes
 public:
-    static void ExportNodes(FileData & dataMatrix, std::string nomFichier);
+    static void ExportNodes(FileData & dataMatrix, TravelAlgorithmResult resultMatrix, std::string nomFichier);
     static void ExportEdges(RNGraph & edgesMatrix, DistancesBetweenNodes & distMatrix, std::string nomFichier);
-    static void ExportResults(TravelAlgorithmResult resultMatrix, std::string nomFichier);
 
 private:
     // Disallow creating an instance of this object
@@ -22,3 +21,4 @@ private:
 };
 
 #endif /* DataExporter_hpp */
+

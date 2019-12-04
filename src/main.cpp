@@ -7,6 +7,7 @@
 //
 
 #include <iostream>
+#include <ctime>
 #include "MatrixOfFloat.hpp"
 #include "FileData.hpp"
 #include "GraphData.hpp"
@@ -62,42 +63,84 @@ int main(int argc, const char * argv[]) {
     }
     
     try{
+        std::time_t timeStart = std::time(nullptr);
+        std::time_t timeCheckGraphGeneration;
+        std::time_t timeCheckTravelAlgorithm;
+        std::time_t oldTime;
+        std::time_t newTime;
+        oldTime = timeStart;
+        
+        std::cout << "===" << "Starting : Graph generation" << "===" << std::endl;
+        
         FileData fileData(graphFile, classesFile, separationCharacter);
-        std::cout << "fileData done" << std::endl;
-        fileData.print();
+        newTime = std::time(nullptr);
+        std::cout << "-Reading of the files done in " << newTime-oldTime << "s" << std::endl;
+        oldTime = newTime;
         
         GraphData graphData(fileData);
-        std::cout << "graphData done" << std::endl;
+        newTime = std::time(nullptr);
+        std::cout << "-Transformation of the data done in " << newTime-oldTime << "s" << std::endl;
+        oldTime = newTime;
+        
         DistancesBetweenNodes distances(graphData);
-        std::cout << "distances done" << std::endl;
+        newTime = std::time(nullptr);
+        std::cout << "-Generation of the matrix of distances done in " << newTime-oldTime << "s" << std::endl;
+        oldTime = newTime;
+        
         RNGraph graph(distances);
-        std::cout << "graph done" << std::endl;
+        newTime = std::time(nullptr);
+        std::cout << "-Generation of the matrix of edges done in " << newTime-oldTime << "s" << std::endl;
+        timeCheckGraphGeneration = newTime;
+        
+        std::cout << "===" << "Graph generation has been done in " << timeCheckGraphGeneration-timeStart << "s" << "===" << std::endl << std::endl;
+        
+        
+        std::cout << "===" << "Starting : Application of the travel algorithm version " << versionOfTravelAlgorithm << "===" << std::endl;
         
         TravelAlgorithmResult stats(distances.getNumberOfColumns());
         if (versionOfTravelAlgorithm == 1) {
             stats.generateResultsWithNeighborAlgorithmV1(graph, distances);
+            newTime = std::time(nullptr);
         }
         else if (versionOfTravelAlgorithm == 2){
             stats.generateResultsWithNeighborAlgorithmV2(graph, distances);
+            newTime = std::time(nullptr);
         }
         else{
             std::cout << "Invalid version of the travel algorithm" << std::endl <<  "Use -v 1 or -v 2" << std::endl;
             return 1;
         }
         
+        timeCheckTravelAlgorithm = newTime;
+        
+        std::cout << "===" << "Travel algorithm has been done in " << timeCheckTravelAlgorithm-timeCheckGraphGeneration << "s" << "===" << std::endl << std::endl;
+        
+        std::cout << "===" << "Starting : Export results" << "===" << std::endl;
         
         if(exportDirectory == ""){
             stats.print();
+            newTime = std::time(nullptr);
         }
         else{
-            std::string nodesPath = exportDirectory+"nodes.txt";
-            std::string edgesPath = exportDirectory+"edges.txt";
-            std::string resultsPath = exportDirectory+"results.txt";
+            std::string nodesPath = exportDirectory+"nodes.csv";
+            std::string edgesPath = exportDirectory+"edges.csv";
             
-            DataExporter::ExportNodes(fileData, nodesPath);
+            DataExporter::ExportNodes(fileData, stats, nodesPath);
+            newTime = std::time(nullptr);
+            std::cout << "-Export of nodes.csv done in " << newTime-oldTime << "s" << std::endl;
+            oldTime = newTime;
+            
             DataExporter::ExportEdges(graph, distances, edgesPath);
-            DataExporter::ExportResults(stats, resultsPath);
+            newTime = std::time(nullptr);
+            std::cout << "-Export of edges.csv done in " << newTime-oldTime << "s" << std::endl;
         }
+        
+        
+        std::cout << "===" << "Exportation of the results has been done in " << newTime-timeCheckTravelAlgorithm << "s total" << "===" << std::endl << std::endl;
+        
+        std::cout << "Total program has been done in " << newTime-timeCheckTravelAlgorithm << "s" << std::endl << std::endl;
+        
+        
     }
     catch(Exception e){
         e.print();
