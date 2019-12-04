@@ -14,6 +14,7 @@
 #include "MatrixOfFloat.hpp"
 #include "RNGraph.hpp"
 #include "DistancesBetweenNodes.hpp"
+#include "ProgressBar.hpp"
 
 
 class TravelAlgorithmResult {

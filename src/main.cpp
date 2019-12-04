@@ -100,7 +100,7 @@ int main(int argc, const char * argv[]) {
         std::cout << "===" << "Graph generation has been done in " << timeCheckGraphGeneration-timeStart << "s" << "===" << std::endl << std::endl;
         
         
-        std::cout << "===" << "Starting : Application of the travel algorithm version " << versionOfTravelAlgorithm << "===" << std::endl;
+        std::cout << "===" << "Starting : Travel algorithm application version " << versionOfTravelAlgorithm << "===" << std::endl;
         
         TravelAlgorithmResult stats(distances.getNumberOfColumns());
         if (versionOfTravelAlgorithm == 1) {
@@ -132,7 +132,7 @@ int main(int argc, const char * argv[]) {
             
             DataExporter::ExportNodes(fileData, stats, nodesPath);
             newTime = std::time(nullptr);
-            std::cout << "-Export of nodes.csv done in " << newTime-oldTime << "s" << std::endl;
+            std::cout << "-Export of nodes.csv done in " << newTime-timeCheckTravelAlgorithm << "s" << std::endl;
             oldTime = newTime;
             
             DataExporter::ExportEdges(graph, distances, edgesPath);
@@ -141,9 +141,9 @@ int main(int argc, const char * argv[]) {
         }
         
         
-        std::cout << "===" << "Exportation of the results has been done in " << newTime-timeCheckTravelAlgorithm << "s total" << "===" << std::endl << std::endl;
+        std::cout << "===" << "Results exportation has been done in " << newTime-timeCheckTravelAlgorithm << "s" << "===" << std::endl << std::endl;
         
-        std::cout << "Total program has been done in " << newTime-timeCheckTravelAlgorithm << "s" << std::endl << std::endl;
+        std::cout << "Total program has been done in " << newTime-timeStart << "s" << std::endl << std::endl;
         
         
     }

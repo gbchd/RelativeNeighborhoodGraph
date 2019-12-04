@@ -41,8 +41,13 @@ void TravelAlgorithmResult::generateResultsWithNeighborAlgorithmV1(RNGraph & rng
         throw "NotTheSameSizeError";
     }
     reset();
+    
+    ProgressBar progressBar(20);
+    progressBar.initialize(rngraph.getNumberOfRows());
+    
     #pragma omp parallel for
     for (unsigned int row = 0; row < rngraph.getNumberOfRows(); row++) {
+        progressBar.update();
         for (unsigned int column = 0; column < rngraph.getNumberOfColumns(); column++) {
             neighborAlgorithmV1(row, column, rngraph, distancesBetweenNodes);
         }
@@ -55,8 +60,13 @@ void TravelAlgorithmResult::generateResultsWithNeighborAlgorithmV2(RNGraph & rng
     }
     
     reset();
+    
+    ProgressBar progressBar(20);
+    progressBar.initialize(rngraph.getNumberOfRows());
+    
     #pragma omp parallel for
     for (unsigned int row = 0; row < rngraph.getNumberOfRows(); row++) {
+        progressBar.update();
         for (unsigned int column = 0; column < rngraph.getNumberOfColumns(); column++) {
             neighborAlgorithmV2(row, column, rngraph, distancesBetweenNodes);
         }
