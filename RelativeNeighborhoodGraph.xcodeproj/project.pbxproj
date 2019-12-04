@@ -85,13 +85,12 @@
 			isa = PBXGroup;
 			children = (
 				F0D2A220238FB40500808F76 /* tests */,
+				F0D2A2302397F70D00808F76 /* Controller */,
 				F0DFC4B3238BDABA00775B94 /* Export */,
 				F030575A238873080075D910 /* Matrix */,
 				F03057592388729D0075D910 /* Statistics */,
 				F0305758238872810075D910 /* GraphGeneration */,
 				F0305738237EF5130075D910 /* main.cpp */,
-				F0D2A22D2397C41400808F76 /* Exception.cpp */,
-				F0D2A22E2397C41400808F76 /* Exception.hpp */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -168,6 +167,15 @@
 			children = (
 			);
 			path = GraphGeneration;
+			sourceTree = "<group>";
+		};
+		F0D2A2302397F70D00808F76 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				F0D2A22D2397C41400808F76 /* Exception.cpp */,
+				F0D2A22E2397C41400808F76 /* Exception.hpp */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		F0DFC4B3238BDABA00775B94 /* Export */ = {

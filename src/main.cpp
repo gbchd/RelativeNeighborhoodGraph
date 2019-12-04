@@ -34,22 +34,27 @@ int main(int argc, const char * argv[]) {
     unsigned int versionOfTravelAlgorithm = 2;
     
     
-    for (unsigned int arg = 1; arg < argc; arg = arg+2) {
+    for (unsigned int arg = 1; arg < argc; arg++) {
         switch (argv[arg][1]) {
             case 'g':
                 graphFile = argv[arg+1];
+                arg++;
                 break;
             case 'c':
                 classesFile = argv[arg+1];
+                arg++;
                 break;
             case 'd':
                 exportDirectory = argv[arg+1];
+                arg++;
                 break;
             case 's':
                 separationCharacter = argv[arg+1][0];
+                arg++;
                 break;
             case 'v':
                 versionOfTravelAlgorithm = atoi(argv[arg+1]);
+                arg++;
                 break;
             default:
                 std::cout << "Invalid arguments : " << argv[arg] << std::endl;
@@ -74,22 +79,22 @@ int main(int argc, const char * argv[]) {
         
         FileData fileData(graphFile, classesFile, separationCharacter);
         newTime = std::time(nullptr);
-        std::cout << "-Reading of the files done in " << newTime-oldTime << "s" << std::endl;
+        std::cout << "-Files reading done in " << newTime-oldTime << "s" << std::endl;
         oldTime = newTime;
         
         GraphData graphData(fileData);
         newTime = std::time(nullptr);
-        std::cout << "-Transformation of the data done in " << newTime-oldTime << "s" << std::endl;
+        std::cout << "-Data transformation done in " << newTime-oldTime << "s" << std::endl;
         oldTime = newTime;
         
         DistancesBetweenNodes distances(graphData);
         newTime = std::time(nullptr);
-        std::cout << "-Generation of the matrix of distances done in " << newTime-oldTime << "s" << std::endl;
+        std::cout << "-Matrix of distances generation done in " << newTime-oldTime << "s" << std::endl;
         oldTime = newTime;
         
         RNGraph graph(distances);
         newTime = std::time(nullptr);
-        std::cout << "-Generation of the matrix of edges done in " << newTime-oldTime << "s" << std::endl;
+        std::cout << "-Matrix of edges generation done in " << newTime-oldTime << "s" << std::endl;
         timeCheckGraphGeneration = newTime;
         
         std::cout << "===" << "Graph generation has been done in " << timeCheckGraphGeneration-timeStart << "s" << "===" << std::endl << std::endl;
