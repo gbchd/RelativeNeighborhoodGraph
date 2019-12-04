@@ -8,32 +8,17 @@
 
 #include "FileData.hpp"
 
-char SEPARATION_CHARACTER = ',';
-
 /*
 Constructors & Destructor
 */
 FileData::FileData(){
-    separationCharacter = SEPARATION_CHARACTER;
+    separationCharacter = ',';
     numberOfRows = 0;
     numberOfColumns = 0;
 }
 
-FileData::FileData(std::string filename){
-    separationCharacter = SEPARATION_CHARACTER;
-    std::string line;
-    std::ifstream myfile(filename);
-    while (std::getline(myfile, line)){
-        addRowOfMatrixFromLine(line);
-    }
-    numberOfRows = (unsigned int) matrixOfString.size();
-    numberOfColumns = (unsigned int) matrixOfString[0].size();
-    
-    setIsColumAClassToZero();
-}
-
-FileData::FileData(std::string filenameOfGraph, std::string filenameForIsColumnAClass){
-    separationCharacter = SEPARATION_CHARACTER;
+FileData::FileData(std::string filenameOfGraph, std::string filenameForIsColumnAClass, char sep){
+    separationCharacter = sep;
     std::string line;
     std::ifstream myfile(filenameOfGraph);
     while (std::getline(myfile, line)){
@@ -49,6 +34,7 @@ FileData::FileData(std::string filenameOfGraph, std::string filenameForIsColumnA
         std::ifstream fileTemp(filenameForIsColumnAClass);
         std::getline(fileTemp, line);
         setIsColumAClassWithString(line);
+        checkSize();
     }
     
 }
@@ -110,7 +96,6 @@ void FileData::print(){
 }
 
 void FileData::printMatrix(){
-    
     for (unsigned int row = 0; row < numberOfRows; row ++) {
         for (unsigned int column = 0; column < numberOfColumns-1; column++) {
             std::cout << matrixOfString[row][column] << separationCharacter;
@@ -179,5 +164,11 @@ void FileData::setIsColumAClassWithString(std::string line){
 void FileData::setIsColumAClassToZero(){
     for(unsigned int column = 0; column < numberOfColumns; column++){
         isColumnAClass.push_back(0);
+    }
+}
+
+void FileData::checkSize(){
+    if(isColumnAClass.size() != matrixOfString[0].size()){
+        throw Exception(1, "FileData error - size incorrect, check the files.");
     }
 }

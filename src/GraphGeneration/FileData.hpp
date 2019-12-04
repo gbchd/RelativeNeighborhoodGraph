@@ -14,6 +14,7 @@
 #include <vector>
 #include <string>
 #include <fstream>
+#include "Exception.hpp"
 
 class FileData{
     
@@ -35,8 +36,7 @@ private:
     //Constructors & Destructors
 public:
     FileData();
-    FileData(std::string filename);
-    FileData(std::string filenameOfGraph, std::string filenameForIsColumnAClass);
+    FileData(std::string filenameOfGraph, std::string filenameForIsColumnAClass, char sep);
     
     //Methods
 public:
@@ -65,6 +65,8 @@ private:
     
     void setIsColumAClassWithString(std::string line);
     void setIsColumAClassToZero();
+    
+    void checkSize();
 };
 
 

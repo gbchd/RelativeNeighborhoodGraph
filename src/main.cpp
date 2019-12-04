@@ -20,6 +20,7 @@
  arg -g "path" : graphFile, must be here if not return 1 and ask user to use the program with -g
  arg -c "path" : classesFile, if missing consider that there is no classes attribute in the graphFile.
  arg -d "path" : destinationFolder, if missing print the result of the travel algorithm.
+ arg -s separationCharacter : specify what the separation character of the file is.
  arg -v version_number : version of the travel algorithm, only version 1 and 2 available for now.
  @return 1 erreur, 0 generation réussie
  */
@@ -28,6 +29,7 @@ int main(int argc, const char * argv[]) {
     std::string graphFile = "";
     std::string classesFile = "";
     std::string exportDirectory = "";
+    char separationCharacter = ',';
     unsigned int versionOfTravelAlgorithm = 2;
     
     
@@ -41,6 +43,9 @@ int main(int argc, const char * argv[]) {
                 break;
             case 'd':
                 exportDirectory = argv[arg+1];
+                break;
+            case 's':
+                separationCharacter = argv[arg+1][0];
                 break;
             case 'v':
                 versionOfTravelAlgorithm = atoi(argv[arg+1]);
@@ -56,36 +61,48 @@ int main(int argc, const char * argv[]) {
         return 1;
     }
     
-    FileData fileData(graphFile, classesFile);
-    GraphData graphData(fileData);
-    DistancesBetweenNodes distances(graphData);
-    RNGraph graph(distances);
-    
-    TravelAlgorithmResult stats(distances.getNumberOfColumns());
-    if (versionOfTravelAlgorithm == 1) {
-        stats.generateResultsWithNeighborAlgorithmV1(graph, distances);
-    }
-    else if (versionOfTravelAlgorithm == 2){
-        stats.generateResultsWithNeighborAlgorithmV2(graph, distances);
-    }
-    else{
-        std::cout << "Invalid version of the travel algorithm" << std::endl <<  "Use -v 1 or -v 2" << std::endl;
-        return 1;
-    }
-    
-    
-    if(exportDirectory == ""){
-        stats.print();
-    }
-    else{
-        std::string nodesPath = exportDirectory+"nodes.txt";
-        std::string edgesPath = exportDirectory+"edges.txt";
-        std::string resultsPath = exportDirectory+"results.txt";
+    try{
+        FileData fileData(graphFile, classesFile, separationCharacter);
+        std::cout << "fileData done" << std::endl;
+        fileData.print();
         
-        DataExporter::ExportNodes(fileData, nodesPath);
-        DataExporter::ExportEdges(graph, distances, edgesPath);
-        DataExporter::ExportResults(stats, resultsPath);
+        GraphData graphData(fileData);
+        std::cout << "graphData done" << std::endl;
+        DistancesBetweenNodes distances(graphData);
+        std::cout << "distances done" << std::endl;
+        RNGraph graph(distances);
+        std::cout << "graph done" << std::endl;
+        
+        TravelAlgorithmResult stats(distances.getNumberOfColumns());
+        if (versionOfTravelAlgorithm == 1) {
+            stats.generateResultsWithNeighborAlgorithmV1(graph, distances);
+        }
+        else if (versionOfTravelAlgorithm == 2){
+            stats.generateResultsWithNeighborAlgorithmV2(graph, distances);
+        }
+        else{
+            std::cout << "Invalid version of the travel algorithm" << std::endl <<  "Use -v 1 or -v 2" << std::endl;
+            return 1;
+        }
+        
+        
+        if(exportDirectory == ""){
+            stats.print();
+        }
+        else{
+            std::string nodesPath = exportDirectory+"nodes.txt";
+            std::string edgesPath = exportDirectory+"edges.txt";
+            std::string resultsPath = exportDirectory+"results.txt";
+            
+            DataExporter::ExportNodes(fileData, nodesPath);
+            DataExporter::ExportEdges(graph, distances, edgesPath);
+            DataExporter::ExportResults(stats, resultsPath);
+        }
     }
+    catch(Exception e){
+        e.print();
+    }
+    
     
     
     

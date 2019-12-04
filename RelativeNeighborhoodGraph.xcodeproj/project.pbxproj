@@ -14,6 +14,7 @@
 		F0305750238856730075D910 /* DistancesBetweenNodes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F030574E238856730075D910 /* DistancesBetweenNodes.cpp */; };
 		F0305757238865390075D910 /* RNGraph.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F0305755238865390075D910 /* RNGraph.cpp */; };
 		F030575D238873290075D910 /* MatrixOfBoolean.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F030575B238873290075D910 /* MatrixOfBoolean.cpp */; };
+		F0D2A22F2397C41400808F76 /* Exception.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F0D2A22D2397C41400808F76 /* Exception.cpp */; };
 		F0DFC4B6238BDD1C00775B94 /* TravelAlgorithmResult.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F0DFC4B4238BDD1C00775B94 /* TravelAlgorithmResult.cpp */; };
 		F0DFC4B9238BEA2300775B94 /* DataExporter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F0DFC4B7238BEA2300775B94 /* DataExporter.cpp */; };
 /* End PBXBuildFile section */
@@ -45,6 +46,8 @@
 		F0305756238865390075D910 /* RNGraph.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = RNGraph.hpp; sourceTree = "<group>"; };
 		F030575B238873290075D910 /* MatrixOfBoolean.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MatrixOfBoolean.cpp; sourceTree = "<group>"; };
 		F030575C238873290075D910 /* MatrixOfBoolean.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MatrixOfBoolean.hpp; sourceTree = "<group>"; };
+		F0D2A22D2397C41400808F76 /* Exception.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Exception.cpp; sourceTree = "<group>"; };
+		F0D2A22E2397C41400808F76 /* Exception.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Exception.hpp; sourceTree = "<group>"; };
 		F0DFC4B4238BDD1C00775B94 /* TravelAlgorithmResult.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TravelAlgorithmResult.cpp; sourceTree = "<group>"; };
 		F0DFC4B5238BDD1C00775B94 /* TravelAlgorithmResult.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TravelAlgorithmResult.hpp; sourceTree = "<group>"; };
 		F0DFC4B7238BEA2300775B94 /* DataExporter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = DataExporter.cpp; sourceTree = "<group>"; };
@@ -87,6 +90,8 @@
 				F03057592388729D0075D910 /* Statistics */,
 				F0305758238872810075D910 /* GraphGeneration */,
 				F0305738237EF5130075D910 /* main.cpp */,
+				F0D2A22D2397C41400808F76 /* Exception.cpp */,
+				F0D2A22E2397C41400808F76 /* Exception.hpp */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -234,6 +239,7 @@
 				F030575D238873290075D910 /* MatrixOfBoolean.cpp in Sources */,
 				F0DFC4B9238BEA2300775B94 /* DataExporter.cpp in Sources */,
 				F0305739237EF5130075D910 /* main.cpp in Sources */,
+				F0D2A22F2397C41400808F76 /* Exception.cpp in Sources */,
 				F0305747237EFC6E0075D910 /* FileData.cpp in Sources */,
 				F0305750238856730075D910 /* DistancesBetweenNodes.cpp in Sources */,
 				F030574D2387E4DB0075D910 /* GraphData.cpp in Sources */,

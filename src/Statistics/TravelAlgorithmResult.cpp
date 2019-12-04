@@ -46,6 +46,7 @@ void TravelAlgorithmResult::generateResultsWithNeighborAlgorithmV1(RNGraph & rng
         for (unsigned int column = 0; column < rngraph.getNumberOfColumns(); column++) {
             neighborAlgorithmV1(row, column, rngraph, distancesBetweenNodes);
         }
+        std::cout << "Node " << row << " out of " << rngraph.getNumberOfRows() << " done" << std::endl;
     }
 }
 
@@ -60,6 +61,7 @@ void TravelAlgorithmResult::generateResultsWithNeighborAlgorithmV2(RNGraph & rng
         for (unsigned int column = 0; column < rngraph.getNumberOfColumns(); column++) {
             neighborAlgorithmV2(row, column, rngraph, distancesBetweenNodes);
         }
+        std::cout << "Node " << row << " out of " << rngraph.getNumberOfRows() << " done" << std::endl;
     }
 }
 
