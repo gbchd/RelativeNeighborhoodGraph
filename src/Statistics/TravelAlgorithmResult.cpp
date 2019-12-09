@@ -65,7 +65,7 @@ void TravelAlgorithmResult::generateResultsWithNeighborAlgorithmV2(DistancesBetw
     
     reset();
     
-    ProgressBar progressBar(20);
+    ProgressBar progressBar(100);
     progressBar.initialize(distancesBetweenNodes.getNumberOfRows());
     
     #pragma omp parallel for

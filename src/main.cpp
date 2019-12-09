@@ -111,7 +111,7 @@ int main(int argc, const char * argv[]) {
         if (versionOfTravelAlgorithm == 1) {
             stats.generateNeighbors(graph, 1);
             newTime = std::time(nullptr);
-            std::cout << "-Neighbors generation done in " << newTime-oldTime << "s" << std::endl;
+            std::cout << "-Neighbors generation done in " << newTime-timeCheckGraphGeneration << "s" << std::endl;
             oldTime = newTime;
             
             stats.generateResultsWithNeighborAlgorithmV1(distances);
@@ -121,7 +121,7 @@ int main(int argc, const char * argv[]) {
         else if (versionOfTravelAlgorithm == 2){
             stats.generateNeighbors(graph, 2);
             newTime = std::time(nullptr);
-            std::cout << "-Neighbors generation done in " << newTime-oldTime << "s" << std::endl;
+            std::cout << "-Neighbors generation done in " << newTime-timeCheckGraphGeneration << "s" << std::endl;
             oldTime = newTime;
             
             stats.generateResultsWithNeighborAlgorithmV2(distances);
