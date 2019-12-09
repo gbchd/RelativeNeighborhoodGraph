@@ -2,7 +2,7 @@
 //  ProgressBar.hpp
 //  RelativeNeighborhoodGraph
 //
-//  Created by GuillaumeBouchard ColinTroisemaineon 04/12/2019.
+//  Created by GuillaumeBouchard ColinTroisemaine on 04/12/2019.
 //  Copyright © 2019 GuillaumeBouchard ColinTroisemaine. All rights reserved.
 //
 
@@ -18,14 +18,14 @@ private:
     unsigned int length;
     unsigned int cursor;
     
-    unsigned int cursorSetToRatio;
-    unsigned int lengthSetToRatio;
+    unsigned int cursorBar;
+    unsigned int cursorPercent;
     
-    unsigned int ratio;
+    unsigned int lengthBar;
     
     //Constructors & Destructor
 public:
-    ProgressBar(unsigned int ratioGiven);
+    ProgressBar();
     
     //Methods
 public:
@@ -34,7 +34,7 @@ public:
     void print();
     
 private:
-    unsigned int setToRatio(unsigned int value);
+    unsigned int setToPercent(unsigned int value);
     
 };
 

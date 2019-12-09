@@ -46,11 +46,11 @@ void TravelAlgorithmResult::generateResultsWithNeighborAlgorithmV1(DistancesBetw
     }
     reset();
     
-    ProgressBar progressBar(20);
+    ProgressBar progressBar;
     progressBar.initialize(distancesBetweenNodes.getNumberOfRows());
     
     #pragma omp parallel for
-    for (unsigned int row = 0; row < distancesBetweenNodes.getNumberOfRows(); row++) {
+    for (int row = 0; row < distancesBetweenNodes.getNumberOfRows(); row++) {
         progressBar.update();
         for (unsigned int column = 0; column < distancesBetweenNodes.getNumberOfColumns(); column++) {
             neighborAlgorithmV1(row, column, distancesBetweenNodes);
@@ -65,11 +65,11 @@ void TravelAlgorithmResult::generateResultsWithNeighborAlgorithmV2(DistancesBetw
     
     reset();
     
-    ProgressBar progressBar(100);
+    ProgressBar progressBar;
     progressBar.initialize(distancesBetweenNodes.getNumberOfRows());
     
     #pragma omp parallel for
-    for (unsigned int row = 0; row < distancesBetweenNodes.getNumberOfRows(); row++) {
+    for (int row = 0; row < distancesBetweenNodes.getNumberOfRows(); row++) {
         progressBar.update();
         for (unsigned int column = 0; column < distancesBetweenNodes.getNumberOfColumns(); column++) {
             neighborAlgorithmV2(row, column, distancesBetweenNodes);

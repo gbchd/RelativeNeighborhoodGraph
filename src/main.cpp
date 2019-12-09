@@ -14,6 +14,7 @@
 #include "DistancesBetweenNodes.hpp"
 #include "RNGraph.hpp"
 #include "DataExporter.hpp"
+#include "Exception.hpp"
 
 
 

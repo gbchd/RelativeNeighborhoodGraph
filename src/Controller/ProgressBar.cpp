@@ -8,25 +8,28 @@
 
 #include "ProgressBar.hpp"
 
-ProgressBar::ProgressBar(unsigned int ratioGiven){
-    ratio = ratioGiven;
+ProgressBar::ProgressBar(){
+    lengthBar = 20;
+  
     length = 0;
     cursor = 0;
     
-    lengthSetToRatio = 0;
-    cursorSetToRatio = 0;
+    cursorBar = 0;
+    cursorPercent = 0;
 }
 
 void ProgressBar::initialize(unsigned int l){
     length = l;
-    lengthSetToRatio = setToRatio(length);
     print();
 }
 
 void ProgressBar::update(){
     cursor++;
-    if(cursorSetToRatio != setToRatio(cursor)){
-        cursorSetToRatio++;
+    if(cursorPercent != setToPercent(cursor)){
+        cursorPercent++;
+        if (cursorPercent % (100/lengthBar) == 0) {
+            cursorBar++;
+        }
         print();
     }
     if (cursor == length) {
@@ -36,18 +39,16 @@ void ProgressBar::update(){
 
 void ProgressBar::print(){
     std::cout << '\r' <<"[";
-    for (unsigned int i = 0; i < cursorSetToRatio ; i++) {
+    for (unsigned int i = 0; i < cursorBar ; i++) {
         std::cout << "=";
     }
-    for (unsigned int i = cursorSetToRatio; i < lengthSetToRatio; i++) {
+    for (unsigned int i = cursorBar; i < lengthBar; i++) {
         std::cout << " ";
     }
-    std::cout << "] " << cursorSetToRatio*100/ratio << "%" << std::flush;
+    std::cout << "] " << cursorPercent << "%" << std::flush;
     
 }
 
-
-unsigned int ProgressBar::setToRatio(unsigned int value){
-    return (((float)value) / ((float)length)) * ratio;
+unsigned int ProgressBar::setToPercent(unsigned int value){
+    return value*100/length;
 }
-
