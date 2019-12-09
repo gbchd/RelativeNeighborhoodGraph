@@ -2,8 +2,8 @@
 //  MatrixOfFloat.cpp
 //  RelativeNeighborhoodGraph
 //
-//  Created by GuillaumeBouchard on 15/11/2019.
-//  Copyright © 2019 GuillaumeBouchard. All rights reserved.
+//  Created by GuillaumeBouchard ColinTroisemaine on 15/11/2019.
+//  Copyright © 2019 GuillaumeBouchard ColinTroisemaine. All rights reserved.
 //
 
 #include "MatrixOfFloat.hpp"
@@ -106,6 +106,14 @@ std::vector<float> MatrixOfFloat::getRowAfterLimit(unsigned int row, unsigned in
         rowToReturn.push_back(getElement(row, column));
     }
     return rowToReturn;
+}
+
+std::vector<float> MatrixOfFloat::getColumn(unsigned int column){
+    std::vector<float> columnToReturn;
+    for(unsigned int row = 0; row < getNumberOfColumns(); row++){
+        columnToReturn.push_back(getElement(row, column));
+    }
+    return columnToReturn;
 }
 
 std::vector<float> MatrixOfFloat::getColumnBeforeLimit(unsigned int column, unsigned int limit){

@@ -1,3 +1,11 @@
+//
+//  DataExporter.cpp
+//  RelativeNeighborhoodGraph
+//
+//  Created by GuillaumeBouchard ColinTroisemaineon 25/11/2019.
+//  Copyright © 2019 GuillaumeBouchard ColinTroisemaine. All rights reserved.
+//
+
 #include "DataExporter.hpp"
 
 void DataExporter::ExportNodes(FileData & dataMatrix, TravelAlgorithmResult resultSet, std::string nomFichier)

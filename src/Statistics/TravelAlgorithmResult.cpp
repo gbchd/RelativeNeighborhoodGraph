@@ -2,8 +2,8 @@
 //  TravelAlgorithmResult.cpp
 //  RelativeNeighborhoodGraph
 //
-//  Created by GuillaumeBouchard on 25/11/2019.
-//  Copyright © 2019 GuillaumeBouchard. All rights reserved.
+//  Created by GuillaumeBouchard ColinTroisemaine on 25/11/2019.
+//  Copyright © 2019 GuillaumeBouchard ColinTroisemaine. All rights reserved.
 //
 
 #include "TravelAlgorithmResult.hpp"
@@ -37,6 +37,8 @@ void TravelAlgorithmResult::print(){
 
 
 void TravelAlgorithmResult::generateResultsWithNeighborAlgorithmV1(RNGraph & rngraph, DistancesBetweenNodes & distancesBetweenNodes){
+    
+    //We check if the 
     if(!isTheSameSize(rngraph, distancesBetweenNodes)){
         throw "NotTheSameSizeError";
     }
@@ -61,7 +63,7 @@ void TravelAlgorithmResult::generateResultsWithNeighborAlgorithmV2(RNGraph & rng
     
     reset();
     
-    ProgressBar progressBar(20);
+    ProgressBar progressBar(100);
     progressBar.initialize(rngraph.getNumberOfRows());
     
     #pragma omp parallel for

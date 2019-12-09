@@ -1,3 +1,11 @@
+//
+//  DataExporter.hpp
+//  RelativeNeighborhoodGraph
+//
+//  Created by GuillaumeBouchard ColinTroisemaineon 25/11/2019.
+//  Copyright © 2019 GuillaumeBouchard ColinTroisemaine. All rights reserved.
+//
+
 #ifndef DataExporter_hpp
 #define DataExporter_hpp
 

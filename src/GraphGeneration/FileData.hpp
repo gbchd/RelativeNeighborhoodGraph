@@ -2,8 +2,8 @@
 //  FileData.hpp
 //  RelativeNeighborhoodGraph
 //
-//  Created by GuillaumeBouchard on 15/11/2019.
-//  Copyright © 2019 GuillaumeBouchard. All rights reserved.
+//  Created by GuillaumeBouchard ColinTroisemaine on 15/11/2019.
+//  Copyright © 2019 GuillaumeBouchard ColinTroisemaine. All rights reserved.
 //
 
 #ifndef FileData_hpp

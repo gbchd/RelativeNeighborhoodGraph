@@ -35,14 +35,14 @@ void ProgressBar::update(){
 }
 
 void ProgressBar::print(){
-    std::cout <<"[";
+    std::cout << '\r' <<"[";
     for (unsigned int i = 0; i < cursorSetToRatio ; i++) {
         std::cout << "=";
     }
     for (unsigned int i = cursorSetToRatio; i < lengthSetToRatio; i++) {
         std::cout << " ";
     }
-    std::cout << "] " << cursorSetToRatio*100/ratio << "%" << '\r' << std::flush;
+    std::cout << "] " << cursorSetToRatio*100/ratio << "%" << std::flush;
     
 }
 

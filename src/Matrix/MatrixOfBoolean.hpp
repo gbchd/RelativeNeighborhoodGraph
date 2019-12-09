@@ -2,8 +2,8 @@
 //  MatrixOfBoolean.hpp
 //  RelativeNeighborhoodGraph
 //
-//  Created by GuillaumeBouchard on 22/11/2019.
-//  Copyright © 2019 GuillaumeBouchard. All rights reserved.
+//  Created by GuillaumeBouchard ColinTroisemaine on 22/11/2019.
+//  Copyright © 2019 GuillaumeBouchard ColinTroisemaine. All rights reserved.
 //
 
 #ifndef MatrixOfBoolean_hpp

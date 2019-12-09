@@ -2,8 +2,8 @@
 //  ProgressBar.hpp
 //  RelativeNeighborhoodGraph
 //
-//  Created by GuillaumeBouchard on 04/12/2019.
-//  Copyright © 2019 GuillaumeBouchard. All rights reserved.
+//  Created by GuillaumeBouchard ColinTroisemaineon 04/12/2019.
+//  Copyright © 2019 GuillaumeBouchard ColinTroisemaine. All rights reserved.
 //
 
 #ifndef ProgressBar_hpp

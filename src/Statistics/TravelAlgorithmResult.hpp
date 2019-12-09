@@ -2,8 +2,8 @@
 //  TravelAlgorithmResult.hpp
 //  RelativeNeighborhoodGraph
 //
-//  Created by GuillaumeBouchard on 25/11/2019.
-//  Copyright © 2019 GuillaumeBouchard. All rights reserved.
+//  Created by GuillaumeBouchard ColinTroisemaine on 25/11/2019.
+//  Copyright © 2019 GuillaumeBouchard ColinTroisemaine. All rights reserved.
 //
 
 #ifndef TravelAlgorithmResult_hpp
