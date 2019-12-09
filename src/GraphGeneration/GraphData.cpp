@@ -19,8 +19,8 @@ GraphData::GraphData(FileData & fileData):MatrixOfFloat(fileData.getNumberOfRows
     copyDataFromFileData(fileData);
     
     //Then we normalize them
-    //#pragma omp parallel for
-    for(unsigned int column = 0; column < getNumberOfColumns(); column++){
+    #pragma omp parallel for
+    for(int column = 0; column < getNumberOfColumns(); column++){
         normalizeColumn(column);
     }
     
@@ -73,9 +73,16 @@ float GraphData::getNormalizedValueOfX(float x, float xmax, float xmin){
 void GraphData::normalizeColumn(unsigned int column){
     float maxOfColumn = getMaxOfColumn(column);
     float minOfColumn = getMinOfColumn(column);
-    for(unsigned int row = 0; row < getNumberOfRows(); row++){
-        float x = getElement(row, column);
-        setElement(row, column, getNormalizedValueOfX(x, maxOfColumn, minOfColumn));
+    if (maxOfColumn != minOfColumn) {
+        for(unsigned int row = 0; row < getNumberOfRows(); row++){
+            float x = getElement(row, column);
+            setElement(row, column, getNormalizedValueOfX(x, maxOfColumn, minOfColumn));
+        }
+    }
+    else{
+        for(unsigned int row = 0; row < getNumberOfRows(); row++){
+            setElement(row, column, 0);
+        }
     }
     
 }

@@ -24,6 +24,8 @@ private:
     std::vector<unsigned int> foundRightNodeWhenInsertedOn;
     std::vector<unsigned int> usedNodeToTravel;
     
+    std::vector<std::vector<unsigned int>> neighbors;
+    
     unsigned int numberOfNodes;
     
     //Constructors & Destructor
@@ -39,23 +41,21 @@ public:
 
     void print();
     
-    void generateResultsWithNeighborAlgorithmV1(RNGraph & rngraph, DistancesBetweenNodes & distancesBetweenNodes);
-    void generateResultsWithNeighborAlgorithmV2(RNGraph & rngraph, DistancesBetweenNodes & distancesBetweenNodes);
+    void generateResultsWithNeighborAlgorithmV1(DistancesBetweenNodes & distancesBetweenNodes);
+    void generateResultsWithNeighborAlgorithmV2(DistancesBetweenNodes & distancesBetweenNodes);
     
     void reset();
     
-private:
-    bool isTheSameSize(MatrixOfFloat & matrixA, MatrixOfBoolean & matrixB);
-    bool isTheSameSize(MatrixOfBoolean & matrixA, MatrixOfFloat & matrixB);
+    void generateNeighbors(RNGraph & rngraph, unsigned int version);
     
-    void neighborAlgorithmV1(unsigned int nodeToReach, unsigned int nodeStart, RNGraph & rngraph, DistancesBetweenNodes & distancesBetweenNodes);
-    void neighborAlgorithmV2(unsigned int nodeToReach, unsigned int nodeStart, RNGraph & rngraph, DistancesBetweenNodes & distancesBetweenNodes);
+private:
+    void neighborAlgorithmV1(unsigned int nodeToReach, unsigned int nodeStart, DistancesBetweenNodes & distancesBetweenNodes);
+    void neighborAlgorithmV2(unsigned int nodeToReach, unsigned int nodeStart, DistancesBetweenNodes & distancesBetweenNodes);
     
     std::list<unsigned int> findAllNeighborsOfNode(RNGraph & rngraph, unsigned int node);
     std::list<unsigned int> findAllNeighborsOfNeighborsOfNode(RNGraph & rngraph, unsigned int node);
     
-    
-    
+
 };
 
 

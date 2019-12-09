@@ -18,7 +18,9 @@ TravelAlgorithmResult::TravelAlgorithmResult(unsigned int size){
         foundAgainWhenInserted.push_back(0);
         foundRightNodeWhenInsertedOn.push_back(0);
         usedNodeToTravel.push_back(0);
+        
     }
+    neighbors.resize(numberOfNodes);
     
 }
 
@@ -36,41 +38,41 @@ void TravelAlgorithmResult::print(){
 }
 
 
-void TravelAlgorithmResult::generateResultsWithNeighborAlgorithmV1(RNGraph & rngraph, DistancesBetweenNodes & distancesBetweenNodes){
+void TravelAlgorithmResult::generateResultsWithNeighborAlgorithmV1(DistancesBetweenNodes & distancesBetweenNodes){
     
-    //We check if the 
-    if(!isTheSameSize(rngraph, distancesBetweenNodes)){
+    //We check if the two matrix are of the same size
+    if(neighbors.size() != distancesBetweenNodes.getNumberOfRows()){
         throw "NotTheSameSizeError";
     }
     reset();
     
     ProgressBar progressBar(20);
-    progressBar.initialize(rngraph.getNumberOfRows());
+    progressBar.initialize(distancesBetweenNodes.getNumberOfRows());
     
     #pragma omp parallel for
-    for (unsigned int row = 0; row < rngraph.getNumberOfRows(); row++) {
+    for (unsigned int row = 0; row < distancesBetweenNodes.getNumberOfRows(); row++) {
         progressBar.update();
-        for (unsigned int column = 0; column < rngraph.getNumberOfColumns(); column++) {
-            neighborAlgorithmV1(row, column, rngraph, distancesBetweenNodes);
+        for (unsigned int column = 0; column < distancesBetweenNodes.getNumberOfColumns(); column++) {
+            neighborAlgorithmV1(row, column, distancesBetweenNodes);
         }
     }
 }
 
-void TravelAlgorithmResult::generateResultsWithNeighborAlgorithmV2(RNGraph & rngraph, DistancesBetweenNodes & distancesBetweenNodes){
-    if(!isTheSameSize(rngraph, distancesBetweenNodes)){
+void TravelAlgorithmResult::generateResultsWithNeighborAlgorithmV2(DistancesBetweenNodes & distancesBetweenNodes){
+    if(neighbors.size() != distancesBetweenNodes.getNumberOfRows()){
         throw "NotTheSameSizeError";
     }
     
     reset();
     
-    ProgressBar progressBar(100);
-    progressBar.initialize(rngraph.getNumberOfRows());
+    ProgressBar progressBar(20);
+    progressBar.initialize(distancesBetweenNodes.getNumberOfRows());
     
     #pragma omp parallel for
-    for (unsigned int row = 0; row < rngraph.getNumberOfRows(); row++) {
+    for (unsigned int row = 0; row < distancesBetweenNodes.getNumberOfRows(); row++) {
         progressBar.update();
-        for (unsigned int column = 0; column < rngraph.getNumberOfColumns(); column++) {
-            neighborAlgorithmV2(row, column, rngraph, distancesBetweenNodes);
+        for (unsigned int column = 0; column < distancesBetweenNodes.getNumberOfColumns(); column++) {
+            neighborAlgorithmV2(row, column, distancesBetweenNodes);
         }
     }
 }
@@ -84,34 +86,41 @@ void TravelAlgorithmResult::reset(){
 }
 
 
+void TravelAlgorithmResult::generateNeighbors(RNGraph &rngraph, unsigned int version){
+    unsigned int numberOfNodes = rngraph.getNumberOfRows();
+    
+    if (version == 1) {
+        for (unsigned int node = 0; node < numberOfNodes; node++) {
+            std::list<unsigned int> neighborsToSet = findAllNeighborsOfNode(rngraph, node);
+            for (unsigned int elem : neighborsToSet) {
+                neighbors[node].push_back(elem);
+            }
+        }
+    }
+    if (version == 2) {
+        for (unsigned int node = 0; node < numberOfNodes; node++) {
+            std::list<unsigned int> neighborsToSet = findAllNeighborsOfNeighborsOfNode(rngraph, node);
+            for (unsigned int elem : neighborsToSet) {
+                neighbors[node].push_back(elem);
+            }
+        }
+    }
+    
+}
+
+
+
 /*
 Private Methods
 */
 
-bool TravelAlgorithmResult::isTheSameSize(MatrixOfFloat &matrixA, MatrixOfBoolean &matrixB){
-    if(matrixA.getNumberOfRows() == matrixB.getNumberOfRows() && matrixA.getNumberOfColumns() == matrixB.getNumberOfColumns()){
-        return true;
-    }
-    else{
-        return false;
-    }
-}
-
-bool TravelAlgorithmResult::isTheSameSize(MatrixOfBoolean &matrixA, MatrixOfFloat &matrixB){
-    if(matrixA.getNumberOfRows() == matrixB.getNumberOfRows() && matrixA.getNumberOfColumns() == matrixB.getNumberOfColumns()){
-        return true;
-    }
-    else{
-        return false;
-    }
-}
 
 /*
  Travel algorithm from one node to another
  */
-void TravelAlgorithmResult::neighborAlgorithmV1(unsigned int nodeToReach, unsigned int nodeStart, RNGraph &rngraph, DistancesBetweenNodes &distancesBetweenNodes){
+void TravelAlgorithmResult::neighborAlgorithmV1(unsigned int nodeToReach, unsigned int nodeStart, DistancesBetweenNodes &distancesBetweenNodes){
     //Initialisation
-    unsigned int lastNode = rngraph.getNumberOfColumns()+1;
+    unsigned int lastNode = distancesBetweenNodes.getNumberOfColumns()+1;
     unsigned int currentNode = nodeStart; //impossible value at initialization
     
     //Déroulement
@@ -119,9 +128,7 @@ void TravelAlgorithmResult::neighborAlgorithmV1(unsigned int nodeToReach, unsign
         
         lastNode = currentNode;
         
-        std::list<unsigned int> neighbors = findAllNeighborsOfNode(rngraph, lastNode);
-        
-        for (unsigned int neighbor : neighbors) {
+        for (unsigned int neighbor : neighbors[lastNode]) {
             if(distancesBetweenNodes.getDistance(currentNode, nodeToReach) > distancesBetweenNodes.getDistance(neighbor, nodeToReach)){
                 currentNode = neighbor;
             }
@@ -138,9 +145,9 @@ void TravelAlgorithmResult::neighborAlgorithmV1(unsigned int nodeToReach, unsign
     
 }
 
-void TravelAlgorithmResult::neighborAlgorithmV2(unsigned int nodeToReach, unsigned int nodeStart, RNGraph &rngraph, DistancesBetweenNodes &distancesBetweenNodes){
+void TravelAlgorithmResult::neighborAlgorithmV2(unsigned int nodeToReach, unsigned int nodeStart, DistancesBetweenNodes &distancesBetweenNodes){
     //Initialisation
-    unsigned int lastNode = rngraph.getNumberOfColumns()+1;
+    unsigned int lastNode = distancesBetweenNodes.getNumberOfColumns()+1;
     unsigned int currentNode = nodeStart; //impossible value at initialization
     
     //Déroulement
@@ -148,9 +155,7 @@ void TravelAlgorithmResult::neighborAlgorithmV2(unsigned int nodeToReach, unsign
         
         lastNode = currentNode;
         
-        std::list<unsigned int> neighbors = findAllNeighborsOfNeighborsOfNode(rngraph, lastNode);
-        
-        for (unsigned int neighbor : neighbors) {
+        for (unsigned int neighbor : neighbors[lastNode]) {
             if(distancesBetweenNodes.getDistance(currentNode, nodeToReach) > distancesBetweenNodes.getDistance(neighbor, nodeToReach)){
                 currentNode = neighbor;
             }
@@ -195,3 +200,6 @@ std::list<unsigned int> TravelAlgorithmResult::findAllNeighborsOfNeighborsOfNode
     
     return neighborsOfNeighbors;
 }
+
+
+

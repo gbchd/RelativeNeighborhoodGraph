@@ -103,19 +103,30 @@ int main(int argc, const char * argv[]) {
         
         std::cout << "===" << "Graph generation has been done in " << timeCheckGraphGeneration-timeStart << "s" << "===" << std::endl << std::endl;
         
-        
-        
+   
         
         std::cout << "===" << "Starting : Travel algorithm application version " << versionOfTravelAlgorithm << "===" << std::endl;
         
         TravelAlgorithmResult stats(distances.getNumberOfColumns());
         if (versionOfTravelAlgorithm == 1) {
-            stats.generateResultsWithNeighborAlgorithmV1(graph, distances);
+            stats.generateNeighbors(graph, 1);
             newTime = std::time(nullptr);
+            std::cout << "-Neighbors generation done in " << newTime-oldTime << "s" << std::endl;
+            oldTime = newTime;
+            
+            stats.generateResultsWithNeighborAlgorithmV1(distances);
+            newTime = std::time(nullptr);
+            std::cout << "-Travel algorithm done in " << newTime-oldTime << "s" << std::endl;
         }
         else if (versionOfTravelAlgorithm == 2){
-            stats.generateResultsWithNeighborAlgorithmV2(graph, distances);
+            stats.generateNeighbors(graph, 2);
             newTime = std::time(nullptr);
+            std::cout << "-Neighbors generation done in " << newTime-oldTime << "s" << std::endl;
+            oldTime = newTime;
+            
+            stats.generateResultsWithNeighborAlgorithmV2(distances);
+            newTime = std::time(nullptr);
+            std::cout << "-Travel algorithm done in " << newTime-oldTime << "s" << std::endl;
         }
         else{
             std::cout << "Invalid version of the travel algorithm" << std::endl <<  "Use -v 1 or -v 2" << std::endl;
@@ -147,6 +158,8 @@ int main(int argc, const char * argv[]) {
             DataExporter::ExportEdges(graph, distances, edgesPath);
             newTime = std::time(nullptr);
             std::cout << "-Export of edges.csv done in " << newTime-oldTime << "s" << std::endl;
+            
+            
         }
         
         
