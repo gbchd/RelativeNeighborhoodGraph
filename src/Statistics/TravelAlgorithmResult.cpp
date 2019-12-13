@@ -53,7 +53,7 @@ void TravelAlgorithmResult::generateResultsWithNeighborAlgorithm(DistancesBetwee
     
     reset();
     
-    if (k < 0) {
+    if (k <= 0) {
         generateResultsWithNeighborAlgorithmOnAllNodes(distancesBetweenNodes);
     }
     else {
