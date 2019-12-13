@@ -42,7 +42,7 @@ MatrixOfBoolean::~MatrixOfBoolean(){
  Public Methods
  */
 MatrixOfBoolean MatrixOfBoolean::operator=(MatrixOfBoolean & matrix){
-    if(!isEmpty()){
+    if(!isSizeNotValid()){
         desallocateMatrixArray();
     }
     numberOfRows = matrix.numberOfRows;
@@ -65,7 +65,7 @@ bool MatrixOfBoolean::isSquare(){
     return (numberOfRows==numberOfColumns);
 }
 
-bool MatrixOfBoolean::isEmpty(){
+bool MatrixOfBoolean::isSizeNotValid(){
     return numberOfRows==0 || numberOfColumns==0;
 }
 

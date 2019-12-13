@@ -43,113 +43,25 @@ void TravelAlgorithmResult::print(){
 }
 
 
-void TravelAlgorithmResult::generateResultsWithNeighborAlgorithmV1(DistancesBetweenNodes & distancesBetweenNodes){
-    
-    //We check if the two matrix are of the same size
-    if(neighbors.size() != distancesBetweenNodes.getNumberOfRows()){
-        throw "NotTheSameSizeError";
-    }
-    reset();
-    
-    ProgressBar progressBar;
-    progressBar.initialize(distancesBetweenNodes.getNumberOfRows());
-    
-    #pragma omp parallel for
-    for (int row = 0; row < distancesBetweenNodes.getNumberOfRows(); row++) {
-        progressBar.update();
-        for (unsigned int column = 0; column < distancesBetweenNodes.getNumberOfColumns(); column++) {
-            neighborAlgorithm(row, column, distancesBetweenNodes);
-        }
-        
-        //We get the mean of the travel distances.
-        meanTravelDistance[row] = meanTravelDistance[row]/numberOfNodes;
-        
-        //We get the mean of the distances when failed by dividing the sum stocked in meanDistanceToVertex by the number of time the insertion failed.
-        meanDistanceToVertex[row] = (meanDistanceToVertex[row])/(numberOfNodes-foundAgainWhenInserted[row]);
-        
-    }
-}
-
-void TravelAlgorithmResult::generateResultsWithNeighborAlgorithmV2(DistancesBetweenNodes & distancesBetweenNodes){
-    if(neighbors.size() != distancesBetweenNodes.getNumberOfRows()){
-        throw "NotTheSameSizeError";
-    }
-    
-    reset();
-    
-    ProgressBar progressBar;
-    progressBar.initialize(distancesBetweenNodes.getNumberOfRows());
-    
-    #pragma omp parallel for
-    for (int row = 0; row < distancesBetweenNodes.getNumberOfRows(); row++) {
-        progressBar.update();
-        for (unsigned int column = 0; column < distancesBetweenNodes.getNumberOfColumns(); column++) {
-            neighborAlgorithm(row, column, distancesBetweenNodes);
-        }
-        
-        //We get the mean of the travel distances.
-        meanTravelDistance[row] = meanTravelDistance[row]/numberOfNodes;
-        
-        //We get the mean of the distances when failed by dividing the sum stocked in meanDistanceToVertex by the number of time the insertion failed.
-        meanDistanceToVertex[row] = (meanDistanceToVertex[row])/(numberOfNodes-foundAgainWhenInserted[row]);
-        
-    }
-}
-
-/*
- It is possible to use a k greater than the number of nodes of the graph.
-*/
-void TravelAlgorithmResult::generateResultsWithNeighborAlgorithmV3(DistancesBetweenNodes & distancesBetweenNodes, unsigned int k, unsigned int version) {
-    if (neighbors.size() != distancesBetweenNodes.getNumberOfRows()) {
+void TravelAlgorithmResult::generateResultsWithNeighborAlgorithm(DistancesBetweenNodes &distancesBetweenNodes, unsigned int version, int k){
+    if (neighbors.size() != distancesBetweenNodes.getNumberOfRows() || numberOfNodes != distancesBetweenNodes.getNumberOfRows()) {
         throw "NotTheSameSizeError";
     }
     if (version != 1 && version != 2) {
         throw "UnknownAlgorithmVersion";
     }
-
+    
     reset();
     
-    srand(time(NULL));
-
-    ProgressBar progressBar;
-    progressBar.initialize(distancesBetweenNodes.getNumberOfRows());
-
-    #pragma omp parallel for
-    for (int row = 0; row < distancesBetweenNodes.getNumberOfRows(); row++) {
-
-        progressBar.update();
-
-        //We generate a list of k vertices :
-        std::vector<unsigned int> verticesToInsertOn;
-        while (verticesToInsertOn.size() < k) {
-            int vertex = rand() % numberOfNodes; //Returns a random integer between 0 and numberOfNodes-1
-            if (vertex != row) {
-                verticesToInsertOn.push_back(vertex);
-            }
-        }
-
-        //Then we apply the algorithm only on the selected vertices :
-        for (unsigned int vertex : verticesToInsertOn){
-            if (version == 1) {
-                neighborAlgorithm(row, vertex, distancesBetweenNodes);
-            }
-            if (version == 2) {
-                neighborAlgorithm(row, vertex, distancesBetweenNodes);
-            }
-        }
-        //We get the mean of the travel distances.
-        meanTravelDistance[row] = meanTravelDistance[row]/k;
-        
-        //We get the mean of the distances when failed by dividing the sum stocked in meanDistanceToVertex by the number of time the insertion failed.
-        unsigned int numberOfTimeTheInsertionFailed = k-foundAgainWhenInserted[row];
-        if(numberOfTimeTheInsertionFailed == 0){
-            meanDistanceToVertex[row] = 0;
-        }
-        else{
-            meanDistanceToVertex[row] = meanDistanceToVertex[row]/numberOfTimeTheInsertionFailed;
-        }
+    if (k < 0) {
+        generateResultsWithNeighborAlgorithmOnAllNodes(distancesBetweenNodes);
     }
+    else {
+        generateResultsWithNeighborAlgorithmOnRandomVector(distancesBetweenNodes, k);
+    }
+        
 }
+
 
 
 void TravelAlgorithmResult::reset(){
@@ -279,3 +191,82 @@ void TravelAlgorithmResult::setDistanceForTheTravelDistance(unsigned int node, f
     }
 }
 
+
+
+void TravelAlgorithmResult::generateResultsWithNeighborAlgorithmOnAllNodes(DistancesBetweenNodes & distancesBetweenNodes){
+    
+    //We check if the two matrix are of the same size
+    if(neighbors.size() != distancesBetweenNodes.getNumberOfRows()){
+        throw "NotTheSameSizeError";
+    }
+    reset();
+    
+    ProgressBar progressBar;
+    progressBar.initialize(distancesBetweenNodes.getNumberOfRows());
+    
+    #pragma omp parallel for
+    for (int row = 0; row < distancesBetweenNodes.getNumberOfRows(); row++) {
+        progressBar.update();
+        for (unsigned int column = 0; column < distancesBetweenNodes.getNumberOfColumns(); column++) {
+            neighborAlgorithm(row, column, distancesBetweenNodes);
+        }
+        
+        //We get the mean of the travel distances.
+        meanTravelDistance[row] = meanTravelDistance[row]/numberOfNodes;
+        
+        //We get the mean of the distances when failed by dividing the sum stocked in meanDistanceToVertex by the number of time the insertion failed.
+        meanDistanceToVertex[row] = (meanDistanceToVertex[row])/(numberOfNodes-foundAgainWhenInserted[row]);
+        
+    }
+}
+
+/*
+ It is possible to use a k greater than the number of nodes of the graph. And the list might have the same node multiple times
+*/
+void TravelAlgorithmResult::generateResultsWithNeighborAlgorithmOnRandomVector(DistancesBetweenNodes & distancesBetweenNodes, unsigned int sizeOfVector) {
+    if (neighbors.size() != distancesBetweenNodes.getNumberOfRows()) {
+        throw "NotTheSameSizeError";
+    }
+
+    reset();
+
+    ProgressBar progressBar;
+    progressBar.initialize(distancesBetweenNodes.getNumberOfRows());
+
+    #pragma omp parallel for
+    for (int node = 0; node < distancesBetweenNodes.getNumberOfRows(); node++) {
+
+        progressBar.update();
+        
+        std::vector<unsigned int> nodesToInsertOn = generateRandomVectorOfNodes(sizeOfVector, node);
+        
+        //Then we apply the algorithm only on the selected vertices :
+        for (unsigned int nodeToInsertOn : nodesToInsertOn){
+            neighborAlgorithm(node, nodeToInsertOn, distancesBetweenNodes);
+        }
+        
+        //We get the mean of the travel distances.
+        meanTravelDistance[node] = meanTravelDistance[node]/sizeOfVector;
+        //We get the mean of the distances when failed by dividing the sum stocked in meanDistanceToVertex by the number of time the insertion failed.
+        unsigned int numberOfTimeTheInsertionFailed = sizeOfVector-foundAgainWhenInserted[node];
+        if(numberOfTimeTheInsertionFailed == 0){
+            meanDistanceToVertex[node] = 0;
+        }
+        else{
+            meanDistanceToVertex[node] = meanDistanceToVertex[node]/numberOfTimeTheInsertionFailed;
+        }
+    }
+}
+
+//Can generate the same number multiple times
+std::vector<unsigned int> TravelAlgorithmResult::generateRandomVectorOfNodes(unsigned int size, unsigned int bannedValue){
+    srand((unsigned int)time(NULL));
+    std::vector<unsigned int> nodes;
+    while (nodes.size() < size) {
+        int node = rand() % numberOfNodes; //Returns a random integer between 0 and numberOfNodes-1
+        if (node != bannedValue) {
+            nodes.push_back(node);
+        }
+    }
+    return nodes;
+}

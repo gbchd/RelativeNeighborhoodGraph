@@ -51,9 +51,7 @@ public:
 
     void print();
     
-    void generateResultsWithNeighborAlgorithmV1(DistancesBetweenNodes & distancesBetweenNodes);
-    void generateResultsWithNeighborAlgorithmV2(DistancesBetweenNodes & distancesBetweenNodes);
-    void generateResultsWithNeighborAlgorithmV3(DistancesBetweenNodes & distancesBetweenNodes, unsigned int k, unsigned int version);
+    void generateResultsWithNeighborAlgorithm(DistancesBetweenNodes & distancesBetweenNodes, unsigned int version, int k);
     
     void reset();
     
@@ -67,6 +65,10 @@ private:
     std::list<unsigned int> findAllNeighborsOfNode(RNGraph & rngraph, unsigned int node);
     std::list<unsigned int> findAllNeighborsOfNeighborsOfNode(RNGraph & rngraph, unsigned int node);
     
+    void generateResultsWithNeighborAlgorithmOnAllNodes(DistancesBetweenNodes & distancesBetweenNodes);
+    void generateResultsWithNeighborAlgorithmOnRandomVector(DistancesBetweenNodes & distancesBetweenNodes,  unsigned int sizeOfVector);
+    
+    std::vector<unsigned int> generateRandomVectorOfNodes(unsigned int size, unsigned int bannedValue);
 
 };
 
