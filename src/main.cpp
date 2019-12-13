@@ -24,6 +24,7 @@
  arg -e "path" : exportFolder, if missing print the result of the travel algorithm.
  arg -s separationCharacter : specify what the separation character of the file is.
  arg -v version_number : version of the travel algorithm, only version 1 and 2 available for now.
+ arg -k numberOfVertices : instead of inserting each vertex on every vertices of the graph, we randomly select k vertices to insert on.
  @return 1 erreur, 0 generation réussie
  */
 int main(int argc, const char * argv[]) {
@@ -34,6 +35,7 @@ int main(int argc, const char * argv[]) {
     std::string exportDirectory = "";
     char separationCharacter = ',';
     unsigned int versionOfTravelAlgorithm = 2;
+    int k = -1;
     
     //Arguments verifications
     for (unsigned int arg = 1; arg < argc; arg++) {
@@ -58,6 +60,9 @@ int main(int argc, const char * argv[]) {
                 versionOfTravelAlgorithm = atoi(argv[arg+1]);
                 arg++;
                 break;
+            case 'k':
+                k = atoi(argv[arg+1]);
+                arg++;
             default:
                 std::cout << "Invalid arguments : " << argv[arg] << std::endl;
                 break;
@@ -110,24 +115,48 @@ int main(int argc, const char * argv[]) {
         
         TravelAlgorithmResult stats(distances.getNumberOfColumns());
         if (versionOfTravelAlgorithm == 1) {
-            stats.generateNeighbors(graph, 1);
-            newTime = std::time(nullptr);
-            std::cout << "-Neighbors generation done in " << newTime-timeCheckGraphGeneration << "s" << std::endl;
-            oldTime = newTime;
-            
-            stats.generateResultsWithNeighborAlgorithmV1(distances);
-            newTime = std::time(nullptr);
-            std::cout << "-Travel algorithm done in " << newTime-oldTime << "s" << std::endl;
+            if (k == -1) {
+                stats.generateNeighbors(graph, 1);
+                newTime = std::time(nullptr);
+                std::cout << "-Neighbors generation done in " << newTime-timeCheckGraphGeneration << "s" << std::endl;
+                oldTime = newTime;
+                
+                stats.generateResultsWithNeighborAlgorithmV1(distances);
+                newTime = std::time(nullptr);
+                std::cout << "-Travel algorithm done in " << newTime-oldTime << "s" << std::endl;
+            }
+            else {
+                stats.generateNeighbors(graph, 1);
+                newTime = std::time(nullptr);
+                std::cout << "-Neighbors generation done in " << newTime-timeCheckGraphGeneration << "s" << std::endl;
+                oldTime = newTime;
+                
+                stats.generateResultsWithNeighborAlgorithmV3(distances, k, 1);
+                newTime = std::time(nullptr);
+                std::cout << "-Travel algorithm done in " << newTime-oldTime << "s" << std::endl;
+            }
         }
         else if (versionOfTravelAlgorithm == 2){
-            stats.generateNeighbors(graph, 2);
-            newTime = std::time(nullptr);
-            std::cout << "-Neighbors generation done in " << newTime-timeCheckGraphGeneration << "s" << std::endl;
-            oldTime = newTime;
-            
-            stats.generateResultsWithNeighborAlgorithmV2(distances);
-            newTime = std::time(nullptr);
-            std::cout << "-Travel algorithm done in " << newTime-oldTime << "s" << std::endl;
+            if (k == -1) {
+                stats.generateNeighbors(graph, 2);
+                newTime = std::time(nullptr);
+                std::cout << "-Neighbors generation done in " << newTime-timeCheckGraphGeneration << "s" << std::endl;
+                oldTime = newTime;
+                
+                stats.generateResultsWithNeighborAlgorithmV2(distances);
+                newTime = std::time(nullptr);
+                std::cout << "-Travel algorithm done in " << newTime-oldTime << "s" << std::endl;
+            }
+            else {
+                stats.generateNeighbors(graph, 2);
+                newTime = std::time(nullptr);
+                std::cout << "-Neighbors generation done in " << newTime-timeCheckGraphGeneration << "s" << std::endl;
+                oldTime = newTime;
+                
+                stats.generateResultsWithNeighborAlgorithmV3(distances, k, 2);
+                newTime = std::time(nullptr);
+                std::cout << "-Travel algorithm done in " << newTime-oldTime << "s" << std::endl;
+            }
         }
         else{
             std::cout << "Invalid version of the travel algorithm" << std::endl <<  "Use -v 1 or -v 2" << std::endl;
@@ -162,7 +191,6 @@ int main(int argc, const char * argv[]) {
             
             
         }
-        
         
         std::cout << "===" << "Results exportation has been done in " << newTime-timeCheckTravelAlgorithm << "s" << "===" << std::endl << std::endl;
         

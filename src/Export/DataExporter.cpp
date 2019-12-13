@@ -26,6 +26,10 @@ void DataExporter::ExportNodes(FileData & dataMatrix, TravelAlgorithmResult resu
         fichier << dataMatrix.getSeparationCharacter() << "\"Found again when inserted\""
             << dataMatrix.getSeparationCharacter() << "\"Found right node when inserted on\""
             << dataMatrix.getSeparationCharacter() << "\"Used node to travel\""
+            << dataMatrix.getSeparationCharacter() << "\"Mean distance to vertex when failed to insert on\""
+            << dataMatrix.getSeparationCharacter() << "\"Mean distance travelling\""
+            << dataMatrix.getSeparationCharacter() << "\"Min distance travelling\""
+            << dataMatrix.getSeparationCharacter() << "\"Max distance travelling\""
         << std::endl;
 
 
@@ -41,6 +45,10 @@ void DataExporter::ExportNodes(FileData & dataMatrix, TravelAlgorithmResult resu
             fichier << dataMatrix.getSeparationCharacter()<< resultSet.getElementFromFoundAgainWhenInserted(rowIndex)
                 << dataMatrix.getSeparationCharacter() << resultSet.getElementFromFoundRightNodeWhenInsertedOn(rowIndex)
                 << dataMatrix.getSeparationCharacter() << resultSet.getElementFromUsedNodeToTravel(rowIndex)
+                << dataMatrix.getSeparationCharacter() << resultSet.getElementFromMeanDistanceToVertex(rowIndex)
+                << dataMatrix.getSeparationCharacter() << resultSet.getElementFromMeanTravelDistance(rowIndex)
+                << dataMatrix.getSeparationCharacter() << resultSet.getElementFromMinTravelDistance(rowIndex)
+                << dataMatrix.getSeparationCharacter() << resultSet.getElementFromMaxTravelDistance(rowIndex)
             << std::endl;
 
         }

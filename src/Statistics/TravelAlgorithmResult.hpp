@@ -24,6 +24,12 @@ private:
     std::vector<unsigned int> foundRightNodeWhenInsertedOn;
     std::vector<unsigned int> usedNodeToTravel;
     
+    std::vector<float> meanDistanceToVertex; //mean distance to vertex when failed to insert on
+    
+    std::vector<float> meanTravelDistance;
+    std::vector<float> minTravelDistance;
+    std::vector<float> maxTravelDistance;
+    
     std::vector<std::vector<unsigned int>> neighbors;
     
     unsigned int numberOfNodes;
@@ -38,19 +44,25 @@ public:
     unsigned int getElementFromFoundAgainWhenInserted(unsigned int index) { return foundAgainWhenInserted[index]; }
     unsigned int getElementFromFoundRightNodeWhenInsertedOn(unsigned int index) { return foundRightNodeWhenInsertedOn[index]; }
     unsigned int getElementFromUsedNodeToTravel(unsigned int index) { return usedNodeToTravel[index]; }
+    float getElementFromMeanDistanceToVertex(unsigned int index) { return meanDistanceToVertex[index]; }
+    float getElementFromMeanTravelDistance(unsigned int index) { return meanTravelDistance[index]; }
+    float getElementFromMinTravelDistance(unsigned int index) { return minTravelDistance[index]; }
+    float getElementFromMaxTravelDistance(unsigned int index) { return maxTravelDistance[index]; }
 
     void print();
     
     void generateResultsWithNeighborAlgorithmV1(DistancesBetweenNodes & distancesBetweenNodes);
     void generateResultsWithNeighborAlgorithmV2(DistancesBetweenNodes & distancesBetweenNodes);
+    void generateResultsWithNeighborAlgorithmV3(DistancesBetweenNodes & distancesBetweenNodes, unsigned int k, unsigned int version);
     
     void reset();
     
     void generateNeighbors(RNGraph & rngraph, unsigned int version);
     
 private:
-    void neighborAlgorithmV1(unsigned int nodeToReach, unsigned int nodeStart, DistancesBetweenNodes & distancesBetweenNodes);
-    void neighborAlgorithmV2(unsigned int nodeToReach, unsigned int nodeStart, DistancesBetweenNodes & distancesBetweenNodes);
+    void neighborAlgorithm(unsigned int nodeToReach, unsigned int nodeStart, DistancesBetweenNodes & distancesBetweenNodes);
+    
+    void setDistanceForTheTravelDistance(unsigned int node, float distance);
     
     std::list<unsigned int> findAllNeighborsOfNode(RNGraph & rngraph, unsigned int node);
     std::list<unsigned int> findAllNeighborsOfNeighborsOfNode(RNGraph & rngraph, unsigned int node);
