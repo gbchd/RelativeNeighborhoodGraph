@@ -35,7 +35,7 @@ public:
     unsigned int getNumberOfRows();
     unsigned int getNumberOfColumns();
     bool isSquare();
-    bool isEmpty();
+    bool isSizeNotValid();
     float getElement(unsigned int row, unsigned int column);
     void setElement(unsigned int row, unsigned int column, float elem);
     void print();

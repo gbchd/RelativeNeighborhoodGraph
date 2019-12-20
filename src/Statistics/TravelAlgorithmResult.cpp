@@ -14,6 +14,7 @@ Constructors & Destructor
 
 TravelAlgorithmResult::TravelAlgorithmResult(unsigned int size){
     numberOfNodes = size;
+    meanDistancesBetweenNodes = 0;
     for (unsigned int node = 0; node < numberOfNodes; node++) {
         foundAgainWhenInserted.push_back(0);
         foundRightNodeWhenInsertedOn.push_back(0);
@@ -37,7 +38,7 @@ Public Methods
 void TravelAlgorithmResult::print(){
     std::cout << "Nodes | Number of nodes found again when inserted anywhere | Number of nodes that were used as insertion and found back the original node | Number of times the node was used to travel" << std::endl;
     for (unsigned int number = 0; number < foundAgainWhenInserted.size(); number++) {
-        std::cout << number << " | " << foundAgainWhenInserted[number] << " | " << foundRightNodeWhenInsertedOn[number] << " | " << usedNodeToTravel[number] << " | " << meanDistanceToVertex[number] << " | " << meanTravelDistance[number] << " | " << minTravelDistance[number] << " | " << maxTravelDistance[number] << std::endl;
+        std::cout << number << " | " << foundAgainWhenInserted[number] << " | " << foundRightNodeWhenInsertedOn[number] << " | " << usedNodeToTravel[number] << " | " << meanDistanceToVertex[number] << " | " << meanTravelDistance[number] << " | " << minTravelDistance[number] << " | " << maxTravelDistance[number] << " | " << meanDistancesBetweenNodes << std::endl;
     }
     std::cout << std::endl;
 }
@@ -52,6 +53,8 @@ void TravelAlgorithmResult::generateResultsWithNeighborAlgorithm(DistancesBetwee
     }
     
     reset();
+    
+    meanDistancesBetweenNodes = distancesBetweenNodes.calculateMeanDistance();
     
     if (k <= 0) {
         generateResultsWithNeighborAlgorithmOnAllNodes(distancesBetweenNodes);
@@ -73,6 +76,7 @@ void TravelAlgorithmResult::reset(){
         meanTravelDistance[node] = 0;
         minTravelDistance[node] = std::numeric_limits<float>::max();
         maxTravelDistance[node] = 0;
+        meanDistancesBetweenNodes = 0;
     }
 }
 

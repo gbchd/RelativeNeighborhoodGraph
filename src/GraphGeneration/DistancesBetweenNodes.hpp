@@ -25,6 +25,7 @@ public:
     //Methods
 public:
     float getDistance(unsigned int node_A, unsigned int node_B);
+    float calculateMeanDistance();
     
 private:
     float getDistanceBetweenTwoNodes(GraphData & graphData, unsigned int node_A, unsigned int node_B);

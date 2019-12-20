@@ -42,7 +42,7 @@ MatrixOfFloat::~MatrixOfFloat(){
  Public Methods
  */
 MatrixOfFloat MatrixOfFloat::operator=(MatrixOfFloat & matrix){
-    if(!isEmpty()){
+    if(!isSizeNotValid()){
         desallocateMatrixArray();
     }
     numberOfRows = matrix.numberOfRows;
@@ -65,7 +65,7 @@ bool MatrixOfFloat::isSquare(){
     return (numberOfRows==numberOfColumns);
 }
 
-bool MatrixOfFloat::isEmpty(){
+bool MatrixOfFloat::isSizeNotValid(){
     return numberOfRows==0 || numberOfColumns==0;
 }
 
@@ -138,7 +138,7 @@ void MatrixOfFloat::resizeMatrix(unsigned int rows, unsigned int columns){
 Private Methods
 */
 void MatrixOfFloat::allocateMatrixArray(){
-    if(numberOfRows != 0){
+    if(numberOfRows != 0 && numberOfColumns != 0){
         matrixArray = new float*[numberOfRows];
         for(unsigned int column = 0; column < numberOfRows; column++){
             matrixArray[column] = new float[numberOfColumns];
@@ -147,10 +147,13 @@ void MatrixOfFloat::allocateMatrixArray(){
 }
 
 void MatrixOfFloat::desallocateMatrixArray(){
-    for(unsigned int column = 0; column < numberOfRows; column++){
-        delete[] matrixArray[column];
+    if (numberOfRows > 0 && numberOfColumns > 0) {
+        for(unsigned int row = 0; row < numberOfRows; row++){
+            delete[] matrixArray[row];
+        }
+        
+        delete[] matrixArray;
     }
-    delete[] matrixArray;
     
     matrixArray = NULL;
 }

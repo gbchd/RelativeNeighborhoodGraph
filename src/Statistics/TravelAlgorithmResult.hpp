@@ -30,6 +30,8 @@ private:
     std::vector<float> minTravelDistance;
     std::vector<float> maxTravelDistance;
     
+    float meanDistancesBetweenNodes;
+    
     std::vector<std::vector<unsigned int>> neighbors;
     
     unsigned int numberOfNodes;
@@ -48,6 +50,7 @@ public:
     float getElementFromMeanTravelDistance(unsigned int index) { return meanTravelDistance[index]; }
     float getElementFromMinTravelDistance(unsigned int index) { return minTravelDistance[index]; }
     float getElementFromMaxTravelDistance(unsigned int index) { return maxTravelDistance[index]; }
+    float getMeanDistancesBetweenNodes(){ return meanDistancesBetweenNodes; }
 
     void print();
     

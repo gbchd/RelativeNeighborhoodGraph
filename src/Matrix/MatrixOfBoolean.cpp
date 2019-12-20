@@ -99,7 +99,7 @@ void MatrixOfBoolean::print(){
 Private Methods
 */
 void MatrixOfBoolean::allocateMatrixArray(){
-    if(numberOfRows != 0){
+    if(numberOfRows > 0 && numberOfColumns > 0){
         matrixArray = new bool*[numberOfRows];
         for(unsigned int column = 0; column < numberOfRows; column++){
             matrixArray[column] = new bool[numberOfColumns];
@@ -108,12 +108,14 @@ void MatrixOfBoolean::allocateMatrixArray(){
 }
 
 void MatrixOfBoolean::desallocateMatrixArray(){
-    for(unsigned int column = 0; column < numberOfRows; column++){
-        delete[] matrixArray[column];
+    if (numberOfRows > 0 && numberOfColumns > 0) {
+        for(unsigned int column = 0; column < numberOfRows; column++){
+            delete[] matrixArray[column];
+        }
+        delete[] matrixArray;
+        
+        matrixArray = NULL;
     }
-    delete[] matrixArray;
-    
-    matrixArray = NULL;
 }
 
 void MatrixOfBoolean::copyArrayToMatrixArray(bool** arrayToCopy){

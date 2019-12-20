@@ -38,6 +38,20 @@ float DistancesBetweenNodes::getDistance(unsigned int node_A, unsigned int node_
     }
 }
 
+float DistancesBetweenNodes::calculateMeanDistance(){
+    float meanDistance = 0;
+    
+    for (unsigned int row = 0; row < getNumberOfRows(); row++) {
+        for (unsigned int column = row+1; column < getNumberOfColumns(); column++) {
+            meanDistance += getDistance(row, column);
+        }
+    }
+    
+    unsigned int numberOfNodes = (getNumberOfColumns()*(getNumberOfColumns()-1))/2.0;
+    meanDistance = meanDistance/numberOfNodes;
+    
+    return meanDistance;
+}
 
 /*
 Private methods
