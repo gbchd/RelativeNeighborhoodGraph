@@ -56,6 +56,7 @@ void TravelAlgorithmResult::generateResultsWithNeighborAlgorithm(DistancesBetwee
     
     meanDistancesBetweenNodes = distancesBetweenNodes.calculateMeanDistance();
     
+    
     if (k <= 0) {
         generateResultsWithNeighborAlgorithmOnAllNodes(distancesBetweenNodes);
     }
@@ -203,7 +204,6 @@ void TravelAlgorithmResult::generateResultsWithNeighborAlgorithmOnAllNodes(Dista
     if(neighbors.size() != distancesBetweenNodes.getNumberOfRows()){
         throw "NotTheSameSizeError";
     }
-    reset();
     
     ProgressBar progressBar;
     progressBar.initialize(distancesBetweenNodes.getNumberOfRows());
@@ -231,8 +231,6 @@ void TravelAlgorithmResult::generateResultsWithNeighborAlgorithmOnRandomVector(D
     if (neighbors.size() != distancesBetweenNodes.getNumberOfRows()) {
         throw "NotTheSameSizeError";
     }
-
-    reset();
 
     ProgressBar progressBar;
     progressBar.initialize(distancesBetweenNodes.getNumberOfRows());
