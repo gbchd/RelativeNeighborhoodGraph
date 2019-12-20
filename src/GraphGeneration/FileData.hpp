@@ -40,16 +40,17 @@ public:
     
     //Methods
 public:
-    char getSeparationCharacter();
-    unsigned int getNumberOfRows();
-    unsigned int getNumberOfColumns();
+    
+    char getSeparationCharacter(){return separationCharacter;}
+    unsigned int getNumberOfRows(){return numberOfRows;}
+    unsigned int getNumberOfColumns(){return numberOfColumns;}
     unsigned int getNumberOfColumnsNonClass();
     
     //A column can be both
     bool isColumnAClassAttribute(unsigned int column);
     bool isColumnUsedToGenerateTheGraph(unsigned int column);
     
-    std::string getString(unsigned int row, unsigned int column);
+    std::string getString(unsigned int row, unsigned int column){return matrixOfString[row][column];}
     
     void print();
     void printMatrix();

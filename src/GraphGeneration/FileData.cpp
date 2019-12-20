@@ -11,12 +11,22 @@
 /*
 Constructors & Destructor
 */
+
+/**
+ @Description Default constructor for the class FileData
+ */
 FileData::FileData(){
     separationCharacter = ',';
     numberOfRows = 0;
     numberOfColumns = 0;
 }
 
+/**
+ @Description FileData's constructor that takes the paths of two files and the separation character in those files. It is recommended to use this constructor.
+ @arg filenameOfGraph path to the file containing the data used to create the graph
+ @arg filenameForIsColumnAClass path to the file containing the information whether the column is a class attribute or not
+ @arg sep separation character in the two files
+*/
 FileData::FileData(std::string filenameOfGraph, std::string filenameForIsColumnAClass, char sep){
     separationCharacter = sep;
     std::string line;
@@ -41,23 +51,12 @@ FileData::FileData(std::string filenameOfGraph, std::string filenameForIsColumnA
 
 
 /*
-Methods Public
+Public Methods
 */
 
-char FileData::getSeparationCharacter(){
-    return separationCharacter;
-}
-
-
-unsigned int FileData::getNumberOfRows(){
-    return numberOfRows;
-}
-
-unsigned int FileData::getNumberOfColumns(){
-    return numberOfColumns;
-}
-
-
+/**
+@Description Getter that return the number of columns that are non class.
+*/
 unsigned int FileData::getNumberOfColumnsNonClass(){
     unsigned int numberOfColumnsNonClass = 0;
     for(unsigned int column = 0; column < numberOfColumns; column++){
@@ -68,6 +67,9 @@ unsigned int FileData::getNumberOfColumnsNonClass(){
     return numberOfColumnsNonClass;
 }
 
+/**
+@Description Return true if the column given is a class attribute.
+*/
 bool FileData::isColumnAClassAttribute(unsigned int column){
     if (isColumnAClass[column] == 1 || isColumnAClass[column] == 2) {
         return true;
@@ -77,6 +79,9 @@ bool FileData::isColumnAClassAttribute(unsigned int column){
     }
 }
 
+/**
+@Description Return true if the column given is use to generate the graph.
+*/
 bool FileData::isColumnUsedToGenerateTheGraph(unsigned int column){
     if (isColumnAClass[column] == 0 || isColumnAClass[column] == 2) {
         return true;
@@ -86,15 +91,17 @@ bool FileData::isColumnUsedToGenerateTheGraph(unsigned int column){
     }
 }
 
-std::string FileData::getString(unsigned int row, unsigned int column){
-    return matrixOfString[row][column];
-}
-
+/**
+@Description Print the vector of int and the matrix of string
+*/
 void FileData::print(){
     printIsColumnAClassAttribute();
     printMatrix();
 }
 
+/**
+@Description Print the matrix of string which is equal to the first file's content.
+*/
 void FileData::printMatrix(){
     for (unsigned int row = 0; row < numberOfRows; row ++) {
         for (unsigned int column = 0; column < numberOfColumns-1; column++) {
@@ -105,6 +112,9 @@ void FileData::printMatrix(){
     std::cout << std::endl;
 }
 
+/**
+@Description Print the vector of int which indequates whether the column is a class attribute or not. It is also equal to the second file's content.
+*/
 void FileData::printIsColumnAClassAttribute(){
     for (unsigned int column = 0; column < numberOfColumns-1; column++) {
         std::cout << isColumnAClass[column] << separationCharacter;
@@ -113,7 +123,12 @@ void FileData::printIsColumnAClassAttribute(){
 }
 
 /*
-Methods Private
+Private Methods
+*/
+
+/**
+ @Description Method that add a row to the matrix of string from a string given.
+ @arg line string which contains the matrix's row.
 */
 void FileData::addRowOfMatrixFromLine(std::string line){
     std::vector<std::string> lineVector = cutStringOnSeparationCharacter(line);
@@ -121,6 +136,9 @@ void FileData::addRowOfMatrixFromLine(std::string line){
     numberOfRows++;
 }
 
+/**
+@Description Cut a string using the separation character to turn it into a vector of strings.
+*/
 std::vector<std::string> FileData::cutStringOnSeparationCharacter(std::string stringToCut){
     std::vector<std::string> vectorToReturn;
     vectorToReturn.push_back(getFirstElementOfString(stringToCut));
@@ -131,6 +149,9 @@ std::vector<std::string> FileData::cutStringOnSeparationCharacter(std::string st
     return vectorToReturn;
 }
 
+/**
+@Description Remove the string's part before the the separation character's first occurence.
+*/
 std::string FileData::cutStringAfterSperationCharacter(std::string stringToCut){
     size_t pos = stringToCut.find(separationCharacter);
     if(pos != std::string::npos){
@@ -139,6 +160,9 @@ std::string FileData::cutStringAfterSperationCharacter(std::string stringToCut){
     return stringToCut;
 }
 
+/**
+@Description Return the first substring before the the separation character's first occurence.
+*/
 std::string FileData::getFirstElementOfString(std::string stringToSearch){
     size_t pos = stringToSearch.find(separationCharacter);
     if(pos != std::string::npos){
@@ -149,10 +173,16 @@ std::string FileData::getFirstElementOfString(std::string stringToSearch){
     }
 }
 
+/**
+@Description Return the number of the separation character's occurence.
+*/
 unsigned int FileData::findNumberOfSeparationCharacter(std::string stringToSearch){
     return (unsigned int) std::count(stringToSearch.begin(), stringToSearch.end(), separationCharacter);
 }
 
+/**
+@Description Setter for the vector of int which indicates whether a column is a class attribute or not from a string.
+*/
 void FileData::setIsColumAClassWithString(std::string line){
     isColumnAClass.push_back(std::stoi(getFirstElementOfString(line)));
     while(findNumberOfSeparationCharacter(line) > 0){
@@ -161,12 +191,18 @@ void FileData::setIsColumAClassWithString(std::string line){
     }
 }
 
+/**
+@Description Setter that fill the vector of int with zeros.
+*/
 void FileData::setIsColumAClassToZero(){
     for(unsigned int column = 0; column < numberOfColumns; column++){
         isColumnAClass.push_back(0);
     }
 }
 
+/**
+@Description Check if the size of the vector of int is the same as the number of columns of the matrix of string.
+*/
 void FileData::checkSize(){
     if(isColumnAClass.size() != matrixOfString[0].size()){
         throw Exception(1, "FileData error - size incorrect, check the files.");
