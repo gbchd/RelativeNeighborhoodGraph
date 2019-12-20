@@ -13,7 +13,7 @@ Constructors & Destructor
 */
 
 /**
- @Description Default constructor for the class FileData
+ @brief Default constructor for the class FileData
  */
 FileData::FileData(){
     separationCharacter = ',';
@@ -22,7 +22,7 @@ FileData::FileData(){
 }
 
 /**
- @Description FileData's constructor that takes the paths of two files and the separation character in those files. It is recommended to use this constructor.
+ @brief FileData's constructor that takes the paths of two files and the separation character in those files. It is recommended to use this constructor.
  @arg filenameOfGraph path to the file containing the data used to create the graph
  @arg filenameForIsColumnAClass path to the file containing the information whether the column is a class attribute or not
  @arg sep separation character in the two files
@@ -55,7 +55,7 @@ Public Methods
 */
 
 /**
-@Description Getter that return the number of columns that are non class.
+@brief Getter that return the number of columns that are non class.
 */
 unsigned int FileData::getNumberOfColumnsNonClass(){
     unsigned int numberOfColumnsNonClass = 0;
@@ -68,7 +68,7 @@ unsigned int FileData::getNumberOfColumnsNonClass(){
 }
 
 /**
-@Description Return true if the column given is a class attribute.
+@brief Return true if the column given is a class attribute.
 */
 bool FileData::isColumnAClassAttribute(unsigned int column){
     if (isColumnAClass[column] == 1 || isColumnAClass[column] == 2) {
@@ -80,7 +80,7 @@ bool FileData::isColumnAClassAttribute(unsigned int column){
 }
 
 /**
-@Description Return true if the column given is use to generate the graph.
+@brief Return true if the column given is use to generate the graph.
 */
 bool FileData::isColumnUsedToGenerateTheGraph(unsigned int column){
     if (isColumnAClass[column] == 0 || isColumnAClass[column] == 2) {
@@ -92,7 +92,7 @@ bool FileData::isColumnUsedToGenerateTheGraph(unsigned int column){
 }
 
 /**
-@Description Print the vector of int and the matrix of string
+@brief Print the vector of int and the matrix of string
 */
 void FileData::print(){
     printIsColumnAClassAttribute();
@@ -100,7 +100,7 @@ void FileData::print(){
 }
 
 /**
-@Description Print the matrix of string which is equal to the first file's content.
+@brief Print the matrix of string which is equal to the first file's content.
 */
 void FileData::printMatrix(){
     for (unsigned int row = 0; row < numberOfRows; row ++) {
@@ -113,7 +113,7 @@ void FileData::printMatrix(){
 }
 
 /**
-@Description Print the vector of int which indequates whether the column is a class attribute or not. It is also equal to the second file's content.
+@brief Print the vector of int which indequates whether the column is a class attribute or not. It is also equal to the second file's content.
 */
 void FileData::printIsColumnAClassAttribute(){
     for (unsigned int column = 0; column < numberOfColumns-1; column++) {
@@ -127,7 +127,7 @@ Private Methods
 */
 
 /**
- @Description Method that add a row to the matrix of string from a string given.
+ @brief Method that add a row to the matrix of string from a string given.
  @arg line string which contains the matrix's row.
 */
 void FileData::addRowOfMatrixFromLine(std::string line){
@@ -137,7 +137,7 @@ void FileData::addRowOfMatrixFromLine(std::string line){
 }
 
 /**
-@Description Cut a string using the separation character to turn it into a vector of strings.
+@brief Cut a string using the separation character to turn it into a vector of strings.
 */
 std::vector<std::string> FileData::cutStringOnSeparationCharacter(std::string stringToCut){
     std::vector<std::string> vectorToReturn;
@@ -150,7 +150,7 @@ std::vector<std::string> FileData::cutStringOnSeparationCharacter(std::string st
 }
 
 /**
-@Description Remove the string's part before the the separation character's first occurence.
+@brief Remove the string's part before the the separation character's first occurence.
 */
 std::string FileData::cutStringAfterSperationCharacter(std::string stringToCut){
     size_t pos = stringToCut.find(separationCharacter);
@@ -161,7 +161,7 @@ std::string FileData::cutStringAfterSperationCharacter(std::string stringToCut){
 }
 
 /**
-@Description Return the first substring before the the separation character's first occurence.
+@brief Return the first substring before the the separation character's first occurence.
 */
 std::string FileData::getFirstElementOfString(std::string stringToSearch){
     size_t pos = stringToSearch.find(separationCharacter);
@@ -174,14 +174,14 @@ std::string FileData::getFirstElementOfString(std::string stringToSearch){
 }
 
 /**
-@Description Return the number of the separation character's occurence.
+@brief Return the number of the separation character's occurence.
 */
 unsigned int FileData::findNumberOfSeparationCharacter(std::string stringToSearch){
     return (unsigned int) std::count(stringToSearch.begin(), stringToSearch.end(), separationCharacter);
 }
 
 /**
-@Description Setter for the vector of int which indicates whether a column is a class attribute or not from a string.
+@brief Setter for the vector of int which indicates whether a column is a class attribute or not from a string.
 */
 void FileData::setIsColumAClassWithString(std::string line){
     isColumnAClass.push_back(std::stoi(getFirstElementOfString(line)));
@@ -192,7 +192,7 @@ void FileData::setIsColumAClassWithString(std::string line){
 }
 
 /**
-@Description Setter that fill the vector of int with zeros.
+@brief Setter that fill the vector of int with zeros.
 */
 void FileData::setIsColumAClassToZero(){
     for(unsigned int column = 0; column < numberOfColumns; column++){
@@ -201,7 +201,7 @@ void FileData::setIsColumAClassToZero(){
 }
 
 /**
-@Description Check if the size of the vector of int is the same as the number of columns of the matrix of string.
+ @brief Check if the size of the vector of int is the same as the number of columns of the matrix of string.
 */
 void FileData::checkSize(){
     if(isColumnAClass.size() != matrixOfString[0].size()){
