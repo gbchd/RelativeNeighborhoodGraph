@@ -21,7 +21,7 @@ FileData::FileData(std::string filenameOfGraph, std::string filenameForIsColumnA
     separationCharacter = sep;
     std::string line;
     std::ifstream myfile(filenameOfGraph);
-    while (std::getline(myfile, line)){
+    while (std::getline(myfile, line) && line != ""){
         addRowOfMatrixFromLine(line);
     }
     numberOfRows = (unsigned int) matrixOfString.size();
