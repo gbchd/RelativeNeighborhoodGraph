@@ -166,7 +166,7 @@ int main(int argc, const char * argv[]) {
         std::cout << "Total program has been done in " << newTime-timeStart << "s" << std::endl << std::endl;
         
     }
-    catch(Exception e){
+    catch(Exception& e){
         e.print();
     }
     

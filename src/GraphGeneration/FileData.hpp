@@ -99,7 +99,7 @@ private:
      @brief Method that add a row to the matrix of string from a string given.
      @arg line string which contains the matrix's row.
     */
-    void addRowOfMatrixFromLine(std::string line);
+    void addRowOfMatrixFromLine(const std::string line);
     
     /**
     @brief Cut a string using the separation character to turn it into a vector of strings.

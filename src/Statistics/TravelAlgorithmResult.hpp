@@ -38,7 +38,7 @@ private:
     
     //Constructors & Destructor
 public:
-    TravelAlgorithmResult(unsigned int size);
+    explicit TravelAlgorithmResult(unsigned int size);
     
     //Methods
 public:
