@@ -1,5 +1,8 @@
 # RelativeNeighborhoodGraph
 
+![Code grade](https://www.code-inspector.com/project/2444/status/svg)
+![Code score](https://www.code-inspector.com/project/2444/score/svg)
+
 Ce logiciel est écrit en C++ et est issu d'un projet de DI4 de l'école Polytech Tours.
 
 ## Qu'est-ce que c'est ?
