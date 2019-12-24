@@ -8,9 +8,8 @@
 
 #include "Exception.hpp"
 
-Exception::Exception(int code){
+Exception::Exception(int code):comment(""){
     errorCode = code;
-    comment = "";
 }
 
 Exception::Exception(const std::string & com):comment(com){
