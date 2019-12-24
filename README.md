@@ -53,9 +53,3 @@ Une fois le logiciel build, on obtient un executable qui peut prendre plusieurs 
 *  **-v version** permet de choisir quel version de l'algorithme de parcours le logiciel utilisera, la version 1 ne prend en compte que les voisins d'un noeud A (plus rapide mais moins précise) tandis que la version 2 prend en compte les voisins et les voisins des voisins d'un noeud A (moins rapide mais plus précise).
 *  **-k nombre de noeuds** permet de choisir le nombre de noeuds que l'on souhaite utiliser pour l'algorithme de parcours. Si cette option est absente l'algorithme de parcours effectuera pour tous les noeuds du graphe une insertion sur tous les noeuds.
 
-## Algorithme de génération
-
-
-
-## Algorithme de parcours
-
