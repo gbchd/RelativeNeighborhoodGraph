@@ -15,7 +15,7 @@
 #include "RNGraph.hpp"
 #include "DataExporter.hpp"
 #include "Exception.hpp"
-
+#include "TimeClock.hpp"
 
 
 /*
@@ -77,93 +77,62 @@ int main(int argc, const char * argv[]) {
     }
     
     try{
-        //Set up all checkpoints for our clock
-        std::time_t timeStart = std::time(nullptr);
-        std::time_t timeCheckGraphGeneration;
-        std::time_t timeCheckTravelAlgorithm;
-        std::time_t oldTime;
-        std::time_t newTime;
-        oldTime = timeStart;
         
-        
-        std::cout << "===" << "Starting : Graph generation" << "===" << std::endl;
+        TimeClock clock;
+        clock.startSection("Graph generation");
         
         FileData fileData(dataFile, classesFile, separationCharacter);
-        newTime = std::time(nullptr);
-        std::cout << "-Files reading done in " << newTime-oldTime << "s" << std::endl;
-        oldTime = newTime;
+        clock.tick("Files reading");
         
         GraphData graphData(fileData);
-        newTime = std::time(nullptr);
-        std::cout << "-Data transformation done in " << newTime-oldTime << "s" << std::endl;
-        oldTime = newTime;
+        clock.tick("Data transformation");
         
         DistancesBetweenNodes distances(graphData);
-        newTime = std::time(nullptr);
-        std::cout << "-Matrix of distances generation done in " << newTime-oldTime << "s" << std::endl;
-        oldTime = newTime;
+        clock.tick("Matrix of distances generation");
         
         RNGraph graph(distances);
-        newTime = std::time(nullptr);
-        std::cout << "-Matrix of edges generation done in " << newTime-oldTime << "s" << std::endl;
-        timeCheckGraphGeneration = newTime;
+        clock.tick("Matrix of edges generation");
         
-        std::cout << "===" << "Graph generation has been done in " << timeCheckGraphGeneration-timeStart << "s" << "===" << std::endl << std::endl;
-        
-   
-        
-        std::cout << "===" << "Starting : Travel algorithm application version " << versionOfTravelAlgorithm << "===" << std::endl;
+        clock.endSection("Graph generation");
+        clock.startSection("Travel algorithm application version " + std::to_string(versionOfTravelAlgorithm));
         
         TravelAlgorithmResult stats(distances.getNumberOfColumns());
         
-        
         if (versionOfTravelAlgorithm == 1 || versionOfTravelAlgorithm == 2) {
             stats.generateNeighbors(graph, versionOfTravelAlgorithm);
-            newTime = std::time(nullptr);
-            std::cout << "-Neighbors generation done in " << newTime-timeCheckGraphGeneration << "s" << std::endl;
-            oldTime = newTime;
+            clock.tick("Neighbors generation");
             
             stats.generateResultsWithNeighborAlgorithm(distances, versionOfTravelAlgorithm, k);
-            newTime = std::time(nullptr);
-            std::cout << "-Travel algorithm done in " << newTime-oldTime << "s" << std::endl;
+            clock.tick("Travel algorithm");
         }
         else{
             std::cout << "Invalid version of the travel algorithm" << std::endl <<  "Use -v 1 or -v 2" << std::endl;
             return 1;
         }
         
-        timeCheckTravelAlgorithm = newTime;
+        clock.endSection("Travel algorithm");
         
-        std::cout << "===" << "Travel algorithm has been done in " << timeCheckTravelAlgorithm-timeCheckGraphGeneration << "s" << "===" << std::endl << std::endl;
-        
-        std::cout << "===" << "Starting : Export results" << "===" << std::endl;
-        
+        clock.startSection("Export results");
         
         
         //Export
         if(exportDirectory == ""){
             stats.print();
-            newTime = std::time(nullptr);
+            clock.tick();
         }
         else{
             std::string nodesPath = exportDirectory+"nodes.csv";
             std::string edgesPath = exportDirectory+"edges.csv";
             
             DataExporter::ExportNodes(fileData, stats, nodesPath);
-            newTime = std::time(nullptr);
-            std::cout << "-Export of nodes.csv done in " << newTime-timeCheckTravelAlgorithm << "s" << std::endl;
-            oldTime = newTime;
+            clock.tick("Export of nodes.csv");
             
             DataExporter::ExportEdges(graph, distances, edgesPath);
-            newTime = std::time(nullptr);
-            std::cout << "-Export of edges.csv done in " << newTime-oldTime << "s" << std::endl;
-            
-            
+            clock.tick("Export of edges.csv");
         }
         
-        std::cout << "===" << "Results exportation has been done in " << newTime-timeCheckTravelAlgorithm << "s" << "===" << std::endl << std::endl;
-        
-        std::cout << "Total program has been done in " << newTime-timeStart << "s" << std::endl << std::endl;
+        clock.endSection("Results exportation");
+        clock.finalize();
         
     }
     catch(Exception& e){
