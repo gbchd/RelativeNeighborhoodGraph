@@ -23,13 +23,13 @@ private:
     //Constructors & Destructor
 public:
     MatrixOfBoolean();
-    MatrixOfBoolean(MatrixOfBoolean & matrix);
+    MatrixOfBoolean(const MatrixOfBoolean & matrix);
     MatrixOfBoolean(unsigned int rows, unsigned int columns);
     ~MatrixOfBoolean();
     
     //Methods
 public:
-    MatrixOfBoolean operator=(MatrixOfBoolean & matrix);
+    MatrixOfBoolean& operator=(const MatrixOfBoolean & matrix);
     
     unsigned int getNumberOfRows();
     unsigned int getNumberOfColumns();

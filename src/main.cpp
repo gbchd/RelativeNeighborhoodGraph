@@ -24,7 +24,7 @@
  arg -e "path" : exportFolder, if missing print the result of the travel algorithm.
  arg -s separationCharacter : specify what the separation character of the file is.
  arg -v version_number : version of the travel algorithm, only version 1 and 2 available for now.
- arg -k numberOfVertices : instead of inserting each node on every vertices of the graph, we randomly select k nodes to insert on.
+ arg -k numberOfNodes : instead of inserting each node on every nodes of the graph, we randomly select k nodes to insert on.
  @return 1 erreur, 0 generation réussie
  */
 int main(int argc, const char * argv[]) {

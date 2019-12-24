@@ -19,8 +19,8 @@ private:
     std::string comment;
     
 public:
-    Exception(int code);
-    Exception(std::string com);
+    explicit Exception(int code);
+    explicit Exception(std::string com);
     Exception(int code, std::string com);
     
     void print();

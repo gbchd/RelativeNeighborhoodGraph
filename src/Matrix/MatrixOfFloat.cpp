@@ -18,7 +18,7 @@ MatrixOfFloat::MatrixOfFloat(){
     matrixArray = NULL;
 }
 
-MatrixOfFloat::MatrixOfFloat(MatrixOfFloat & matrix){
+MatrixOfFloat::MatrixOfFloat(const MatrixOfFloat & matrix){
     numberOfRows = matrix.numberOfRows;
     numberOfColumns = matrix.numberOfColumns;
     allocateMatrixArray();
@@ -41,7 +41,7 @@ MatrixOfFloat::~MatrixOfFloat(){
 /*
  Public Methods
  */
-MatrixOfFloat MatrixOfFloat::operator=(MatrixOfFloat & matrix){
+MatrixOfFloat& MatrixOfFloat::operator=(const MatrixOfFloat & matrix){
     if(!isSizeNotValid()){
         desallocateMatrixArray();
     }
@@ -88,7 +88,7 @@ void MatrixOfFloat::print(){
 }
 
 void MatrixOfFloat::printDimension(){
-    printf("%d %d \n",numberOfRows, numberOfColumns);
+    printf("%u %u \n",numberOfRows, numberOfColumns);
 }
 
 

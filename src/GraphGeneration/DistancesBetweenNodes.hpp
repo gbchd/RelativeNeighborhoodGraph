@@ -28,7 +28,7 @@ public:
     @brief DistancesBetweenNodes' constructor that takes a GraphData as input and calculates every distances between every nodes.
     Since the distance is the same for AB and BA, the matrix is upper triangular.
     */
-    DistancesBetweenNodes(GraphData & graphData);
+    explicit DistancesBetweenNodes(GraphData & graphData);
     
     //Methods
 public:

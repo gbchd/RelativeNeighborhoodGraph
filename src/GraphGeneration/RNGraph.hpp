@@ -21,7 +21,7 @@ private:
 
     //Constructors & Destructor
 public:
-    RNGraph(DistancesBetweenNodes & distancesBetweenNodes);
+    explicit RNGraph(DistancesBetweenNodes & distancesBetweenNodes);
     
     //Methods
 public:

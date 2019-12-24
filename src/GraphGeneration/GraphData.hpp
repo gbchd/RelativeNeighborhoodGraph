@@ -26,7 +26,7 @@ public:
     /**
     @brief GraphData's constructor that takes a FileData object as a parameter. It copies the data while ignoring the column that are not used to build the graph then normalize every column.
     */
-    GraphData(FileData & fileData);
+    explicit GraphData(FileData & fileData);
    
     
     //Methods

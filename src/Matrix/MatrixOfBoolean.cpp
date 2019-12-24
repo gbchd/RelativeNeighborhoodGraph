@@ -18,7 +18,7 @@ MatrixOfBoolean::MatrixOfBoolean(){
     matrixArray = NULL;
 }
 
-MatrixOfBoolean::MatrixOfBoolean(MatrixOfBoolean & matrix){
+MatrixOfBoolean::MatrixOfBoolean(const MatrixOfBoolean & matrix){
     numberOfRows = matrix.numberOfRows;
     numberOfColumns = matrix.numberOfColumns;
     allocateMatrixArray();
@@ -41,7 +41,7 @@ MatrixOfBoolean::~MatrixOfBoolean(){
 /*
  Public Methods
  */
-MatrixOfBoolean MatrixOfBoolean::operator=(MatrixOfBoolean & matrix){
+MatrixOfBoolean& MatrixOfBoolean::operator=(const MatrixOfBoolean & matrix){
     if(!isSizeNotValid()){
         desallocateMatrixArray();
     }

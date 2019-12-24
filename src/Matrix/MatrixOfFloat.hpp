@@ -24,13 +24,13 @@ private:
     //Constructors & Destructor
 public:
     MatrixOfFloat();
-    MatrixOfFloat(MatrixOfFloat & matrix);
+    MatrixOfFloat(const MatrixOfFloat & matrix);
     MatrixOfFloat(unsigned int rows, unsigned int columns);
     ~MatrixOfFloat();
     
     //Methods
 public:
-    MatrixOfFloat operator=(MatrixOfFloat & matrix);
+    MatrixOfFloat& operator=(const MatrixOfFloat & matrix);
     
     unsigned int getNumberOfRows();
     unsigned int getNumberOfColumns();
