@@ -9,10 +9,10 @@
 #include "TimeClock.hpp"
 
 //Constructors
-TimeClock::TimeClock():startTime(std::time(nullptr)),oldTime(startTime),oldBigTime(startTime){
+TimeClock::TimeClock():startTime(std::time(nullptr)),oldTime(startTime),oldBigTime(startTime),newTime(startTime){
 }
 
-TimeClock::TimeClock(const std::string str):startTime(std::time(nullptr)),oldTime(startTime),oldBigTime(startTime){
+TimeClock::TimeClock(const std::string & str):startTime(std::time(nullptr)),oldTime(startTime),oldBigTime(startTime),newTime(startTime){
     std::cout << str << std::endl;
 }
 
@@ -24,7 +24,7 @@ void TimeClock::tick(){
     oldTime = newTime;
 }
 
-void TimeClock::tick(const std::string str){
+void TimeClock::tick(const std::string & str){
     newTime = std::time(nullptr);
     std::cout << "-" << str << " : " << newTime - oldTime << "s" << std::endl;
     oldTime = newTime;
@@ -34,7 +34,7 @@ void TimeClock::startSection(){
     std::cout << "===Starting a new section===" << std::endl;
 }
 
-void TimeClock::startSection(const std::string str){
+void TimeClock::startSection(const std::string & str){
     std::cout << "===Starting " << str << "===" << std::endl;
 }
 
@@ -43,7 +43,7 @@ void TimeClock::endSection(){
     oldBigTime = newTime;
 }
 
-void TimeClock::endSection(const std::string str){
+void TimeClock::endSection(const std::string & str){
     std::cout << "===" << str << " : " << newTime - oldBigTime << "s===" << std::endl << std::endl;
     oldBigTime = newTime;
 }

@@ -28,17 +28,17 @@ private:
     //Constructors & Destructor
 public:
     TimeClock();
-    explicit TimeClock(const std::string str);
+    explicit TimeClock(const std::string & str);
     
     //Methods
 public:
     void tick();
-    void tick(const std::string str);
+    void tick(const std::string & str);
     
     void startSection();
-    void startSection(const std::string str);
+    void startSection(const std::string & str);
     void endSection();
-    void endSection(const std::string str);
+    void endSection(const std::string & str);
     
     void finalize();
 };
