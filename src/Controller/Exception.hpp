@@ -20,8 +20,8 @@ private:
     
 public:
     explicit Exception(int code);
-    explicit Exception(const std::string com);
-    Exception(int code, const std::string com);
+    explicit Exception(const std::string & com);
+    Exception(int code, const std::string & com);
     
     void print();
 };

@@ -13,11 +13,11 @@ Exception::Exception(int code){
     comment = "";
 }
 
-Exception::Exception(const std::string com):comment(com){
+Exception::Exception(const std::string & com):comment(com){
     errorCode = 0;
 }
 
-Exception::Exception(int code, const std::string com):comment(com){
+Exception::Exception(int code, const std::string & com):comment(com){
     errorCode = code;
 }
 

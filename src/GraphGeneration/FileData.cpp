@@ -130,7 +130,7 @@ Private Methods
  @brief Method that add a row to the matrix of string from a string given.
  @arg line string which contains the matrix's row.
 */
-void FileData::addRowOfMatrixFromLine(const std::string line){
+void FileData::addRowOfMatrixFromLine(const std::string & line){
     std::vector<std::string> lineVector = cutStringOnSeparationCharacter(line);
     matrixOfString.push_back(lineVector);
     numberOfRows++;
