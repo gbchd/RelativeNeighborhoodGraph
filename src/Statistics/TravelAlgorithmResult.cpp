@@ -30,7 +30,6 @@ TravelAlgorithmResult::TravelAlgorithmResult(unsigned int size){
         meanDistanceToVertex.push_back(0);
     }
     neighbors.resize(numberOfNodes);
-    
 }
 
 
@@ -114,7 +113,6 @@ void TravelAlgorithmResult::generateResultsWithNeighborAlgorithm(DistancesBetwee
     else {
         generateResultsWithNeighborAlgorithmOnRandomVector(distancesBetweenNodes, k);
     }
-        
 }
 
 
@@ -165,7 +163,6 @@ void TravelAlgorithmResult::neighborAlgorithm(unsigned int nodeToReach, unsigned
     else{
         meanDistanceToVertex[nodeToReach] += distancesBetweenNodes.getDistance(nodeToReach, currentNode);
     }
-    
 }
 
 /**
@@ -224,7 +221,6 @@ std::list<unsigned int> TravelAlgorithmResult::findAllNeighborsOfNeighborsOfNode
 @brief Apply the travel algorithm using all nodes to insert on.
 */
 void TravelAlgorithmResult::generateResultsWithNeighborAlgorithmOnAllNodes(DistancesBetweenNodes & distancesBetweenNodes){
-    
     //We check if the two matrix are of the same size
     if(neighbors.size() != distancesBetweenNodes.getNumberOfRows()){
         throw "NotTheSameSizeError";
@@ -245,7 +241,6 @@ void TravelAlgorithmResult::generateResultsWithNeighborAlgorithmOnAllNodes(Dista
         
         //We get the mean of the distances when failed by dividing the sum stocked in meanDistanceToVertex by the number of time the insertion failed.
         meanDistanceToVertex[row] = (meanDistanceToVertex[row])/(numberOfNodes-foundAgainWhenInserted[row]);
-        
     }
 }
 
@@ -264,7 +259,6 @@ void TravelAlgorithmResult::generateResultsWithNeighborAlgorithmOnRandomVector(D
 
     #pragma omp parallel for
     for (int node = 0; node < distancesBetweenNodes.getNumberOfRows(); node++) {
-
         progressBar.update();
         
         std::vector<unsigned int> nodesToInsertOn = generateRandomVectorOfNodes(sizeOfVector, node);
@@ -292,12 +286,16 @@ void TravelAlgorithmResult::generateResultsWithNeighborAlgorithmOnRandomVector(D
 @param size is the given size of the list (the number of nodes to generate).
 @param bannedValue is a value that is banned from thee generation (we can't generate the node to reach within the list of starting nodes with this.)
 This method can generate the same number multiple times.
+See https://en.cppreference.com/w/cpp/numeric/random/uniform_int_distribution for the random generation method.
 */
 std::vector<unsigned int> TravelAlgorithmResult::generateRandomVectorOfNodes(unsigned int size, unsigned int bannedValue){
-    srand((unsigned int)time(NULL));
+    std::random_device rd;  //Will be used to obtain a seed for the random number engine
+    std::mt19937 gen(rd()); //Standard mersenne_twister_engine seeded with rd()
+    std::uniform_int_distribution<> dis(0, numberOfNodes-1);
+    
     std::vector<unsigned int> nodes;
     while (nodes.size() < size) {
-        int node = rand() % numberOfNodes; //Returns a random integer between 0 and numberOfNodes-1
+        int node = dis(gen); //Returns a random integer between 0 and numberOfNodes-1
         if (node != bannedValue) {
             nodes.push_back(node);
         }

@@ -28,7 +28,6 @@
  @return 1 erreur, 0 generation réussie
  */
 int main(int argc, const char * argv[]) {
-    
     //Initialization
     std::string dataFile = "";
     std::string classesFile = "";
@@ -77,7 +76,6 @@ int main(int argc, const char * argv[]) {
     }
     
     try{
-        
         TimeClock clock;
         clock.startSection("Graph generation");
         

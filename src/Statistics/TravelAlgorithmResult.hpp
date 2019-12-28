@@ -11,6 +11,7 @@
 
 #include <stdio.h>
 #include <list>
+#include <random>
 #include "MatrixOfFloat.hpp"
 #include "RNGraph.hpp"
 #include "DistancesBetweenNodes.hpp"
