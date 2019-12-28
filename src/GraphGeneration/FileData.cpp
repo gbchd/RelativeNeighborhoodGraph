@@ -46,7 +46,6 @@ FileData::FileData(std::string filenameOfGraph, std::string filenameForIsColumnA
         setIsColumAClassWithString(line);
         checkSize();
     }
-    
 }
 
 

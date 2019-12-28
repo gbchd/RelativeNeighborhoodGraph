@@ -16,7 +16,6 @@ void DataExporter::ExportNodes(FileData & dataMatrix, TravelAlgorithmResult resu
     std::ofstream fichier;
     fichier.open(nomFichier, std::ios::out | std::ios::trunc);
     if (fichier.is_open()) {
-
         fichier << "\"Node\"";
         for (unsigned int columnIndex = 0; columnIndex < numberOfColumns; columnIndex++) {
             if (dataMatrix.isColumnAClassAttribute(columnIndex)) {
@@ -35,7 +34,6 @@ void DataExporter::ExportNodes(FileData & dataMatrix, TravelAlgorithmResult resu
 
 
         for (unsigned int rowIndex = 0; rowIndex < numberOfRows; rowIndex++) {
-
             fichier << rowIndex;
             for (unsigned int columnIndex = 0; columnIndex < numberOfColumns; columnIndex++) {
                 if (dataMatrix.isColumnAClassAttribute(columnIndex)) {
@@ -52,7 +50,6 @@ void DataExporter::ExportNodes(FileData & dataMatrix, TravelAlgorithmResult resu
                 << dataMatrix.getSeparationCharacter() << resultSet.getElementFromMaxTravelDistance(rowIndex)
                 << dataMatrix.getSeparationCharacter() << resultSet.getMeanDistancesBetweenNodes()
             << std::endl;
-
         }
 
         fichier.close();

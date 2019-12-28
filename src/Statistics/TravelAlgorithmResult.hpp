@@ -22,7 +22,6 @@
  @brief A class that contains all the stats that results from the travel algorithm.
  */
 class TravelAlgorithmResult {
-    
     //Atributes
 private:
     std::vector<unsigned int> foundAgainWhenInserted;
@@ -124,7 +123,6 @@ private:
      @param bannedValue is a value that is banned from thee generation (we can't generate the node to reach within the list of starting nodes with this.)
      */
     std::vector<unsigned int> generateRandomVectorOfNodes(unsigned int size, unsigned int bannedValue);
-
 };
 
 

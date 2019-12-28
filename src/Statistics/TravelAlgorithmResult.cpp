@@ -135,7 +135,6 @@ void TravelAlgorithmResult::neighborAlgorithm(unsigned int nodeToReach, unsigned
     
     //Déroulement
     while(lastNode != currentNode && currentNode != nodeToReach){
-        
         lastNode = currentNode;
         
         for (unsigned int neighbor : neighbors[lastNode]) {
@@ -147,7 +146,6 @@ void TravelAlgorithmResult::neighborAlgorithm(unsigned int nodeToReach, unsigned
         
         distance += distancesBetweenNodes.getDistance(lastNode, currentNode);
         usedNodeToTravel[currentNode] +=1;
-        
     }
     
     //We exclude the case where the node that we try to reach is the same as the node selected start the travel algorithm.

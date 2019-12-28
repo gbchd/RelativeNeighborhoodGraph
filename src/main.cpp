@@ -131,7 +131,6 @@ int main(int argc, const char * argv[]) {
         
         clock.endSection("Results exportation");
         clock.finalize();
-        
     }
     catch(Exception& e){
         e.print();

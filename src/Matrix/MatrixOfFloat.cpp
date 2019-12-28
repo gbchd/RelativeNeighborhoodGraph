@@ -117,7 +117,6 @@ std::vector<float> MatrixOfFloat::getColumn(unsigned int column){
 }
 
 std::vector<float> MatrixOfFloat::getColumnBeforeLimit(unsigned int column, unsigned int limit){
-
     std::vector<float> columnToReturn;
     for(unsigned int row = 0; row < limit; row++){
         columnToReturn.push_back(getElement(row, column));
