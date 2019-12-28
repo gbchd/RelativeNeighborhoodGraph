@@ -52,7 +52,6 @@ private:
     If the maximim equals the minimum then the whole column is set at 0.
     */
     float getNormalizedValueOfX(float x, float xmax, float xmin);
-
 };
 
 
