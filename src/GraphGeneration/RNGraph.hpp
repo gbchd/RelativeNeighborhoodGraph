@@ -22,7 +22,6 @@
  These values are generated from the distances within a DistancesBetweenNodes object.
  */
 class RNGraph : public MatrixOfBoolean {
-
     //Constructors & Destructor
 public:
     /**
@@ -38,8 +37,6 @@ private:
      That means that if we take the distance between A and B and calls it r, then if the distance A-C < r AND the distance B-C < r then there is no edge between A and B.
      */
     bool isThereAnEdgeBetweenTwoNodes(DistancesBetweenNodes & distancesBetweenNodes, unsigned int node_A, unsigned int node_B);
-    
-    
 };
 
 #endif /* RNGraph_hpp */

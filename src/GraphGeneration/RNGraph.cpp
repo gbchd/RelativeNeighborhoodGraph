@@ -16,8 +16,6 @@ Constructors & Destructor
 @brief RNGraph's constructor that takes a DistancesBetweenNodes object to determine whether there is an edge between two nodes or not.
 */
 RNGraph::RNGraph(DistancesBetweenNodes & distancesBetweenNodes):MatrixOfBoolean(distancesBetweenNodes.getNumberOfRows(), distancesBetweenNodes.getNumberOfRows()){
-    
-    
     #pragma omp parallel for
     for (int row = 0; row < getNumberOfRows(); row++) {
         for (unsigned int column = 0; column < getNumberOfColumns(); column++) {
@@ -30,8 +28,6 @@ RNGraph::RNGraph(DistancesBetweenNodes & distancesBetweenNodes):MatrixOfBoolean(
             }
         }
     }
-    
-    
 }
 
 /*
@@ -52,6 +48,5 @@ bool RNGraph::isThereAnEdgeBetweenTwoNodes(DistancesBetweenNodes & distancesBetw
         }
     }
     return true;
-    
 }
 

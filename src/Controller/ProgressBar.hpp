@@ -35,7 +35,6 @@ public:
     
 private:
     unsigned int setToPercent(unsigned int value);
-    
 };
 
 #endif /* ProgressBar_hpp */

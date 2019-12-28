@@ -24,7 +24,6 @@
  The second file is a small configuration file which contains a simple line to set if a column is a class attribute or not.
  */
 class FileData{
-    
     //Attributes
 private:
     char separationCharacter;
@@ -57,7 +56,6 @@ public:
     
     //Methods
 public:
-    
     char getSeparationCharacter(){return separationCharacter;}
     unsigned int getNumberOfRows(){return numberOfRows;}
     unsigned int getNumberOfColumns(){return numberOfColumns;}
@@ -94,7 +92,6 @@ public:
     void printIsColumnAClassAttribute();
     
 private:
-    
     /**
      @brief Method that add a row to the matrix of string from a string given.
      @arg line string which contains the matrix's row.

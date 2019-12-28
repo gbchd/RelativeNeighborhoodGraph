@@ -26,7 +26,6 @@ GraphData::GraphData(FileData & fileData):MatrixOfFloat(fileData.getNumberOfRows
     for(int column = 0; column < getNumberOfColumns(); column++){
         normalizeColumn(column);
     }
-    
 }
 
 
@@ -103,5 +102,4 @@ void GraphData::normalizeColumn(unsigned int column){
             setElement(row, column, 0);
         }
     }
-    
 }

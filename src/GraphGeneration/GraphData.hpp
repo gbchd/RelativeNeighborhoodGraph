@@ -19,10 +19,8 @@
  The data comes from a FileData and are normalized.
  */
 class GraphData : public MatrixOfFloat {
-    
     //Constructors & Destructor
 public:
-    
     /**
     @brief GraphData's constructor that takes a FileData object as a parameter. It copies the data while ignoring the column that are not used to build the graph then normalize every column.
     */

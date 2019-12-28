@@ -20,10 +20,8 @@
  These distances are generated from the data of a GraphData object.
  */
 class DistancesBetweenNodes : public MatrixOfFloat {
-
     //Constructors & Destructor
 public:
-    
     /**
     @brief DistancesBetweenNodes' constructor that takes a GraphData as input and calculates every distances between every nodes.
     Since the distance is the same for AB and BA, the matrix is upper triangular.
