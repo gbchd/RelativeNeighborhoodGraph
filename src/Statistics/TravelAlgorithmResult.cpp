@@ -12,6 +12,9 @@
 Constructors & Destructor
 */
 
+/**
+@brief A TravelAlgorithmResult's constructor that takes the number of nodes as parameters.
+*/
 TravelAlgorithmResult::TravelAlgorithmResult(unsigned int size){
     numberOfNodes = size;
     meanDistancesBetweenNodes = 0;
@@ -35,6 +38,9 @@ TravelAlgorithmResult::TravelAlgorithmResult(unsigned int size){
 Public Methods
 */
 
+/**
+@brief Simple method that print this class using a specific format.
+*/
 void TravelAlgorithmResult::print(){
     std::cout << "Nodes | Number of nodes found again when inserted anywhere | Number of nodes that were used as insertion and found back the original node | Number of times the node was used to travel" << std::endl;
     for (unsigned int number = 0; number < foundAgainWhenInserted.size(); number++) {
@@ -43,31 +49,10 @@ void TravelAlgorithmResult::print(){
     std::cout << std::endl;
 }
 
-
-void TravelAlgorithmResult::generateResultsWithNeighborAlgorithm(DistancesBetweenNodes &distancesBetweenNodes, unsigned int version, int k){
-    if (neighbors.size() != distancesBetweenNodes.getNumberOfRows() || numberOfNodes != distancesBetweenNodes.getNumberOfRows()) {
-        throw "NotTheSameSizeError";
-    }
-    if (version != 1 && version != 2) {
-        throw "UnknownAlgorithmVersion";
-    }
-    
-    reset();
-    
-    meanDistancesBetweenNodes = distancesBetweenNodes.calculateMeanDistance();
-    
-    
-    if (k <= 0) {
-        generateResultsWithNeighborAlgorithmOnAllNodes(distancesBetweenNodes);
-    }
-    else {
-        generateResultsWithNeighborAlgorithmOnRandomVector(distancesBetweenNodes, k);
-    }
-        
-}
-
-
-
+/**
+@brief Reset all the attributes of the class which results from the travel algorithm results..
+The number of nodes doesn't change for example.
+*/
 void TravelAlgorithmResult::reset(){
     for (unsigned int node = 0; node < numberOfNodes; node++) {
         foundRightNodeWhenInsertedOn[node] = 0;
@@ -81,7 +66,10 @@ void TravelAlgorithmResult::reset(){
     }
 }
 
-
+/**
+@brief Generate a list of neighbors (and neighbors of neighbors depends on the version) for all nodes of a given graph.
+@param version 1 = list of neighbors, 2 = list of neighbors and neighbors of neighbors.
+*/
 void TravelAlgorithmResult::generateNeighbors(RNGraph &rngraph, unsigned int version){
     unsigned int numberOfNodes = rngraph.getNumberOfRows();
     
@@ -103,6 +91,32 @@ void TravelAlgorithmResult::generateNeighbors(RNGraph &rngraph, unsigned int ver
     }
 }
 
+/**
+@brief Determine which travel algorithm we will use and apply it.
+@param version 1 = list of neighbors, 2 = list of neighbors and neighbors of neighbors.
+@param k size of the number of nodes that we will use to insert on. If it's k<=0 we will do one insertion on every nodes if it's k>0 then we generate a list of k random nodes.
+*/
+void TravelAlgorithmResult::generateResultsWithNeighborAlgorithm(DistancesBetweenNodes &distancesBetweenNodes, unsigned int version, int k){
+    if (neighbors.size() != distancesBetweenNodes.getNumberOfRows() || numberOfNodes != distancesBetweenNodes.getNumberOfRows()) {
+        throw "NotTheSameSizeError";
+    }
+    if (version != 1 && version != 2) {
+        throw "UnknownAlgorithmVersion";
+    }
+    
+    reset();
+    
+    meanDistancesBetweenNodes = distancesBetweenNodes.calculateMeanDistance();
+    
+    if (k <= 0) {
+        generateResultsWithNeighborAlgorithmOnAllNodes(distancesBetweenNodes);
+    }
+    else {
+        generateResultsWithNeighborAlgorithmOnRandomVector(distancesBetweenNodes, k);
+    }
+        
+}
+
 
 
 /*
@@ -110,9 +124,10 @@ Private Methods
 */
 
 
-/*
- Travel algorithm from one node to another
- */
+/**
+@brief One iteration of the travel algorithm, we have a node to reach and a starting node.
+We jump from node to node (within the list of neighbors) by finding the one closest to the node to reach, until we find no other nodes closer to the node to reach.
+*/
 void TravelAlgorithmResult::neighborAlgorithm(unsigned int nodeToReach, unsigned int nodeStart, DistancesBetweenNodes &distancesBetweenNodes){
     //Initialisation
     unsigned int lastNode = distancesBetweenNodes.getNumberOfColumns()+1;
@@ -153,6 +168,27 @@ void TravelAlgorithmResult::neighborAlgorithm(unsigned int nodeToReach, unsigned
     
 }
 
+/**
+@brief Setter for meanTravelDistance, maxTravelDistance and minTravelDistance.
+*/
+void TravelAlgorithmResult::setDistanceForTheTravelDistance(unsigned int node, float distance){
+    // We test if the distance is the max
+    if(distance > maxTravelDistance[node]){
+        maxTravelDistance[node] = distance;
+    }
+    
+    //We add to the sum of all travel distances
+    meanTravelDistance[node] += distance;
+    
+    //We test if the distance is the min
+    if(distance < minTravelDistance[node]){
+        minTravelDistance[node] = distance;
+    }
+}
+
+/**
+@brief Find all neighbors of a given node within a certain graph and return them within a list.
+*/
 std::list<unsigned int> TravelAlgorithmResult::findAllNeighborsOfNode(RNGraph & rngraph, unsigned int node){
     std::list<unsigned int> neighbors;
     neighbors.push_back(node);
@@ -170,6 +206,9 @@ std::list<unsigned int> TravelAlgorithmResult::findAllNeighborsOfNode(RNGraph & 
     return neighbors;
 }
 
+/**
+@brief Find all neighbors and neighbors of neighbors of a given node within a certain graph and return them within a list.
+*/
 std::list<unsigned int> TravelAlgorithmResult::findAllNeighborsOfNeighborsOfNode(RNGraph &rngraph, unsigned int node){
     std::list<unsigned int> neighbors = findAllNeighborsOfNode(rngraph, node);
     std::list<unsigned int> neighborsOfNeighbors;
@@ -181,23 +220,9 @@ std::list<unsigned int> TravelAlgorithmResult::findAllNeighborsOfNeighborsOfNode
 }
 
 
-void TravelAlgorithmResult::setDistanceForTheTravelDistance(unsigned int node, float distance){
-    // We test if the distance is the max
-    if(distance > maxTravelDistance[node]){
-        maxTravelDistance[node] = distance;
-    }
-    
-    //We add to the sum of all travel distances
-    meanTravelDistance[node] += distance;
-    
-    //We test if the distance is the min
-    if(distance < minTravelDistance[node]){
-        minTravelDistance[node] = distance;
-    }
-}
-
-
-
+/**
+@brief Apply the travel algorithm using all nodes to insert on.
+*/
 void TravelAlgorithmResult::generateResultsWithNeighborAlgorithmOnAllNodes(DistancesBetweenNodes & distancesBetweenNodes){
     
     //We check if the two matrix are of the same size
@@ -224,8 +249,10 @@ void TravelAlgorithmResult::generateResultsWithNeighborAlgorithmOnAllNodes(Dista
     }
 }
 
-/*
- It is possible to use a k greater than the number of nodes of the graph. And the list might have the same node multiple times
+
+/**
+@brief Apply the travel algorithm using for each node a randomized list of k-nodes.
+It is possible to use a k greater than the number of nodes of the graph. And the list might have the same node multiple times.
 */
 void TravelAlgorithmResult::generateResultsWithNeighborAlgorithmOnRandomVector(DistancesBetweenNodes & distancesBetweenNodes, unsigned int sizeOfVector) {
     if (neighbors.size() != distancesBetweenNodes.getNumberOfRows()) {
@@ -260,7 +287,12 @@ void TravelAlgorithmResult::generateResultsWithNeighborAlgorithmOnRandomVector(D
     }
 }
 
-//Can generate the same number multiple times
+/**
+@brief Generate a list of random nodes.
+@param size is the given size of the list (the number of nodes to generate).
+@param bannedValue is a value that is banned from thee generation (we can't generate the node to reach within the list of starting nodes with this.)
+This method can generate the same number multiple times.
+*/
 std::vector<unsigned int> TravelAlgorithmResult::generateRandomVectorOfNodes(unsigned int size, unsigned int bannedValue){
     srand((unsigned int)time(NULL));
     std::vector<unsigned int> nodes;

@@ -11,6 +11,10 @@
 /*
 Constructors & Destructor
 */
+
+/**
+@brief RNGraph's constructor that takes a DistancesBetweenNodes object to determine whether there is an edge between two nodes or not.
+*/
 RNGraph::RNGraph(DistancesBetweenNodes & distancesBetweenNodes):MatrixOfBoolean(distancesBetweenNodes.getNumberOfRows(), distancesBetweenNodes.getNumberOfRows()){
     
     
@@ -31,13 +35,14 @@ RNGraph::RNGraph(DistancesBetweenNodes & distancesBetweenNodes):MatrixOfBoolean(
 }
 
 /*
-Public methods
-*/
-
-/*
 Private methods
 */
 
+/**
+@brief Determine whether there is an edge between two nodes.
+There is an edge between two nodes (A and B) if there is no other node (C) closer to A AND B.
+That means that if we take the distance between A and B and calls it r, then if the distance A-C < r AND the distance B-C < r then there is no edge between A and B.
+*/
 bool RNGraph::isThereAnEdgeBetweenTwoNodes(DistancesBetweenNodes & distancesBetweenNodes, unsigned int node_A, unsigned int node_B){
     float distanceBetweenAandB = distancesBetweenNodes.getDistance(node_A, node_B);
     //true if there is no : dist(nodeA nodeX) < dist(nodeA nodeB) AND dist(nodeB nodeX) < dist(nodeA nodeB)
