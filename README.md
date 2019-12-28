@@ -2,6 +2,7 @@
 
 ![Code grade](https://www.code-inspector.com/project/2444/status/svg#1)
 ![Code score](https://www.code-inspector.com/project/2444/score/svg#1)
+[![CodeFactor](https://www.codefactor.io/repository/github/guillaumebchd/relativeneighborhoodgraph/badge)](https://www.codefactor.io/repository/github/guillaumebchd/relativeneighborhoodgraph)
 
 Ce logiciel est écrit en C++ et est issu d'un projet de DI4 de l'école Polytech Tours.
 
