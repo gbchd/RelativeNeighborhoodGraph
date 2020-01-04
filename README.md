@@ -51,7 +51,7 @@ Une fois le logiciel compilé, on obtient un executable qui peut prendre plusieu
 
 * **-d "chemin du fichier de données"** permet de choisir le fichier de données, si cette option est manquante le logiciel s'interrompra et enverra le code 1.
 * **-c "chemin du fichier d'entête"** permet de choisir le fichier d'entête, si cette option est manquante, on considèrera que toutes les colonnes du fichier de données sont utilisées pour créer le graphe et ne sont pas des attributs de classes.
-*  **-e "chemin du dossier d'exportation"** permet de choisir le dossier dans lequel seront exportés les fichiers de résultats.
+*  **-e "chemin du dossier d'exportation"** permet de choisir le dossier dans lequel seront exportés les fichiers de résultats. Si cette option est manquante les résultats seront affichés dans le terminal.
 *  **-s 'charactère de séparation'** permet de choisir le charactère de séparation utilisé pour séparer les colonnes dans les fichiers importés.
 *  **-v version** permet de choisir quelle version de l'algorithme de parcours le logiciel utilisera, la version 1 ne prend en compte que les voisins d'un noeud A (plus rapide mais moins précise) tandis que la version 2 prend en compte les voisins et leurs voisins (moins rapide mais plus précise).
 *  **-k nombre de noeuds** permet de choisir le nombre de noeuds que l'on souhaite utiliser pour l'algorithme de parcours. Si cette option est absente, l'algorithme de parcours effectuera pour tous les noeuds du graphe une insertion sur tous les noeuds.
