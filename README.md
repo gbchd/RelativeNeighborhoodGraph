@@ -14,6 +14,8 @@ Le but est de mettre en place un Graphe de Voisinage (Relative Neighborhood Grap
 
 Le projet est actuellement sous la forme d'un projet Xcode, néanmoins importer le dossier **src** sous Visual Studio où tout autre IDE est également possible.
 
+Vous pouvez également retrouver une version du projet sous visual studio (avec les tests unitaires) à cet adresse : https://github.com/ColinTr/ProjetS7RelativeNeighborhoodGraph
+
 ## Prérequis du logiciel
 Le logiciel a besoin d'un fichier de données complet pour fonctionner. Celui-ci ne doit contenir que des nombres ou alors doit être accompagné d'un fichier d'entête qui spécifie si une des colonnes est un attribut de classe et ne sera donc pas utiliser pour générer le graphe.
 
