@@ -34,7 +34,7 @@ private:
     std::vector<float> minTravelDistance;
     std::vector<float> maxTravelDistance;
     
-    float meanDistancesBetweenNodes;
+    float meanDistanceBetweenNodes;
     
     std::vector<std::vector<unsigned int>> neighbors;
     
