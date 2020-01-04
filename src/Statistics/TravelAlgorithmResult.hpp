@@ -58,7 +58,7 @@ public:
     float getElementFromMeanTravelDistance(unsigned int index) { return meanTravelDistance[index]; }
     float getElementFromMinTravelDistance(unsigned int index) { return minTravelDistance[index]; }
     float getElementFromMaxTravelDistance(unsigned int index) { return maxTravelDistance[index]; }
-    float getMeanDistancesBetweenNodes(){ return meanDistancesBetweenNodes; }
+    float getMeanDistanceBetweenNodes(){ return meanDistanceBetweenNodes; }
 
     /**
      @brief Simple method that print this class using a specific format.
