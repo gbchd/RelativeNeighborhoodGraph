@@ -13,16 +13,19 @@
 #include <iostream>
 #include <ctime>
 #include <string>
+#include <chrono>
+
+using namespace std::chrono;
 
 class TimeClock{
     //Atributes
 private:
-    std::time_t startTime;
+    high_resolution_clock::time_point startTime;
     
-    std::time_t oldTime;
-    std::time_t oldBigTime;
+    high_resolution_clock::time_point oldTime;
+    high_resolution_clock::time_point oldBigTime;
     
-    std::time_t newTime;
+    high_resolution_clock::time_point newTime;
     
     
     //Constructors & Destructor

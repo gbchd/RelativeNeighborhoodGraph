@@ -9,24 +9,26 @@
 #include "TimeClock.hpp"
 
 //Constructors
-TimeClock::TimeClock():startTime(std::time(nullptr)),oldTime(startTime),oldBigTime(startTime),newTime(startTime){
+TimeClock::TimeClock():startTime(high_resolution_clock::now()),oldTime(startTime),oldBigTime(startTime),newTime(startTime){
 }
 
-TimeClock::TimeClock(const std::string & str):startTime(std::time(nullptr)),oldTime(startTime),oldBigTime(startTime),newTime(startTime){
+TimeClock::TimeClock(const std::string & str):startTime(high_resolution_clock::now()),oldTime(startTime),oldBigTime(startTime),newTime(startTime){
     std::cout << str << std::endl;
 }
 
 //Public methods
 
 void TimeClock::tick(){
-    newTime = std::time(nullptr);
-    std::cout << "-Task has taken : " << newTime - oldTime << "s" << std::endl;
+    newTime = high_resolution_clock::now();
+    milliseconds timeSpent = duration_cast<milliseconds>(newTime - oldTime);
+    std::cout << "-Task has taken : " << timeSpent.count() << "ms" << std::endl;
     oldTime = newTime;
 }
 
 void TimeClock::tick(const std::string & str){
-    newTime = std::time(nullptr);
-    std::cout << "-" << str << " : " << newTime - oldTime << "s" << std::endl;
+    newTime = high_resolution_clock::now();
+    milliseconds timeSpent = duration_cast<milliseconds>(newTime - oldTime);
+    std::cout << "-" << str << " : " << timeSpent.count() << "ms" << std::endl;
     oldTime = newTime;
 }
 
@@ -39,17 +41,20 @@ void TimeClock::startSection(const std::string & str){
 }
 
 void TimeClock::endSection(){
-    std::cout << "===The section has taken : " << newTime - oldBigTime << "s===" << std::endl << std::endl;
+    milliseconds timeSpent = duration_cast<milliseconds>(newTime - oldBigTime);
+    std::cout << "===The section has taken : " << timeSpent.count() << "ms===" << std::endl << std::endl;
     oldBigTime = newTime;
 }
 
 void TimeClock::endSection(const std::string & str){
-    std::cout << "===" << str << " : " << newTime - oldBigTime << "s===" << std::endl << std::endl;
+    milliseconds timeSpent = duration_cast<milliseconds>(newTime - oldBigTime);
+    std::cout << "===" << str << " : " << timeSpent.count() << "ms===" << std::endl << std::endl;
     oldBigTime = newTime;
 }
 
 void TimeClock::finalize(){
-    newTime = std::time(nullptr);
-    std::cout << "The program has been done in " << newTime - startTime << "s" << std::endl;
+    newTime = high_resolution_clock::now();
+    milliseconds timeSpent = duration_cast<milliseconds>(newTime - startTime);
+    std::cout << "The program has been done in " << timeSpent.count() << "ms" << std::endl;
 }
 
