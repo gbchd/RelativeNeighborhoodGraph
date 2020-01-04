@@ -29,8 +29,8 @@ void ProgressBar::update(){
         cursorPercent++;
         if (cursorPercent % (100/lengthBar) == 0) {
             cursorBar++;
+            print();
         }
-        print();
     }
     if (cursor == length) {
         std::cout << std::endl;
@@ -45,8 +45,7 @@ void ProgressBar::print(){
     for (unsigned int i = cursorBar; i < lengthBar; i++) {
         std::cout << " ";
     }
-    std::cout << "] " << cursorPercent << "%" << '\r';
-    std::cout.flush();
+    std::cout << "] " << cursorPercent << "%" << std::endl;
 }
 
 unsigned int ProgressBar::setToPercent(unsigned int value){
