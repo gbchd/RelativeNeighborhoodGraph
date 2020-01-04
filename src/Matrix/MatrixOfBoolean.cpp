@@ -14,7 +14,7 @@
  */
 
 /**
-@brief Default constructor, number of columns and rows = 0 and no array allocated.
+ *\brief Default constructor, number of columns and rows = 0 and no array allocated.
 */
 MatrixOfBoolean::MatrixOfBoolean(){
     numberOfRows = 0;
@@ -23,7 +23,7 @@ MatrixOfBoolean::MatrixOfBoolean(){
 }
 
 /**
-@brief Copy constructor, each value of the array is copied.
+ *\brief Copy constructor, each value of the array is copied.
 */
 MatrixOfBoolean::MatrixOfBoolean(const MatrixOfBoolean & matrix){
     numberOfRows = matrix.numberOfRows;
@@ -33,7 +33,7 @@ MatrixOfBoolean::MatrixOfBoolean(const MatrixOfBoolean & matrix){
 }
 
 /**
-@brief Constructor that takes the number of rows and columns as parameter, this allocates the array and set it to false.
+ *\brief Constructor that takes the number of rows and columns as parameter, this allocates the array and set it to false.
 */
 MatrixOfBoolean::MatrixOfBoolean(unsigned int rows, unsigned int columns){
     numberOfRows = rows;
@@ -43,7 +43,7 @@ MatrixOfBoolean::MatrixOfBoolean(unsigned int rows, unsigned int columns){
 }
 
 /**
-@brief Destructor which desallocate the array.
+ *\brief Destructor which desallocate the array.
 */
 MatrixOfBoolean::~MatrixOfBoolean(){
     desallocateMatrixArray();
@@ -56,7 +56,7 @@ MatrixOfBoolean::~MatrixOfBoolean(){
  */
 
 /**
-@brief Desallocate then copy the given matrix to this matrix.
+ *\brief Desallocate then copy the given matrix to this matrix.
 */
 MatrixOfBoolean& MatrixOfBoolean::operator=(const MatrixOfBoolean & matrix){
     if(!isSizeNotValid()){
@@ -88,21 +88,21 @@ void MatrixOfBoolean::setElement(unsigned int row, unsigned int column, bool ele
 
 
 /**
-@brief Check if the matrix is square.
+ *\brief Check if the matrix is square.
 */
 bool MatrixOfBoolean::isSquare(){
     return (numberOfRows==numberOfColumns);
 }
 
 /**
-@brief Check if the number of columns or lines is equal 0, if so we return true.
+ *\brief Check if the number of columns or lines is equal 0, if so we return true.
 */
 bool MatrixOfBoolean::isSizeNotValid(){
     return numberOfRows==0 || numberOfColumns==0;
 }
 
 /**
-@brief Print the matrix with 1 if true and 0 if false.
+ *\brief Print the matrix with 1 if true and 0 if false.
 */
 void MatrixOfBoolean::print(){
     for(unsigned int row = 0; row < numberOfRows; row++){
@@ -126,7 +126,7 @@ Private Methods
 */
 
 /**
-@brief Allocate the array in correspondance of the number of columns and rows.
+ *\brief Allocate the array in correspondance of the number of columns and rows.
 */
 void MatrixOfBoolean::allocateMatrixArray(){
     if(numberOfRows > 0 && numberOfColumns > 0){
@@ -138,7 +138,7 @@ void MatrixOfBoolean::allocateMatrixArray(){
 }
 
 /**
-@brief Desallocate the matrix array.
+ *\brief Desallocate the matrix array.
 */
 void MatrixOfBoolean::desallocateMatrixArray(){
     if (numberOfRows > 0 && numberOfColumns > 0) {
@@ -152,8 +152,8 @@ void MatrixOfBoolean::desallocateMatrixArray(){
 }
 
 /**
-@brief Copy an array to the matrix array.
-@warning Does not check the size of the array.
+ *\brief Copy an array to the matrix array.
+ *\warning Does not check the size of the array.
 */
 void MatrixOfBoolean::copyArrayToMatrixArray(bool** arrayToCopy){
     for(unsigned int row = 0; row < numberOfRows; row++){
@@ -164,7 +164,7 @@ void MatrixOfBoolean::copyArrayToMatrixArray(bool** arrayToCopy){
 }
 
 /**
-@brief Set the whole matrix arrray to false.
+ *\brief Set the whole matrix arrray to false.
 */
 void MatrixOfBoolean::setMatrixArrayToFalse(){
     for(unsigned int row = 0; row < numberOfRows; row++){

@@ -9,7 +9,7 @@
 #include "DataExporter.hpp"
 
 /**
-@brief Exports the list of nodes from the graph and all their stats generated from the travel algorithm.
+ *\brief Exports the list of nodes from the graph and all their stats generated from the travel algorithm.
 */
 void DataExporter::ExportNodes(FileData & dataMatrix, TravelAlgorithmResult resultSet, std::string nomFichier)
 {
@@ -63,7 +63,7 @@ void DataExporter::ExportNodes(FileData & dataMatrix, TravelAlgorithmResult resu
 }
 
 /**
-@brief Exports the list of all edges from the graph and their distances.
+ *\brief Exports the list of all edges from the graph and their distances.
 */
 void DataExporter::ExportEdges(RNGraph & edgesMatrix, DistancesBetweenNodes & distMatrix, std::string nomFichier)
 {

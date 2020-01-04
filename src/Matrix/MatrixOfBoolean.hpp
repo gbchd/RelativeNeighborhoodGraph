@@ -13,8 +13,8 @@
 #include <vector>
 
 /**
- @name MatrixOfBoolean
- @brief A matrix class containing boolean.
+ *\name MatrixOfBoolean
+ *\brief A matrix class containing boolean.
  */
 class MatrixOfBoolean {
     //Atributes
@@ -27,29 +27,29 @@ private:
     //Constructors & Destructor
 public:
     /**
-     @brief Default constructor, number of columns and rows = 0 and no array allocated.
+     *\brief Default constructor, number of columns and rows = 0 and no array allocated.
      */
     MatrixOfBoolean();
     
     /**
-     @brief Copy constructor, each value of the array is copied.
+     *\brief Copy constructor, each value of the array is copied.
      */
     MatrixOfBoolean(const MatrixOfBoolean & matrix);
     
     /**
-     @brief Constructor that takes the number of rows and columns as parameter, this allocates the array and set it to false.
+     *\brief Constructor that takes the number of rows and columns as parameter, this allocates the array and set it to false.
      */
     MatrixOfBoolean(unsigned int rows, unsigned int columns);
     
     /**
-     @brief Destructor which desallocate the array.
+     *\brief Destructor which desallocate the array.
      */
     ~MatrixOfBoolean();
     
     //Methods
 public:
     /**
-     @brief Desallocate then copy the given matrix to this matrix.
+     *\brief Desallocate then copy the given matrix to this matrix.
      */
     MatrixOfBoolean& operator=(const MatrixOfBoolean & matrix);
     
@@ -60,39 +60,39 @@ public:
     void setElement(unsigned int row, unsigned int column, bool elem);
     
     /**
-     @brief Check if the matrix is square.
+     *\brief Check if the matrix is square.
      */
     bool isSquare();
     
     /**
-     @brief Check if the number of columns or lines is equal 0, if so we return true.
+     *\brief Check if the number of columns or lines is equal 0, if so we return true.
      */
     bool isSizeNotValid();
     
     /**
-     @brief Print the matrix with 1 if true and 0 if false.
+     *\brief Print the matrix with 1 if true and 0 if false.
      */
     void print();
    
 private:
     /**
-     @brief Allocate the array in correspondance of the number of columns and rows.
+     *\brief Allocate the array in correspondance of the number of columns and rows.
      */
     void allocateMatrixArray();
     
     /**
-     @brief Desallocate the matrix array.
+     *\brief Desallocate the matrix array.
      */
     void desallocateMatrixArray();
     
     /**
-     @brief Copy an array to the matrix array.
-     @warning Does not check the size of the array.
+     *\brief Copy an array to the matrix array.
+     *\warning Does not check the size of the array.
      */
     void copyArrayToMatrixArray(bool** array);
     
     /**
-     @brief Set the whole matrix arrray to false.
+     *\brief Set the whole matrix arrray to false.
      */
     void setMatrixArrayToFalse();
 };

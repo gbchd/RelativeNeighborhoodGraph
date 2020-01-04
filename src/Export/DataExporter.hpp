@@ -18,18 +18,18 @@
 #include "RNGraph.hpp"
 
 /**
- @name DataExporter
- @brief A class used to export the data to two files nodes and edges. These files are used to import the graph in Tulip.
+ *\name DataExporter
+ *\brief A class used to export the data to two files nodes and edges. These files are used to import the graph in Tulip.
  */
 class DataExporter {
     //Méthodes
 public:
     /**
-     @brief Exports the list of nodes from the graph and all their stats generated from the travel algorithm.
+     *\brief Exports the list of nodes from the graph and all their stats generated from the travel algorithm.
      */
     static void ExportNodes(FileData & dataMatrix, TravelAlgorithmResult resultMatrix, std::string nomFichier);
     /**
-    @brief Exports the list of all edges from the graph and their distances.
+     *\brief Exports the list of all edges from the graph and their distances.
     */
     static void ExportEdges(RNGraph & edgesMatrix, DistancesBetweenNodes & distMatrix, std::string nomFichier);
 

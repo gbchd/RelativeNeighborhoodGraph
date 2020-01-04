@@ -13,7 +13,7 @@ Constructors & Destructor
 */
 
 /**
- @brief DistancesBetweenNodes' constructor that takes a GraphData as input and calculates every distances between every nodes.
+ *\brief DistancesBetweenNodes' constructor that takes a GraphData as input and calculates every distances between every nodes.
  Since the distance is the same for AB and BA, the matrix is upper triangular.
  */
 DistancesBetweenNodes::DistancesBetweenNodes(GraphData & graphData):MatrixOfFloat(graphData.getNumberOfRows(), graphData.getNumberOfRows()){
@@ -35,7 +35,7 @@ Public methods
 */
 
 /**
- @brief accessor that return the distance between two nodes.
+ *\brief accessor that return the distance between two nodes.
  */
 float DistancesBetweenNodes::getDistance(unsigned int node_A, unsigned int node_B){
     if (node_A < node_B) {
@@ -47,7 +47,7 @@ float DistancesBetweenNodes::getDistance(unsigned int node_A, unsigned int node_
 }
 
 /**
- @brief return the mean distance between every nodes as if the graph was complete.
+ *\brief return the mean distance between every nodes as if the graph was complete.
  */
 float DistancesBetweenNodes::calculateMeanDistance(){
     float meanDistance = 0;
@@ -68,7 +68,7 @@ float DistancesBetweenNodes::calculateMeanDistance(){
 Private methods
 */
 /**
- @brief calculate the distance between two nodes from the data of a GraphData object.
+ *\brief calculate the distance between two nodes from the data of a GraphData object.
  */
 float DistancesBetweenNodes::getDistanceBetweenTwoNodes(GraphData & graphData, unsigned int node_A, unsigned int node_B){
     float distanceBetweenNodeAandB = 0;
@@ -80,7 +80,7 @@ float DistancesBetweenNodes::getDistanceBetweenTwoNodes(GraphData & graphData, u
 }
 
 /**
- @brief return the difference between the value of a given attribute of two different nodes.
+ *\brief return the difference between the value of a given attribute of two different nodes.
  */
 float DistancesBetweenNodes::getDifferenceOnSetAttributeBetweenTwoNodes(GraphData & graphData, unsigned int attribute, unsigned int node_A, unsigned int node_B){
     return graphData.getElement(node_A, attribute) - graphData.getElement(node_B, attribute);

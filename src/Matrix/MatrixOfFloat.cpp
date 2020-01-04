@@ -13,7 +13,7 @@
  Constructors & Destructor
  */
 /**
-@brief Default constructor, number of columns and rows = 0 and no array allocated.
+ *\brief Default constructor, number of columns and rows = 0 and no array allocated.
 */
 MatrixOfFloat::MatrixOfFloat(){
     numberOfRows = 0;
@@ -22,7 +22,7 @@ MatrixOfFloat::MatrixOfFloat(){
 }
 
 /**
-@brief Copy constructor, each value of the array is copied.
+ *\brief Copy constructor, each value of the array is copied.
 */
 MatrixOfFloat::MatrixOfFloat(const MatrixOfFloat & matrix){
     numberOfRows = matrix.numberOfRows;
@@ -32,7 +32,7 @@ MatrixOfFloat::MatrixOfFloat(const MatrixOfFloat & matrix){
 }
 
 /**
-@brief Constructor that takes the number of rows and columns as parameter, this allocates the array and set it to false.
+ *\brief Constructor that takes the number of rows and columns as parameter, this allocates the array and set it to false.
 */
 MatrixOfFloat::MatrixOfFloat(unsigned int rows, unsigned int columns){
     numberOfRows = rows;
@@ -42,7 +42,7 @@ MatrixOfFloat::MatrixOfFloat(unsigned int rows, unsigned int columns){
 }
 
 /**
-@brief Destructor which desallocate the array.
+ *\brief Destructor which desallocate the array.
 */
 MatrixOfFloat::~MatrixOfFloat(){
     desallocateMatrixArray();
@@ -54,7 +54,7 @@ MatrixOfFloat::~MatrixOfFloat(){
  Public Methods
  */
 /**
-@brief Desallocate then copy the given matrix to this matrix.
+ *\brief Desallocate then copy the given matrix to this matrix.
 */
 MatrixOfFloat& MatrixOfFloat::operator=(const MatrixOfFloat & matrix){
     if(!isSizeNotValid()){
@@ -85,21 +85,21 @@ void MatrixOfFloat::setElement(unsigned int row, unsigned int column, float elem
 }
 
 /**
-@brief Check if the matrix is square.
+ *\brief Check if the matrix is square.
 */
 bool MatrixOfFloat::isSquare(){
     return (numberOfRows==numberOfColumns);
 }
 
 /**
-@brief Check if the number of columns or lines is equal 0, if so we return true.
+ *\brief Check if the number of columns or lines is equal 0, if so we return true.
 */
 bool MatrixOfFloat::isSizeNotValid(){
     return numberOfRows==0 || numberOfColumns==0;
 }
 
 /**
-@brief Print the matrix.
+ *\brief Print the matrix.
 */
 void MatrixOfFloat::print(){
     for(unsigned int row = 0; row < numberOfRows; row++){
@@ -112,14 +112,14 @@ void MatrixOfFloat::print(){
 }
 
 /**
-@brief Print the matrix's dimensions.
+ *\brief Print the matrix's dimensions.
 */
 void MatrixOfFloat::printDimension(){
     printf("%u %u \n",numberOfRows, numberOfColumns);
 }
 
 /**
-@brief Return a certain row of the matrix in a vector format.
+ *\brief Return a certain row of the matrix in a vector format.
 */
 std::vector<float> MatrixOfFloat::getRow(unsigned int row){
     std::vector<float> rowToReturn;
@@ -130,8 +130,8 @@ std::vector<float> MatrixOfFloat::getRow(unsigned int row){
 }
 
 /**
-@brief Return a certain row after a given limit of the matrix in a vector format.
- This method is used in our implementation because these matrices are upper triangle, using this method we only get the part with correct data.
+ *\brief Return a certain row after a given limit of the matrix in a vector format.
+ *This method is used in our implementation because these matrices are upper triangle, using this method we only get the part with correct data.
  */
 std::vector<float> MatrixOfFloat::getRowAfterLimit(unsigned int row, unsigned int limit){
     std::vector<float> rowToReturn;
@@ -142,7 +142,7 @@ std::vector<float> MatrixOfFloat::getRowAfterLimit(unsigned int row, unsigned in
 }
 
 /**
-@brief Return a certain column of the matrix in a vector format.
+ *\brief Return a certain column of the matrix in a vector format.
 */
 std::vector<float> MatrixOfFloat::getColumn(unsigned int column){
     std::vector<float> columnToReturn;
@@ -153,8 +153,8 @@ std::vector<float> MatrixOfFloat::getColumn(unsigned int column){
 }
 
 /**
-@brief Return a certain column before a given limit of the matrix in a vector format.
- This method is used in our implementation because these matrices are upper triangle, using this method we only get the part with correct data.
+ *\brief Return a certain column before a given limit of the matrix in a vector format.
+ *This method is used in our implementation because these matrices are upper triangle, using this method we only get the part with correct data.
  */
 std::vector<float> MatrixOfFloat::getColumnBeforeLimit(unsigned int column, unsigned int limit){
     std::vector<float> columnToReturn;
@@ -165,7 +165,7 @@ std::vector<float> MatrixOfFloat::getColumnBeforeLimit(unsigned int column, unsi
 }
 
 /**
-@brief change the matrix's number of rows and columns.
+ *\brief change the matrix's number of rows and columns.
  */
 void MatrixOfFloat::resizeMatrix(unsigned int rows, unsigned int columns){
     desallocateMatrixArray();
@@ -180,7 +180,7 @@ void MatrixOfFloat::resizeMatrix(unsigned int rows, unsigned int columns){
 Private Methods
 */
 /**
-@brief Allocate the array in correspondance of the number of columns and rows.
+ *\brief Allocate the array in correspondance of the number of columns and rows.
 */
 void MatrixOfFloat::allocateMatrixArray(){
     if(numberOfRows != 0 && numberOfColumns != 0){
@@ -192,7 +192,7 @@ void MatrixOfFloat::allocateMatrixArray(){
 }
 
 /**
-@brief Desallocate the matrix array.
+ *\brief Desallocate the matrix array.
 */
 void MatrixOfFloat::desallocateMatrixArray(){
     if (numberOfRows > 0 && numberOfColumns > 0) {
@@ -207,8 +207,8 @@ void MatrixOfFloat::desallocateMatrixArray(){
 }
 
 /**
-@brief Copy an array to the matrix array.
-@warning Does not check the size of the array.
+ *\brief Copy an array to the matrix array.
+ *\warning Does not check the size of the array.
 */
 void MatrixOfFloat::copyArrayToMatrixArray(float** arrayToCopy){
     for(unsigned int row = 0; row < numberOfRows; row++){
@@ -219,7 +219,7 @@ void MatrixOfFloat::copyArrayToMatrixArray(float** arrayToCopy){
 } 
 
 /**
-@brief Set the whole matrix arrray to false.
+ *\brief Set the whole matrix arrray to false.
 */
 void MatrixOfFloat::setMatrixArrayToZero(){
     for(unsigned int row = 0; row < numberOfRows; row++){
