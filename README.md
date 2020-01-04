@@ -14,6 +14,8 @@ Le but est de mettre en place un Graphe de Voisinage (Relative Neighborhood Grap
 
 Le projet est actuellement sous la forme d'un projet Xcode, néanmoins importer le dossier **src** sous Visual Studio où tout autre IDE est également possible.
 
+Vous pouvez également retrouver une version du projet sous Visual Studio (avec les tests unitaires) à cet adresse : https://github.com/ColinTr/ProjetS7RelativeNeighborhoodGraph
+
 ## Prérequis du logiciel
 Le logiciel a besoin d'un fichier de données complet pour fonctionner. Celui-ci ne doit contenir que des nombres ou alors doit être accompagné d'un fichier d'entête qui spécifie si une des colonnes est un attribut de classe et ne sera donc pas utiliser pour générer le graphe.
 
@@ -49,7 +51,7 @@ Une fois le logiciel compilé, on obtient un executable qui peut prendre plusieu
 
 * **-d "chemin du fichier de données"** permet de choisir le fichier de données, si cette option est manquante le logiciel s'interrompra et enverra le code 1.
 * **-c "chemin du fichier d'entête"** permet de choisir le fichier d'entête, si cette option est manquante, on considèrera que toutes les colonnes du fichier de données sont utilisées pour créer le graphe et ne sont pas des attributs de classes.
-*  **-e "chemin du dossier d'exportation"** permet de choisir le dossier dans lequel seront exportés les fichiers de résultats.
+*  **-e "chemin du dossier d'exportation"** permet de choisir le dossier dans lequel seront exportés les fichiers de résultats. Si cette option est manquante les résultats seront affichés dans le terminal.
 *  **-s 'charactère de séparation'** permet de choisir le charactère de séparation utilisé pour séparer les colonnes dans les fichiers importés.
 *  **-v version** permet de choisir quelle version de l'algorithme de parcours le logiciel utilisera, la version 1 ne prend en compte que les voisins d'un noeud A (plus rapide mais moins précise) tandis que la version 2 prend en compte les voisins et leurs voisins (moins rapide mais plus précise).
 *  **-k nombre de noeuds** permet de choisir le nombre de noeuds que l'on souhaite utiliser pour l'algorithme de parcours. Si cette option est absente, l'algorithme de parcours effectuera pour tous les noeuds du graphe une insertion sur tous les noeuds.
