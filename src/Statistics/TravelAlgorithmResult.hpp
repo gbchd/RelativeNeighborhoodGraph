@@ -30,9 +30,9 @@ private:
     
     std::vector<float> meanDistanceToVertex; //mean distance to vertex when failed to insert on
     
-    std::vector<float> meanTravelDistance;
-    std::vector<float> minTravelDistance;
-    std::vector<float> maxTravelDistance;
+    std::vector<float> meanTraveledDistance;
+    std::vector<float> minTraveledDistance;
+    std::vector<float> maxTraveledDistance;
     
     float meanDistanceBetweenNodes;
     
@@ -55,9 +55,9 @@ public:
     unsigned int getElementFromFoundRightNodeWhenInsertedOn(unsigned int index) { return foundRightNodeWhenInsertedOn[index]; }
     unsigned int getElementFromUsedNodeToTravel(unsigned int index) { return usedNodeToTravel[index]; }
     float getElementFromMeanDistanceToVertex(unsigned int index) { return meanDistanceToVertex[index]; }
-    float getElementFromMeanTravelDistance(unsigned int index) { return meanTravelDistance[index]; }
-    float getElementFromMinTravelDistance(unsigned int index) { return minTravelDistance[index]; }
-    float getElementFromMaxTravelDistance(unsigned int index) { return maxTravelDistance[index]; }
+    float getElementFromMeanTraveledDistance(unsigned int index) { return meanTraveledDistance[index]; }
+    float getElementFromMinTraveledDistance(unsigned int index) { return minTraveledDistance[index]; }
+    float getElementFromMaxTraveledDistance(unsigned int index) { return maxTraveledDistance[index]; }
     float getMeanDistanceBetweenNodes(){ return meanDistanceBetweenNodes; }
 
     /**
