@@ -35,8 +35,7 @@ public:
 public:
     void initialize(unsigned int l);
     void update();
-    void print(int i);
-    void threadOutput();
+    void print();
     
 private:
     unsigned int setToPercent(unsigned int value);
