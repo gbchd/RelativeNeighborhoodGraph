@@ -48,9 +48,9 @@ void DataExporter::ExportNodes(FileData & dataMatrix, TravelAlgorithmResult resu
                 << dataMatrix.getSeparationCharacter() << resultSet.getElementFromFoundRightNodeWhenInsertedOn(rowIndex)
                 << dataMatrix.getSeparationCharacter() << resultSet.getElementFromUsedNodeToTravel(rowIndex)
                 << dataMatrix.getSeparationCharacter() << resultSet.getElementFromMeanDistanceToVertex(rowIndex)
-                << dataMatrix.getSeparationCharacter() << resultSet.getElementFromMeanTraveledDistance(rowIndex)
-                << dataMatrix.getSeparationCharacter() << resultSet.getElementFromMinTraveledDistance(rowIndex)
-                << dataMatrix.getSeparationCharacter() << resultSet.getElementFromMaxTraveledDistance(rowIndex)
+                << dataMatrix.getSeparationCharacter() << resultSet.getElementFromMeanTravelDistance(rowIndex)
+                << dataMatrix.getSeparationCharacter() << resultSet.getElementFromMinTravelDistance(rowIndex)
+                << dataMatrix.getSeparationCharacter() << resultSet.getElementFromMaxTravelDistance(rowIndex)
                 << dataMatrix.getSeparationCharacter() << resultSet.getMeanDistanceBetweenNodes()
             << std::endl;
         }

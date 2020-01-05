@@ -23,9 +23,9 @@ TravelAlgorithmResult::TravelAlgorithmResult(unsigned int size){
         foundRightNodeWhenInsertedOn.push_back(0);
         usedNodeToTravel.push_back(0);
         
-        meanTraveledDistance.push_back(0);
-        minTraveledDistance.push_back(std::numeric_limits<float>::max());
-        maxTraveledDistance.push_back(0);
+        meanTravelDistance.push_back(0);
+        minTravelDistance.push_back(std::numeric_limits<float>::max());
+        maxTravelDistance.push_back(0);
         
         meanDistanceToVertex.push_back(0);
     }
@@ -43,7 +43,7 @@ Public Methods
 void TravelAlgorithmResult::print(){
     std::cout << "Nodes | Number of nodes found again when inserted anywhere | Number of nodes that were used as insertion and found back the original node | Number of times the node was used to travel" << std::endl;
     for (unsigned int number = 0; number < foundAgainWhenInserted.size(); number++) {
-        std::cout << number << " | " << foundAgainWhenInserted[number] << " | " << foundRightNodeWhenInsertedOn[number] << " | " << usedNodeToTravel[number] << " | " << meanDistanceToVertex[number] << " | " << meanTraveledDistance[number] << " | " << minTraveledDistance[number] << " | " << maxTraveledDistance[number] << " | " << meanDistanceBetweenNodes << std::endl;
+        std::cout << number << " | " << foundAgainWhenInserted[number] << " | " << foundRightNodeWhenInsertedOn[number] << " | " << usedNodeToTravel[number] << " | " << meanDistanceToVertex[number] << " | " << meanTravelDistance[number] << " | " << minTravelDistance[number] << " | " << maxTravelDistance[number] << " | " << meanDistanceBetweenNodes << std::endl;
     }
     std::cout << std::endl;
 }
@@ -58,9 +58,9 @@ void TravelAlgorithmResult::reset(){
         foundAgainWhenInserted[node] = 0;
         usedNodeToTravel[node] = 0;
         meanDistanceToVertex[node] = 0;
-        meanTraveledDistance[node] = 0;
-        minTraveledDistance[node] = std::numeric_limits<float>::max();
-        maxTraveledDistance[node] = 0;
+        meanTravelDistance[node] = 0;
+        minTravelDistance[node] = std::numeric_limits<float>::max();
+        maxTravelDistance[node] = 0;
         meanDistanceBetweenNodes = 0;
     }
 }
@@ -168,16 +168,16 @@ void TravelAlgorithmResult::neighborAlgorithm(unsigned int nodeToReach, unsigned
 */
 void TravelAlgorithmResult::setDistanceForTheTravelDistance(unsigned int node, float distance){
     // We test if the distance is the max
-    if(distance > maxTraveledDistance[node]){
-        maxTraveledDistance[node] = distance;
+    if(distance > maxTravelDistance[node]){
+        maxTravelDistance[node] = distance;
     }
     
     //We add to the sum of all travel distances
-    meanTraveledDistance[node] += distance;
+    meanTravelDistance[node] += distance;
     
     //We test if the distance is the min
-    if(distance < minTraveledDistance[node]){
-        minTraveledDistance[node] = distance;
+    if(distance < minTravelDistance[node]){
+        minTravelDistance[node] = distance;
     }
 }
 
@@ -235,7 +235,7 @@ void TravelAlgorithmResult::generateResultsWithNeighborAlgorithmOnAllNodes(Dista
         }
         
         //We get the mean of the travel distances.
-        meanTraveledDistance[row] = meanTraveledDistance[row]/numberOfNodes;
+        meanTravelDistance[row] = meanTravelDistance[row]/numberOfNodes;
         
         //We get the mean of the distances when failed by dividing the sum stocked in meanDistanceToVertex by the number of time the insertion failed.
         meanDistanceToVertex[row] = (meanDistanceToVertex[row])/(numberOfNodes-foundAgainWhenInserted[row]);
@@ -267,7 +267,7 @@ void TravelAlgorithmResult::generateResultsWithNeighborAlgorithmOnRandomVector(D
         }
         
         //We get the mean of the travel distances.
-        meanTraveledDistance[node] = meanTraveledDistance[node]/sizeOfVector;
+        meanTravelDistance[node] = meanTravelDistance[node]/sizeOfVector;
         //We get the mean of the distances when failed by dividing the sum stocked in meanDistanceToVertex by the number of time the insertion failed.
         unsigned int numberOfTimeTheInsertionFailed = sizeOfVector-foundAgainWhenInserted[node];
         if(numberOfTimeTheInsertionFailed == 0){
