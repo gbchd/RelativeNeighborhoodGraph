@@ -29,9 +29,9 @@ void DataExporter::ExportNodes(FileData & dataMatrix, TravelAlgorithmResult resu
             << dataMatrix.getSeparationCharacter() << "\"Found right node when inserted on\""
             << dataMatrix.getSeparationCharacter() << "\"Used node to travel\""
             << dataMatrix.getSeparationCharacter() << "\"Mean distance to vertex when failed to insert on\""
-            << dataMatrix.getSeparationCharacter() << "\"Mean distance travelling\""
-            << dataMatrix.getSeparationCharacter() << "\"Min distance travelling\""
-            << dataMatrix.getSeparationCharacter() << "\"Max distance travelling\""
+            << dataMatrix.getSeparationCharacter() << "\"Mean traveled distance\""
+            << dataMatrix.getSeparationCharacter() << "\"Min traveled distance\""
+            << dataMatrix.getSeparationCharacter() << "\"Max traveled distance\""
             << dataMatrix.getSeparationCharacter() << "\"Mean distance\""
         << std::endl;
 
