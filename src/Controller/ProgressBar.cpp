@@ -29,15 +29,19 @@ void ProgressBar::update(){
         cursorPercent++;
         if (cursorPercent % (100/lengthBar) == 0) {
             cursorBar++;
-            print();
+            threadOutput();
         }
     }
     if (cursor == length) {
         std::cout << std::endl;
+        listOfThread.back().detach();
     }
 }
 
 void ProgressBar::print(){
+    if (listOfThread.size()>1 && listOfThread[listOfThread.size()-2].joinable()) {
+        listOfThread[listOfThread.size()-2].join();
+    }
     std::cout <<"[";
     for (unsigned int i = 0; i < cursorBar ; i++) {
         std::cout << "=";
@@ -46,6 +50,13 @@ void ProgressBar::print(){
         std::cout << " ";
     }
     std::cout << "] " << cursorPercent << "%" << std::endl;
+    
+
+}
+
+void ProgressBar::threadOutput(){
+    std::thread t(&ProgressBar::print, this);
+    listOfThread.push_back(std::move(t));
 }
 
 unsigned int ProgressBar::setToPercent(unsigned int value){

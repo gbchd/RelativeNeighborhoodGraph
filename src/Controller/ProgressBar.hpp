@@ -11,6 +11,9 @@
 
 #include <stdio.h>
 #include <iostream>
+#include <vector>
+#include <thread>
+
 
 class ProgressBar{
     //Atributes
@@ -23,6 +26,7 @@ private:
     
     unsigned int lengthBar;
     
+    std::vector<std::thread> listOfThread;
     //Constructors & Destructor
 public:
     ProgressBar();
@@ -32,6 +36,7 @@ public:
     void initialize(unsigned int l);
     void update();
     void print();
+    void threadOutput();
     
 private:
     unsigned int setToPercent(unsigned int value);
