@@ -20,7 +20,7 @@ ProgressBar::ProgressBar(){
 
 void ProgressBar::initialize(unsigned int l){
     length = l;
-    print();
+    print(0);
 }
 
 void ProgressBar::update(){
@@ -33,14 +33,16 @@ void ProgressBar::update(){
         }
     }
     if (cursor == length) {
+        if (listOfThread.back().joinable()) {
+            listOfThread.back().join();
+        }
         std::cout << std::endl;
-        listOfThread.back().detach();
     }
 }
 
-void ProgressBar::print(){
-    if (listOfThread.size()>1 && listOfThread[listOfThread.size()-2].joinable()) {
-        listOfThread[listOfThread.size()-2].join();
+void ProgressBar::print(int i){
+    if (listOfThread.size()>1 && listOfThread[i-1].joinable()) {
+        listOfThread[i-1].join();
     }
     std::cout <<"[";
     for (unsigned int i = 0; i < cursorBar ; i++) {
@@ -55,7 +57,7 @@ void ProgressBar::print(){
 }
 
 void ProgressBar::threadOutput(){
-    std::thread t(&ProgressBar::print, this);
+    std::thread t(&ProgressBar::print, this, listOfThread.size());
     listOfThread.push_back(std::move(t));
 }
 

@@ -35,7 +35,7 @@ public:
 public:
     void initialize(unsigned int l);
     void update();
-    void print();
+    void print(int i);
     void threadOutput();
     
 private:
