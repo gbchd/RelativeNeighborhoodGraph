@@ -17,6 +17,12 @@
 #include "Exception.hpp"
 #include "TimeClock.hpp"
 
+const char fileSystemSeparator =
+#ifdef _WIN32
+'\\';
+#else
+'/';
+#endif
 
 /**
  *\name main
@@ -73,7 +79,7 @@ int main(int argc, const char * argv[]) {
     
     //Check if we did input a dataFile if not terminate the program.
     if (dataFile == "") {
-        std::cout << "Invalid arguments, missing the graph file." << std::endl <<  "Use -g \"path\"." << std::endl;
+        std::cout << "Invalid arguments, missing the data file." << std::endl <<  "Use -d \"path\"." << std::endl;
         return 1;
     }
     
@@ -121,6 +127,11 @@ int main(int argc, const char * argv[]) {
             clock.tick();
         }
         else{
+            
+            if (exportDirectory.back() != fileSystemSeparator) {
+                exportDirectory += fileSystemSeparator;
+            }
+            
             std::string nodesPath = exportDirectory+"nodes.csv";
             std::string edgesPath = exportDirectory+"edges.csv";
             
